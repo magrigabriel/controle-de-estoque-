@@ -10,11 +10,46 @@
   <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
   <title>Tela Inicial - DataStock</title>
 </head>
-
 <body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+      }
+      .chart {
+          width: 100%;
+          max-width: 600px;
+          height: auto;
+          margin: 20px auto;
+          position: relative;
+      }
+      .line {
+          fill: none;
+          stroke: #007bff;
+          stroke-width: 2;
+      }
+      .dot {
+          fill: #007bff;
+          stroke: #fff;
+          stroke-width: 2;
+      }
+      .tooltip {
+          position: absolute;
+          background: rgba(3, 3, 251, 0.7);
+          color: #fff;
+          padding: 5px;
+          border-radius: 5px;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s;
+          top:210px;
+      }
+      .tooltip.active {
+          opacity: 2;
+      }
+  </style>
     <!-- cabeçalho -->
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -56,6 +91,7 @@
         <button type="button" class="btn btn-outline-primary col-lg-2 ms-2 col-5 mb-2"><img src="./assets/img/barcode.png" alt="" style="width:30px;"><strong> Ver Produtos</strong></button>
         <button type="button" class="btn btn-outline-primary col-lg-2 ms-2 col-5 mb-2"><img src="./assets/img/rascunho.png" alt="" style="width:30px;"><strong> Rascunhos</strong></button>
         <button type="button" class="btn btn-outline-primary col-lg-2 ms-2 col-5 mb-2"><img src="./assets/img/truck.png" alt="" style="width:30px;"><strong> Centro de distribuições</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 ms-2 col-10 mb-2"><img src="./assets/img/loha.png" alt="" style="width:30px;"><strong> Setor de Vendas</strong></button>
     </div>
   </div>
   <!-- Fim Opções -->
@@ -63,14 +99,94 @@
   <!-- Inicio gráfico -->
   <div class="container w75">
     <div class="row">
-      <div class="col-lg-9">
+      <div class="col-lg-9 col-12">
         <h1 class="opcao"><img src="./assets/img/grafico.png" alt="" style="width: 40px;margin-bottom: 15px;"> Gráfico total de vendas</h1>
         <div id="efeito1"></div>
-      
+        <div class="chart"></div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+    // substituir no banco de dados 
+    const data = [
+        { mes: "Janeiro", vendas: 1100 },
+        { mes: "Fevereiro", vendas: 1500 },
+        { mes: "Março", vendas: 76 },
+        { mes: "Abril", vendas: 80 },
+        { mes: "Maio", vendas: 130 },
+        { mes: "Junho", vendas: 150 }
+    ];
+
+    // Dimensões do gráfico
+    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    let width = document.querySelector('.chart').clientWidth;
+    let height = width * 0.6;
+
+    // Escala X
+    const x = d3.scalePoint()
+        .domain(data.map(d => d.mes))
+        .range([margin.left, width - margin.right]);
+
+    // Escala Y
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.vendas)])
+        .range([height - margin.bottom, margin.top]);
+
+    // SVG
+    const svg = d3.select('.chart')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+    // Desenhar a linha
+    svg.append('path')
+        .datum(data)
+        .attr('class', 'line')
+        .attr('d', d3.line()
+            .x(d => x(d.mes))
+            .y(d => y(d.vendas))
+        );
+
+    // Adicionar pontos
+    svg.selectAll('.dot')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('class', 'dot')
+        .attr('cx', d => x(d.mes))
+        .attr('cy', d => y(d.vendas))
+        .attr('r', 5)
+        .on('mouseenter', function(d) {
+            d3.select(this).attr('r', 8);
+            tooltip.text(`Vendas: ${d.vendas}`);
+            tooltip.attr('class', 'tooltip active');
+        })
+        .on('mouseleave', function() {
+            d3.select(this).attr('r', 5);
+            tooltip.attr('class', 'tooltip');
+        });
+
+    // Eixos
+    const xAxis = g => g
+        .attr('transform', `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
+
+    const yAxis = g => g
+        .attr('transform', `translate(${margin.left},0)`)
+        .call(d3.axisLeft(y));
+
+    svg.append('g').call(xAxis);
+    svg.append('g').call(yAxis);
+
+    // Tooltip
+    const tooltip = d3.select('.chart')
+        .append('div')
+        .attr('class', 'tooltip');
+
+</script>
       </div>
       <!-- fim Gráfico -->
       <!-- inicio legendas -->
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-12">
         <h5 class="text-primary"><strong>Legendas:</strong></h5>
         <div style="display: flex;">
           <div style="width: 30px; height: 30px; border-radius: 50%; background-color: green;"></div>
@@ -95,6 +211,7 @@
       <div class="col-lg-12">
         <h1> <img src="./assets/img/clock.png" alt="" style="width: 50px; margin-right: 10px;" id="icos">Proximos do vencimento ou Vencidos</h1>
         <div id="efeito3"></div>
+        
       </div>
     </div>
   </div>
