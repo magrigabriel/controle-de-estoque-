@@ -1,4 +1,4 @@
-#efeito{
+#efeito {
     width: 120px;
     height: 10px;
     background-color: rgba(0, 0, 255, 0.633);
@@ -6,11 +6,11 @@
     margin-left: 25px;
 }
 
-.opcoes{
-    text-decoration:none; 
+.opcoes {
+    text-decoration: none;
 }
 
-#efeito1{
+#efeito1 {
     width: 300px;
     height: 10px;
     background-color: rgba(0, 0, 255, 0.633);
@@ -18,22 +18,38 @@
     margin-left: 190px;
 }
 
-@media  (min-width: 100px) and (max-width: 750px){
-    #efeito1,#efeito,#efeito3{
+h1 {
+    font-size: 22px;
+    text-shadow: -1px -1px 50px rgba(0, 0, 255, 0.453);
+    color: blue;
+}
+
+@media (min-width: 100px) and (max-width: 1079px) {
+
+    #efeito1,
+    #efeito,
+    #efeito3 {
         display: none;
     }
-    h1{
-        font-size: 22px;
-        text-shadow: -1px -1px 50px rgba(0, 0, 255, 0.453);
-        color: blue;
-    }
-    #icos{
+
+    
+
+    #icos {
         width: 10%;
     }
-    
-    
+
+    .chart {
+        width: 900px;
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      position: relative;
+    }
+
+
 }
-#efeito3{
+
+#efeito3 {
     width: 420px;
     height: 10px;
     background-color: rgba(0, 0, 255, 0.633);
