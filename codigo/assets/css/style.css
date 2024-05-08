@@ -1,6 +1,6 @@
 body {
     background-color: rgba(128, 128, 128, 0.153);
-    margin-top: 77px;
+    margin-top: 100px;
 }
 
 nav{
@@ -52,7 +52,9 @@ nav{
     transform: scale(1.2);
   }
 
-  @media  (min-width: 100px) and (max-width: 750px){
+
+
+  @media  (min-width: 100px) and (max-width: 768px){
     #efeito1,#efeito,#efeito2{
         display: none;
     }
@@ -68,6 +70,12 @@ nav{
         color: blue;
     }
 
+    #sumi4r{
+        display: none;
+    }
+
+    }
+
     
-    
-}
+
+
