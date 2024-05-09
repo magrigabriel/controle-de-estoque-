@@ -52,6 +52,10 @@ nav{
     transform: scale(1.2);
   }
 
+  #imgpagdps{
+    display: none;
+}
+
 
 
   @media  (min-width: 100px) and (max-width: 768px){
@@ -74,7 +78,35 @@ nav{
         display: none;
     }
 
+    #confirmarpag{
+        margin-left: 0;
     }
+
+    #cem{
+        width: 100%;
+    }
+
+    #imgpag{
+        display: none;
+    }
+
+    #imgpagdps{
+        display: block;
+    }
+
+    }
+    #cem{
+        width: 30%;
+        
+    }
+    
+
+    #confirmarpag{
+        margin-left: 10px;
+    }
+    /* formulario */
+
+
 
     
 

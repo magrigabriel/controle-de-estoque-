@@ -26,13 +26,6 @@ h1 {
 
 @media (min-width: 100px) and (max-width: 1079px) {
 
-    #efeito1,
-    #efeito,
-    #efeito3 {
-        display: none;
-    }
-
-    
 
     #icos {
         width: 10%;
@@ -48,12 +41,4 @@ h1 {
 
 
 
-}
-
-#efeito3 {
-    width: 420px;
-    height: 10px;
-    background-color: rgba(0, 0, 255, 0.633);
-    margin-top: -28px;
-    margin-left: 330px;
 }

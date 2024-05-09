@@ -33,8 +33,8 @@
             <!-- Opções a Direita do NAV -->
             <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="#">Cadastro</a>
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="#">Tela Inicial</a>
+                    <a class="nav-link" href="#">Configuração</a>
                     <a class="nav-link" href="#contatos">Contato/Dúvidas</a>
                     <a class="nav-link" href="./telaempres.html">TelaEmpres(REMOVER FUTURAMENTE)</a>
                     <a class="nav-link" href="./Planos.html">Planos(REMOVER FUTURAMENTE)</a>
@@ -74,8 +74,9 @@
         <div class="container w-75">
             <div class="row mt-2">
                 <!-- resumo plano escolhido -->
-                <div class="col-lg-3 m-2 p-3 rounded-3 border border-primary border border-2"style="background-color: white;">
-                    <h2 class="p-2 m-1 bg-primary rounded-3 text-white mb-3">Plano Escolhido:</h2>
+                <div class="col-lg-4 col-md-12 col-12 p-3 rounded-3 border border-primary border border-2 m-2"
+                    style="background-color: white;">
+                    <h2 class="p-2 m-1 bg-primary rounded-3 text-white mb-3">Plano <br>Escolhido:</h2>
                     <h3 class="text-primary">Básico<span style="font-size: 45%;">/mensal</span></h3>
                     <h4 class="m-2">R$:XX,XX</h4>
                     <span style="font-size: smaller;"><img src="../assets/img/check2.png" alt=""
@@ -87,12 +88,163 @@
                     <span style="font-size: smaller;"><img src="../assets/img/x.png" alt="" style="width: 30px;">Gráfico
                         e relatorio de vendas automatica</span><br>
                     <span style="font-size: smaller;"><img src="../assets/img/x.png" alt="" style="width: 30px;">Não
-                        estabele conexões com centros de distribuições</span><br>
+                        estabelece conexões com centros de distribuições</span><br>
                     <button type="button" class="btn p-2 mt-3"
-                        style="background-color: #20B2FF; width: 90%; margin-left: 11px;" id="teste" onclick="window.location.href = 'Planos.html'">Alterar Plano</button>
+                        style="background-color: #20B2FF; width: 90%; margin-left: 11px;" id="teste"
+                        onclick="window.location.href = 'Planos.html'">Alterar Plano</button>
                 </div>
-                <div class="col-lg-9">
-                    
+                <!-- inicio pagamento -->
+                <div class="col-lg-7 col-12 col-md-12 p-3 rounded-3 border border-primary border border-2 m-2"
+                    style="background-color: white;" id="confirmarpag">
+                    <h2 class="p-2 m-1 bg-primary rounded-3 text-white mb-3">Escolha a Forma de <br>Pagamento:</h2>
+                    <div class="accordion rounded-2 border border-primary border border-2" id="accordionExample">
+                        <div class="accordion-item" style="border-bottom: 2px solid #0D6EFD;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <strong id="ola"> Cartão de Crédito:</strong>
+                                    <div id="imgpag">
+                                    <img src="../assets/img/mastercard.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                    <img src="../assets/img/amex.svg" alt="" style="width: 30px;" class="ms-2">
+                                    <img src="../assets/img/elo.svg" alt="" style="width: 30px; height: 100%;"
+                                        class="ms-2">
+                                    <img src="../assets/img/visa.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                </div>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="form">
+                                        <form action="../html/telaempres.html">
+                                            <div class="form-header">
+                                                <div class="title">
+                                                    <h2 class="p-2 m-1 bg-primary rounded-3 text-white mb-3">Cartão
+                                                        de<br> Crédito:
+                                                        <div id="imgpagdps">
+                                                            <img src="../assets/img/mastercard.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/amex.svg" alt="" style="width: 30px;" class="ms-2">
+                                                            <img src="../assets/img/elo.svg" alt="" style="width: 30px; height: 100%;"
+                                                                class="ms-2">
+                                                            <img src="../assets/img/visa.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                                        </div>
+                                                    </h2>
+                                                </div>
+                                                <div class="login-button">
+                                                    <button><a href="#">Entrar</a></button>
+                                                </div>
+                                                <div class="input-group">
+                                                    <div class="input-box w-75">
+                                                        <label for="nome-cartao" class="ms-1">Nome Impresso no
+                                                            Cartão</label>
+                                                        <input id="nome-cartao" type="text" name="nome-cartao"
+                                                            placeholder="Nome impresso no cartão" class="w-75 m-2">
+                                                    </div>
+                                                    <div class="input-box" id="cem">
+                                                        <label for="nome-completo" class="w-100 ms-2">Data de
+                                                            Validade</label>
+                                                        <input id="nome-completo" type="text" name="nome-completo"
+                                                            placeholder="MM/AA" class="m-2">
+                                                    </div>
+                                                    <div class="input-box" id="cem">
+                                                        <label for="nome-completo" class="w-100 ms-2">CVV</label>
+                                                        <input id="nome-completo" type="text" name="nome-completo"
+                                                            placeholder="" class="m-2">
+                                                    </div>
+                                                    <div class="input-box w-75 ms-2">
+                                                        <label for="numero-cartao" class="w-100">Número do
+                                                            Cartão</label>
+                                                        <input id="numero-cartao" type="text" name="numero-cartao"
+                                                            placeholder="0000 0000 0000 0000 " class="w-75 m-2">
+                                                    </div>
+                                                    <div class="input-box w-75 ms-2">
+                                                        <label for="nome-completo" class="w-100">Seu nome
+                                                            completo</label>
+                                                        <input id="nome-completo" type="text" name="nome-completo"
+                                                            placeholder="Seu nome completo" class="w-75 m-2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <strong> Cartão de Débito:</strong>
+                                    <div id="imgpag">
+                                    <img src="../assets/img/itau.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                    <img src="../assets/img/caixa.svg" alt="" style="width: 30px;" class="ms-2">
+                                    <img src="../assets/img/banco-do-brasil.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                    <img src="../assets/img/santander.svg" alt=""
+                                        style="width: 30px; height: 100%;" class="ms-2">
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="form">
+                                        <form action="../html/telaempres.html">
+                                            <div class="form-header">
+                                                <div class="title">
+                                                    <h2 class="p-2 m-1 bg-primary rounded-3 text-white mb-3">Cartão de
+                                                        <br>Débito: <div id="imgpagdps">
+                                                            <img src="../assets/img/itau.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/caixa.svg" alt="" style="width: 30px;" class="ms-2">
+                                                            <img src="../assets/img/banco-do-brasil.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/santander.svg" alt=""
+                                                                style="width: 30px; height: 100%;" class="ms-2">
+                                                            </div>
+                                                    </h2>
+                                                
+                                                </div>
+                                                
+                                                <div class="login-button">
+                                                    <button><a href="#">Entrar</a></button>
+                                                </div>
+                                                <div class="input-group">
+                                                    <div class="input-box w-75">
+                                                        <label for="nome-cartao" class="ms-2">Nome Impresso no
+                                                            Cartão</label>
+                                                        <input id="nome-cartao" type="text" name="nome-cartao"
+                                                            placeholder="Nome impresso no cartão" class="w-75 m-2">
+                                                    </div>
+                                                    <div class="input-box" id="cem">
+                                                        <label for="nome-completo" class="w-100 ms-2">Data de
+                                                            Validade</label>
+                                                        <input id="nome-completo" type="text" name="nome-completo"
+                                                            placeholder="MM/AA" class="m-2">
+                                                    </div>
+                                                    <div class="input-box" id="cem">
+                                                        <label for="nome-completo" class="w-100 ms-2">CVV</label>
+                                                        <input id="nome-completo" type="text" name="nome-completo"
+                                                            placeholder="" class="m-2">
+                                                    </div>
+                                                    <div class="input-box w-75 ms-2">
+                                                        <label for="numero-cartao" class="w-100">Número do
+                                                            Cartão</label>
+                                                        <input id="numero-cartao" type="text" name="numero-cartao"
+                                                            placeholder="0000 0000 0000 0000 " class="w-75 m-2">
+                                                    </div>
+                                                    <div class="input-box w-75 ms-2">
+                                                        <label for="nome-completo" class="w-100">Seu nome
+                                                            completo</label>
+                                                        <input id="nome-completo" type="text" name="nome-completo"
+                                                            placeholder="Seu nome completo" class="w-75 m-2">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
