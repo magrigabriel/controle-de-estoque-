@@ -1,6 +1,4 @@
-<!-- COISA PRA ARRUMAR AINDA NO CSS:  -->
-
-<!-- Botão de setor de vendas não está 100% aliado no mobile, acredito que está bugado por causa da margem que apliquei aos botões, estou pensando como corrigir! -->
+<!-- escolher o plano e alterar os dados sem criar outro html na pagina de pagamento, ajuda com json, algumas coisas não entendi -->
 
 <!-- Apos adaptar o site para o mobile, atualizar o navegador para a tela ficar responsiva -->
 <!DOCTYPE html>
@@ -81,9 +79,8 @@
       </div>
       <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">Configuração</a>
-          <a class="nav-link active" aria-current="page" href="./Planos.html">Planos(REMOVER FUTURAMENTE)</a>
-          <a class="nav-link" href="./pagamentos.html">pagamento(REMOVER FUTURAMENTE)</a>
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          <a class="nav-link" aria-current="page" href="Planos.html">Configuração</a>
         </div>
       </div>
     </nav>
@@ -105,16 +102,16 @@
     <div class="container w-75">
       <hr>
       <h1 class="opcao">Opções</h1>
-      <div class="row mt-4 mb-4 d-flex justify-content-center">
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2"><img
+      <div class="row mt-4 mb-4 d-flex justify-content-center flex-wrap">
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
             src="../assets/img/add.png" alt="" style="width:30px;"><strong> Adicionar</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2"><img
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-2 mb-2 ms-2"><img
             src="../assets/img/barcode.png" alt="" style="width:30px;"><strong> Ver Produtos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2"><img
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
             src="../assets/img/rascunho.png" alt="" style="width:30px;"><strong> Rascunhos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2"><img
-            src="../assets/img/truck.png" alt="" style="width:30px;"><strong> Centro de distribuições</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-10 col-md-12 mb-2"><img
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
+            src="../assets/img/truck.png" alt="" style="width:30px;"><strong> Centro de distrib.</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-10 col-md-11 mb-2 ms-2"><img
             src="../assets/img/loha.png" alt="" style="width:30px;"><strong> Setor de Vendas</strong></button>
       </div>
     </div>
@@ -215,9 +212,75 @@
         </script>
         </div>
         <!-- fim Gráfico -->
-        <!-- Inicio sessão vencimentos -->
-        <h1> <img src="../assets/img/clock.png" alt="" style="width: 50px; margin-right: 10px;" id="icos" class="opcao">Proximos do
-          vencimento ou Vencidos</h1>
+        <!-- Inicio tabela -->
+        
+        <div class="container">
+          <span class="ms-2">*A ordenação da tabela é feita de acordo com o vencimento do produto.</span>
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title"><img src="../assets/img/clock.png" alt="" style="width: 50px; margin-right: 10px;" id="icos" class="opcao">Proximos do
+                    vencimento ou Vencidos</h5>
+                  <div class="table-responsive">
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th scope="col">Código</th>
+                                  <th scope="col">Descrição</th>
+                                  <th scope="col">Unidade</th>
+                                  <th scope="col">Validade</th>
+                                  <th scope="col">Valor Unitário</th>
+                                  <th scope="col">NCM</th>
+                              </tr>
+                          </thead>
+                          <tbody id="tabela-corpo">
+                              <!-- Os dados da tabela serão preenchidos dinamicamente aqui -->
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <script>
+          const dados = [
+              { codigo: "001", descricao: "Produto A", unidade: "UN", validade: "2025-01-01", valor_unitario: 10.50, ncm: "12345678" },
+              { codigo: "002", descricao: "Produto B", unidade: "CX", validade: "2025-03-15", valor_unitario: 20.75, ncm: "87654321" },
+              { codigo: "178", descricao: "Produto c", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
+              { codigo: "004", descricao: "Produto C", unidade: "UN", validade: '--', valor_unitario: 3, ncm: "87654364" }
+              // Adicione mais objetos conforme necessário
+          ];
+  
+          // Função para preencher a tabela com os dados
+          function preencherTabela() {
+              const tabelaCorpo = document.getElementById("tabela-corpo");
+  
+              // Limpa a tabela
+              tabelaCorpo.innerHTML = "";
+  
+              // Ordena os dados com base na data de validade
+              dados.sort((a, b) => new Date(a.validade) - new Date(b.validade));
+  
+              // Preenche a tabela com os dados
+              dados.forEach((item) => {
+                  const newRow = tabelaCorpo.insertRow();
+                  const proximoVencimento = new Date(item.validade) - new Date() < 1000 * 60 * 60 * 24 * 15; // 15 dias em milissegundos
+  
+                  if (proximoVencimento) {
+                      newRow.classList.add("prox-vencimento");
+                  }
+  
+                  newRow.innerHTML = `
+                      <td>${item.codigo}</td>
+                      <td>${item.descricao}</td>
+                      <td>${item.unidade}</td>
+                      <td>${item.validade}</td>
+                      <td>${item.valor_unitario}</td>
+                      <td>${item.ncm}</td>
+                  `;
+              });
+          }
+          window.onload = preencherTabela;
+      </script>
       </div>
     </div>
     <!-- Fim sessão Grafico -->
