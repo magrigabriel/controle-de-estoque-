@@ -13,6 +13,7 @@ nav {
     background-color: rgba(0, 0, 255, 0.633);
     margin-top: -20px;
     margin-left: 60px;
+    
 }
 
 #efeito1 {
@@ -32,6 +33,7 @@ nav {
 }
 
 #teste {
+    z-index: 1;
     transition: transform 0.5s;
 }
 
@@ -77,6 +79,13 @@ input {
     border-radius: 0px;
     mask-border-outset: none;
     outline: none;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input:focus{

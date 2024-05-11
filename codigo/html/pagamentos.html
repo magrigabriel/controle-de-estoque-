@@ -8,11 +8,12 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="shortcut icon" href="../assets/img/logo (1).png" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <title>Pagamento - DataStock</title>
 </head>
 
-<body>
+<body id="error">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -21,8 +22,8 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <!-- Logo DataStock -->
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="../assets/img/logo.png" alt="Bootstrap" width="70" height="50">
+                <a class="navbar-brand" href="../html/telaempres.html">
+                    <img src="../assets/img/logo.png" alt="DataStock" width="70" height="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -49,7 +50,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="..." class="d-block w-100" alt="..." style="background-color: black; height: 250px;">
-                    
+
                 </div>
                 <div class="carousel-item">
                     <img src="..." class="d-block w-100" alt="..."
@@ -74,21 +75,28 @@
         <div class="container" id="contprincipal">
             <div class="row mt-2 ">
                 <!-- resumo plano escolhido -->
+
                 <div class="col-lg-4 col-md-12 col-12 p-3 rounded-3 border border-primary border border-2"
-                    style="background-color: white;">
-                    <h2 class="p-2 bg-primary rounded-3 text-white mb-3">Plano <br>Escolhido:</h2>
-                    <h3 class="text-primary">Básico<span style="font-size: 45%;">/mensal</span></h3>
-                    <h4 class="m-2">R$:XX,XX</h4>
-                    <span style="font-size: smaller;"><img src="../assets/img/check2.png" alt=""
-                            style="width: 30px;">Destinados a pequenas empresas</span><br>
-                    <span style="font-size: smaller;"><img src="../assets/img/check2.png" alt="" style="width: 30px;">X
-                        GB de armazenamento</span><br>
-                    <span style="font-size: smaller;"><img src="../assets/img/check2.png" alt=""
-                            style="width: 30px;">Total controle do estoque</span><br>
-                    <span style="font-size: smaller;"><img src="../assets/img/x.png" alt="" style="width: 30px;">Gráfico
-                        e relatorio de vendas automatica</span><br>
-                    <span style="font-size: smaller;"><img src="../assets/img/x.png" alt="" style="width: 30px;">Não
-                        estabelece conexões com centros de distribuições</span><br>
+                    style="background-color: white; height: 100%;">
+                    <h2 class="p-2 bg-primary rounded-3 text-white mb-3">Plano <br> Escolhido:</h2>
+
+                    <h3 class="text-primary" id="tituloo"><span style="font-size: 45%;"></span></h3>
+
+                    <h4 class="m-2" id="valor"></h4>
+                    <span style="font-size: smaller; color: #4d20ff;" class="m-2" id="desconto"></span><br>
+
+                    <span style="font-size: smaller;"><img src="../assets/img/check2.png" alt="" style="width: 30px;"
+                            id="SUMIR">Destinados a pequenas empresas</span><br>
+
+                    <span style="font-size: smaller;" id="gb"></span><br>
+
+                    <span style="font-size: smaller;"><img src="../assets/img/check2.png" alt="" style="width: 30px;"
+                            id="SUMIR">Total controle do estoque</span><br>
+
+                    <span style="font-size: smaller;" id="grafico"></span><br>
+
+                    <span style="font-size: smaller;" id="distribuicao"></span><br>
+
                     <button type="button" class="btn p-2 mt-3"
                         style="background-color: #20B2FF; width: 90%; margin-left: 11px;" id="te"
                         onclick="window.location.href = 'Planos.html'">Alterar Plano</button>
@@ -104,12 +112,14 @@
                                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     <strong id="ola"> Cartão de Crédito:</strong>
                                     <div id="imgpag">
-                                    <img src="../assets/img/mastercard.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
-                                    <img src="../assets/img/amex.svg" alt="" style="width: 30px;" class="ms-2">
-                                    <img src="../assets/img/elo.svg" alt="" style="width: 30px; height: 100%;"
-                                        class="ms-2">
-                                    <img src="../assets/img/visa.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
-                                </div>
+                                        <img src="../assets/img/mastercard.svg" alt=""
+                                            style="width: 30px; height: 100%;" class="ms-2">
+                                        <img src="../assets/img/amex.svg" alt="" style="width: 30px;" class="ms-2">
+                                        <img src="../assets/img/elo.svg" alt="" style="width: 30px; height: 100%;"
+                                            class="ms-2">
+                                        <img src="../assets/img/visa.svg" alt="" style="width: 30px; height: 100%;"
+                                            class="ms-2">
+                                    </div>
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show"
@@ -122,35 +132,40 @@
                                                     <h2 class="p-2 m-1 bg-primary rounded-3 text-white mb-3">Cartão
                                                         de<br> Crédito:
                                                         <div id="imgpagdps">
-                                                            <img src="../assets/img/mastercard.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
-                                                            <img src="../assets/img/amex.svg" alt="" style="width: 30px;" class="ms-2">
-                                                            <img src="../assets/img/elo.svg" alt="" style="width: 30px; height: 100%;"
-                                                                class="ms-2">
-                                                            <img src="../assets/img/visa.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/mastercard.svg" alt=""
+                                                                style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/amex.svg" alt=""
+                                                                style="width: 30px;" class="ms-2">
+                                                            <img src="../assets/img/elo.svg" alt=""
+                                                                style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/visa.svg" alt=""
+                                                                style="width: 30px; height: 100%;" class="ms-2">
                                                         </div>
                                                     </h2>
                                                 </div>
                                                 <div class="input-group">
                                                     <div class="input-box ms-2" id="input">
-                                                        <label for="nome-cartao" class=" w-100 ms-2">Nome Impresso no
+                                                        <label for="nome-cartao" class="w-100 ms-2">Nome Impresso no
                                                             Cartão</label>
                                                         <input id="nome-cartao" type="text" name="nome-cartao"
                                                             placeholder="ex: JOAO O SILVA" class=" m-2" required>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="input-box col-lg-5 col-md-5 col-12 mt-2 mb-2" id="cem">
+                                                        <div class="input-box col-lg-3 col-md-5 col-12 mt-2 mb-2"
+                                                            id="cem">
                                                             <label for="nome-completo" class="w-100 ms-2">Data de
                                                                 Validade</label>
                                                             <input id="nome-completo" type="number" name="nome-completo"
                                                                 placeholder="MM/AA" class="m-2" required>
                                                         </div>
-                                                        <div class="input-box col-lg-5 col-12 col-md-5 mt-2 mb-2" id="cem">
+                                                        <div class="input-box col-lg-3 col-12 col-md-5 mt-2 mb-2"
+                                                            id="cem">
                                                             <label for="nome-completo" class="w-100 ms-2">CVV</label>
                                                             <input id="nome-completo" type="number" name="nome-completo"
                                                                 placeholder="XYZ" class="m-2" required>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="input-box ms-2" id="input">
                                                         <label for="numero-cartao" class="w-100 ms-2">Número do
                                                             Cartão</label>
@@ -163,27 +178,32 @@
                                                         <input id="nome-completo" type="text" name="nome-completo"
                                                             placeholder="ex: João Oli Silva" class="m-2" required>
                                                     </div>
-                                                    <div class="col-lg-12 col-md-12 col-12 ms-2">
-                                                        <label for="validationCustom04" class="form-label w-100 m-2">Parcelar em ...</label>
-                                                        <select class="form-select p-2" id="validationCustom04" required>  
-                                                          <option selected value="">1x - Planos mensais só podem ser adquiridos de uma vez</option>  
-                                                          <option  disabled value="">2x -R$: XX,XX/mês Sem juros</span></option>  
-                                                          <option  disabled value="">3x - Sem juros</option>  
-                                                          <option  disabled value="">4x - Sem juros</option>  
-                                                          <option  disabled value="">5x - Sem juros</option>  
-                                                          <option  disabled value="">6x - Sem juros</option>  
-                                                          <option  disabled value="">7x - Sem juros</option>  
-                                                          <option  disabled value="">8x - Sem juros</option>  
-                                                          <option  disabled value="">9x - Sem juros</option>  
-                                                          <option  disabled value="">10x - Sem juros</option>  
-                                                          <option  disabled value="">11x - Sem juros</option>  
-                                                          <option  disabled value="">12x - Sem juros</option>  
+                                                    <div class="col-lg-12 col-md-12 col-12 ms-2" id="parcelamento">
+                                                        <label for="validationCustom04"
+                                                            class="form-label w-100 m-2">Parcelar em ...</label>
+                                                        <select class="form-select p-2" id="validationCustom04"
+                                                            required>
+                                                            <option selected value="">1x -R$: XX,XX/mês Sem juros</option>
+                                                            <option  value="">2x -R$: XX,XX/mês Sem juros</span>
+                                                            </option>
+                                                            <option value="">3x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">4x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">5x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">6x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">7x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">8x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">9x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">10x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">11x -R$: XX,XX/mês Sem juros</option>
+                                                            <option value="">12x -R$: XX,XX/mês Sem juros</option>
                                                         </select>
                                                         <div class="invalid-feedback">
-                                                          Por favor, selecione um parcelamento valido!
+                                                            Por favor, selecione um parcelamento valido!
                                                         </div>
-                                                      </div>
-                                                    <button type="button" class="btn p-2 mt-2" style="background-color: #20B2FF;width: 90%; margin-left: 11px;" id="pagar">Comprar Agora</button>
+                                                    </div>
+                                                    <button type="button" class="btn p-2 mt-2"
+                                                        style="background-color: #20B2FF;width: 90%; margin-left: 11px;"
+                                                        id="pagar">Comprar Agora</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -197,11 +217,13 @@
                                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     <strong> Cartão de Débito:</strong>
                                     <div id="imgpag">
-                                    <img src="../assets/img/itau.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
-                                    <img src="../assets/img/caixa.svg" alt="" style="width: 30px;" class="ms-2">
-                                    <img src="../assets/img/banco-do-brasil.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
-                                    <img src="../assets/img/santander.svg" alt=""
-                                        style="width: 30px; height: 100%;" class="ms-2">
+                                        <img src="../assets/img/itau.svg" alt="" style="width: 30px; height: 100%;"
+                                            class="ms-2">
+                                        <img src="../assets/img/caixa.svg" alt="" style="width: 30px;" class="ms-2">
+                                        <img src="../assets/img/banco-do-brasil.svg" alt=""
+                                            style="width: 30px; height: 100%;" class="ms-2">
+                                        <img src="../assets/img/santander.svg" alt="" style="width: 30px; height: 100%;"
+                                            class="ms-2">
                                     </div>
                                 </button>
                             </h2>
@@ -215,11 +237,14 @@
                                                     <h2 class="p-2 m-1 bg-primary rounded-3 text-white mb-3">Cartão
                                                         de<br> Crédito:
                                                         <div id="imgpagdps">
-                                                            <img src="../assets/img/mastercard.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
-                                                            <img src="../assets/img/amex.svg" alt="" style="width: 30px;" class="ms-2">
-                                                            <img src="../assets/img/elo.svg" alt="" style="width: 30px; height: 100%;"
-                                                                class="ms-2">
-                                                            <img src="../assets/img/visa.svg" alt="" style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/mastercard.svg" alt=""
+                                                                style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/amex.svg" alt=""
+                                                                style="width: 30px;" class="ms-2">
+                                                            <img src="../assets/img/elo.svg" alt=""
+                                                                style="width: 30px; height: 100%;" class="ms-2">
+                                                            <img src="../assets/img/visa.svg" alt=""
+                                                                style="width: 30px; height: 100%;" class="ms-2">
                                                         </div>
                                                     </h2>
                                                 </div>
@@ -231,19 +256,21 @@
                                                             placeholder="Ex: JOAO O SILVA" class=" m-2" required>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="input-box col-lg-5 col-md-5 col-12 mt-2 mb-2" id="cem">
+                                                        <div class="input-box col-lg-5 col-md-5 col-12 mt-2 mb-2"
+                                                            id="cem">
                                                             <label for="nome-completo" class="w-100 ms-2">Data de
                                                                 Validade</label>
                                                             <input id="nome-completo" type="text" name="nome-completo"
                                                                 placeholder="MM/AA" class="m-2" required>
                                                         </div>
-                                                        <div class="input-box col-lg-5 col-12 col-md-5 mt-2 mb-2" id="cem">
+                                                        <div class="input-box col-lg-5 col-12 col-md-5 mt-2 mb-2"
+                                                            id="cem">
                                                             <label for="nome-completo" class="w-100 ms-2">CVV</label>
                                                             <input id="nome-completo" type="text" name="nome-completo"
                                                                 placeholder="XYZ" class="m-2" required>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="input-box ms-2" id="input">
                                                         <label for="numero-cartao" class="w-100 ms-2">Número do
                                                             Cartão</label>
@@ -256,7 +283,10 @@
                                                         <input id="nome-completo" type="text" name="nome-completo"
                                                             placeholder="ex: João Oli Silva" class="m-2" required>
                                                     </div>
-                                                    <button type="button" class="btn p-2 mt-2" style="background-color: #20B2FF;width: 90%; margin-left: 11px;" id="pagar">Comprar Agora</button>
+                                                    <button type="button" class="btn p-2 mt-2"
+                                                        style="background-color: #20B2FF;width: 90%; margin-left: 11px;"
+                                                        id="pagar" onclick="vaiplano('comprouplano')">Comprar
+                                                        Agora</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -283,35 +313,170 @@
                     <p class="contato"
                         style="margin-top:10px;padding: 3px; border-radius: 5px; background-color: rgba(171, 166, 166, 0.442);">
                         <strong>Fixo:</strong> 0800 999 9999 <a href=""><img src="../assets/img/copy.png" alt=""
-                                style="width: 17px;" id="rede"></a>
+                                style="width: 17px;" id="rede" onclick="navigator.clipboard.writeText('0800 999 9999')
+                                .then(() => {
+                                  alert('Número copiado para a área de transferência!');
+                                })
+                                .catch((error) => {
+                                  alert('Falha ao copiar texto para a área de transferência:');
+                                });"></a>
                     </p>
 
                     <p class="contato"
                         style="padding: 3px; border-radius: 5px; background-color: rgba(171, 166, 166, 0.442);">
                         <strong>Email:</strong> suportuser@datastock.com <a href=""><img src="../assets/img/copy.png"
-                                alt="" style="width: 20px;" id="rede"></a>
+                                alt="" style="width: 20px;" id="rede" onclick="navigator.clipboard.writeText('suportuser@datastock.com')
+                                .then(() => {
+                                  alert('Email copiado para a área de transferência!');
+                                })
+                                .catch((error) => {
+                                  alert('Falha ao copiar texto para a área de transferência:');
+                                });"></a>
                     </p>
 
                     <p class="text-primary ms-4"><strong>• Nossas Redes Sociais:</strong></p>
                 </div>
-
-
                 <!-- Inicio Logo redes sociais -->
             </div>
             <div class="row mt-2 d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-success mt-2 col-12 col-md-5 ms-2 col-lg-2 "><img
-                        src="../assets/img/whatsapp.png" alt="" style="width: 20px; height: 20px;" id="rede"> <span
-                        id="sumir"> whatsapp</span></button>
-                <button type="button" class="btn btn-outline-primary mt-2 col-12 col-md-5 ms-2 col-lg-2 "><img
-                        src="../assets/img/twitter.png" alt="" style="width: 20px; height: 20px;" id="rede"><span
-                        id="sumir"> Twitter/x</span></button>
-                <button type="button" class="btn btn-outline-primary mt-2 col-12 col-md-5 ms-2 col-lg-2 "> <img
+                <button type="button" class="btn btn-outline-success mt-2 col-12 col-md-5 ms-2 col-lg-2 "
+                    onclick="window.location.href = 'https://whatsapp.com'"><img src="../assets/img/whatsapp.png" alt=""
+                        style="width: 20px; height: 20px;" id="rede"> <span id="sumir"> whatsapp</span></button>
+                <button type="button" class="btn btn-outline-primary mt-2 col-12 col-md-5 ms-2 col-lg-2"
+                    onclick="window.location.href = 'https://x.com'"><img src="../assets/img/twitter.png" alt=""
+                        style="width: 20px; height: 20px;" id="rede"><span id="sumir"> Twitter/x</span></button>
+                <button type="button" class="btn btn-outline-primary mt-2 col-12 col-md-5 ms-2 col-lg-2 "
+                    onclick="window.location.href = 'https://facebook.com'"> <img
                         src="../assets/img/logos--facebook.png" alt="" style="width: 20px; height: 20px;"
                         id="rede"><span id="sumir"> Facebook</span></button>
-                <button type="button" class="btn btn-outline-danger mt-2 col-12 col-md-5 ms-2 col-lg-2 "><img
-                        src="../assets/img/insta.png" alt="" style="width: 20px; height: 20px;"><span id="sumir">
+                <button type="button" class="btn btn-outline-danger mt-2 col-12 col-md-5 ms-2 col-lg-2 "
+                    onclick="window.location.href = 'https://instagram.com'"><img src="../assets/img/insta.png" alt=""
+                        style="width: 20px; height: 20px;"><span id="sumir">
                         Instagram</span></button>
             </div>
             <!-- fim logo Redes Sociais -->
+            <script>
+                var planoss = {
+                    "plano1": {
+                        "titulo": "Básico<span style='font-size: 45%'>/mensal</span>",
+                        "valor": "R$ XX,XX",
+                        "GB": "<img src='../assets/img/check2.png' style='width: 30px;'> X GB de Armazenamento",
+                        "grafico": "<img src='../assets/img/x.png' style='width:30px'> Gráfico e relatorio de vendas automatico",
+                        "distribição": "<img src='../assets/img/x.png' style='width:30px'>Estabelece conexões com centros de distribuições",
+                    },
+                    "plano2": {
+                        "titulo": "Médio<span style='font-size: 45%'>/mensal</span>",
+                        "valor": "R$ YY,YY",
+                        "GB": "<img src='../assets/img/check2.png' style='width: 30px;'> Y GB de Armazenamento",
+                        "grafico": "<img src='../assets/img/x.png' style='width:30px'> Gráfico e relatorio de vendas automatico",
+                        "distribição": "<img src='../assets/img/x.png' style='width:30px'>Estabelece conexões com centros de distribuições",
+                    },
+                    "plano3": {
+                        "titulo": "Avançado<span style='font-size: 45%'>/mensal</span>",
+                        "valor": "R$ zz,zz",
+                        "GB": "<img src='../assets/img/check2.png' style='width: 30px;'> X GB de Armazenamento",
+                        "grafico": "<img src='../assets/img/check2.png' style='width:30px'> Gráfico e relatorio de vendas automatico",
+                        "distribição": "<img src='../assets/img/check2.png' style='width:30px'>Estabelece conexões com centros de distribuições",
+                    },
+                    "plano11": {
+                        "titulo": "Básico<span  style='font-size:45%;'>/anual</span>",
+                        "desconto": "<strong>30% De desconto/Mês</strong>",
+                        "valor": "R$XX,XX",
+                    },
+                    "plano22": {
+                        "titulo": "Médio<span style='font-size:45%;'>/anual</span>",
+                        "valor": "R$ YY,YY",
+                        "desconto": '<strong>30% De desconto/Mês</strong>',
+                    },
+                    "plano33": {
+                        "titulo": "Avançado<span style='font-size:45%;'>/anual</span>",
+                        "valor": "R$ zz,zz",
+                        "desconto": '<strong>30% De desconto/Mês</strong>',
+                    }
+                }
+
+                errorr = {
+                    "background": "<div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 90px; margin: 30px; background-color: white; padding: 10px; border-radius: 10px;''><h1 class='text-white p-2' >404... Ops! Parece que você navegou de mais e perdeu o rumo...</h1><p class='text-white p-2'>(Ou será que você não nos contratou e se perdeu no meio do estoque?)</P<br><a href='./Planos.html'><button type='button' class='btn mt-3 mb-3 w-100' style='background-color: white'><strong class='text-primary'>Voltar a Terra Firme</strong></button></a></div></div></div>",
+                }
+
+                parcelar={
+                    "sem": "<p class='m-2 text-primary'>Planos Mensais são adquiridos de apenas 1x (Uma vez)</p>"
+                }
+
+                const JsonData = JSON.stringify(planoss)
+
+
+
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    var planoEscolhido = localStorage.getItem('planoEscolhido');
+                    var titulo = document.getElementById('tituloo');
+                    var valor = document.getElementById('valor');
+                    var grafico = document.getElementById('grafico');
+                    var distribuicao = document.getElementById('distribuicao');
+                    var gb = document.getElementById('gb');
+                    var parcelou=document.getElementById('parcelamento');
+                    
+                    if (planoEscolhido == 'basicomensal') {
+                        titulo.innerHTML = planoss.plano1.titulo;
+                        valor.innerHTML = planoss.plano1.valor;
+                        grafico.innerHTML = planoss.plano1.grafico;
+                        distribuicao.innerHTML = planoss.plano1.distribição;
+                        gb.innerHTML = planoss.plano1.GB;
+                        parcelou.innerHTML = parcelar.sem;
+
+                    }
+                    else if (planoEscolhido == 'mediomensal') {
+                        titulo.innerHTML = planoss.plano2.titulo;
+                        valor.innerHTML = planoss.plano2.valor;
+                        grafico.innerHTML = planoss.plano2.grafico;
+                        distribuicao.innerHTML = planoss.plano2.distribição;
+                        gb.innerHTML = planoss.plano2.GB;
+                        parcelou.innerHTML = parcelar.sem;
+                    }
+                    else if (planoEscolhido == 'avancadomensal') {
+                        titulo.innerHTML = planoss.plano3.titulo;
+                        valor.innerHTML = planoss.plano3.valor;
+                        grafico.innerHTML = planoss.plano3.grafico;
+                        distribuicao.innerHTML = planoss.plano3.distribição;
+                        gb.innerHTML = planoss.plano3.GB;
+                        parcelou.innerHTML = parcelar.sem;
+                    }
+                    else if (planoEscolhido == 'basicoanual') {
+                        titulo.innerHTML = planoss.plano11.titulo;
+                        valor.innerHTML = planoss.plano11.valor;
+                        grafico.innerHTML = planoss.plano1.grafico;
+                        distribuicao.innerHTML = planoss.plano1.distribição;
+                        gb.innerHTML = planoss.plano1.GB;
+                        desconto.innerHTML = planoss.plano11.desconto;
+                    }
+                    else if (planoEscolhido == 'medioanual') {
+                        titulo.innerHTML = planoss.plano22.titulo;
+                        valor.innerHTML = planoss.plano22.valor;
+                        grafico.innerHTML = planoss.plano2.grafico;
+                        distribuicao.innerHTML = planoss.plano2.distribição;
+                        gb.innerHTML = planoss.plano2.GB;
+                        desconto.innerHTML = planoss.plano22.desconto;
+                    }
+                    else if (planoEscolhido == 'avancadoanual') {
+                        titulo.innerHTML = planoss.plano33.titulo;
+                        valor.innerHTML = planoss.plano33.valor;
+                        grafico.innerHTML = planoss.plano3.grafico;
+                        distribuicao.innerHTML = planoss.plano3.distribição;
+                        gb.innerHTML = planoss.plano3.GB;
+                        desconto.innerHTML = planoss.plano33.desconto;
+                    }
+
+                    else {
+                        var errado = document.getElementById('error');
+                        errado.innerHTML = errorr.background;
+
+                    }
+                });
+            </script>
             <hr>
         </div>
+    </main>
+</body>
+
+</html>

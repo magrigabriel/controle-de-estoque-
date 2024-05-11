@@ -63,14 +63,25 @@
       background: rgba(3, 3, 251, 0.7);
       color: white;
       border-radius: 10px;
+
+    }
+
+    .opcao {
+      display: inline-block;
+      border-left: none;
+      border-right: none;
+      padding: 5px;
+      border-style: solid;
+      border-width: 0 0 5px 0;
+      border-image: linear-gradient(to left, blue, #0d6dfdb7 50%) 10 10;
     }
   </style>
   <!-- cabeçalho -->
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="../assets/img/logo.png" alt="Bootstrap" width="70" height="50">
+        <a class="navbar-brand" href="../html/telaempres.html">
+          <img src="../assets/img/logo.png" alt="DataStock" width="70" height="50">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,10 +101,10 @@
     <!-- Inicio logo cliente -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center mb-3 mt-3">
-          <div id="logocliente"
+        <div class="col-lg-12 d-flex justify-content-center mb-3 mt-3" id="logocliente">
+          <!-- <div id="logocliente"
             style="width: 100px; height: 100px; background-color: black; background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZcmPBsVjXbWFmp12w0eGNXpQP4gnFvClKkLhUMbqKig&s); background-position: center; background-repeat: no-repeat; background-size: cover;">
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -119,172 +130,217 @@
     <!-- Inicio da sessão do Gráfico  -->
     <!-- Inicio gráfico -->
     <div class="container w75">
+      <h1 class="opcao"><img src="../assets/img/grafico.png" alt="" style="width: 30px;margin-bottom: 15px;">
+        Gráfico total de vendas</h1>
       <div class="row">
-        <div class="col-lg-9 col-12 col-md-12">
-          <h1 class="opcao"><img src="../assets/img/grafico.png" alt="" style="width: 40px;margin-bottom: 15px;">
-            Gráfico total de vendas</h1>
-          <div class="chart"></div>
+        <div class="col-lg-9 col-12 col-md-12 d-flex justify-content-center">
+
+          <div id="disponivel"></div>
+          <script>
+            const vendeo = {
+              "vendeu": "<div class='chart'></div>",
+              "naovendeu": "<div class='p-1 mt-3 mb-2 bg-primary' style='border-radius: 10px;'><div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 100px; margin-top: 30px; margin-bottom: 30px; background-color: white; padding: 10px; border-radius: 10px; margin: center;'><h1 class='text-white p-2' >Ops! O plano comprado não permite acesso ao gráfico. Faça um updade e tenha acesso agora mesmo!</h1><p class='text-white p-2'>-Me chama de termômetro e vem medir o calor das vendas comigo...Não? Desculpe, o estagiario está maluco.</P<br><a href='./Planos.html'><button type='button' class='btn mt-3 mb-3 w-100' style='background-color: white'><strong class='text-primary'>Ver Planos</strong></button></a></div></div></div></div>",
+            }
+            var planoEscolhido = localStorage.getItem('planoEscolhido');
+            var local = document.getElementById('disponivel');
+            if (planoEscolhido == 'basicomensal' || planoEscolhido == "mediomensal" || planoEscolhido == 'basicoanual' || planoEscolhido == 'medioanual') {
+              local.innerHTML = vendeo.naovendeu;
+            } else local.innerHTML = vendeo.vendeu;
+          </script>
 
           <script src="https://d3js.org/d3.v7.min.js"></script>
           <script>
             // substituir no banco de dados 
             const data = [
-                { mes: "Jan", vendas: 0 },
-                { mes: "Fev", vendas: 92 },
-                { mes: "Mar", vendas: 110 },
-                { mes: "Abr", vendas: 120 },
-                { mes: "Mai", vendas: 130 },
-                { mes: "Jun", vendas: 150 },
-                { mes: "Jul", vendas: 170 },
-                { mes: "Agos", vendas: 110 },
-                { mes: "Set", vendas: 120 },
-                { mes: "Out", vendas: 109 },
-                { mes: "Nov", vendas: 150 },
-                { mes: "Dez", vendas: 150 }
+              { mes: "Jan", vendas: 0 },
+              { mes: "Fev", vendas: 0 },
+              { mes: "Mar", vendas: 0 },
+              { mes: "Abr", vendas: 0 },
+              { mes: "Mai", vendas: 0 },
+              { mes: "Jun", vendas: 0 },
+              { mes: "Jul", vendas: 0 },
+              { mes: "Agos", vendas: 0 },
+              { mes: "Set", vendas: 0 },
+              { mes: "Out", vendas: 0 },
+              { mes: "Nov", vendas: 0 },
+              { mes: "Dez", vendas: 0 }
             ];
-        
+
             // Dimensões do gráfico
             const margin = { top: 20, right: 30, bottom: 50, left: 60 };
             let width = document.querySelector('.chart').clientWidth;
             let height = width * 0.6;
-        
+
             // Escala X
             const x = d3.scalePoint()
-                .domain(data.map(d => d.mes))
-                .range([margin.left, width - margin.right]);
-        
+              .domain(data.map(d => d.mes))
+              .range([margin.left, width - margin.right]);
+
             // Escala Y
             const y = d3.scaleLinear()
-                .domain([0, d3.max(data, d => d.vendas)])
-                .range([height - margin.bottom, margin.top]);
-        
+              .domain([0, d3.max(data, d => d.vendas)])
+              .range([height - margin.bottom, margin.top]);
+
             // SVG
             const svg = d3.select('.chart')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-        
+              .append('svg')
+              .attr('width', width)
+              .attr('height', height)
+
             // Desenhar a linha
             svg.append('path')
-                .datum(data)
-                .attr('class', 'line')
-                .attr('d', d3.line()
-                    .x(d => x(d.mes))
-                    .y(d => y(d.vendas))
-                );
-        
+              .datum(data)
+              .attr('class', 'line')
+              .attr('d', d3.line()
+                .x(d => x(d.mes))
+                .y(d => y(d.vendas))
+              );
+
             // Adicionar pontos
             svg.selectAll('.dot')
-                .data(data)
-                .enter()
-                .append('circle')
-                .attr('class', 'dot')
-                .attr('cx', d => x(d.mes))
-                .attr('cy', d => y(d.vendas))
-                .attr('r', 5)
-                .on('mouseenter', function (event, d) {
-                    d3.select(this).attr('r', 8);
-                    tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}`);
-                    tooltip.attr('class', 'tooltip active');
-                })
-                .on('mouseleave', function () {
-                    d3.select(this).attr('r', 5);
-                    tooltip.attr('class', 'tooltip');
-                });
-        
+              .data(data)
+              .enter()
+              .append('circle')
+              .attr('class', 'dot')
+              .attr('cx', d => x(d.mes))
+              .attr('cy', d => y(d.vendas))
+              .attr('r', 5)
+              .on('mouseenter', function (event, d) {
+                d3.select(this).attr('r', 8);
+                tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}`);
+                tooltip.attr('class', 'tooltip active');
+              })
+              .on('mouseleave', function () {
+                d3.select(this).attr('r', 5);
+                tooltip.attr('class', 'tooltip');
+              });
+
             // Eixos
             const xAxis = g => g
-                .attr('transform', `translate(0,${height - margin.bottom})`)
-                .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
-        
+              .attr('transform', `translate(0,${height - margin.bottom})`)
+              .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
+
             const yAxis = g => g
-                .attr('transform', `translate(${margin.left},0)`)
-                .call(d3.axisLeft(y));
-        
+              .attr('transform', `translate(${margin.left},0)`)
+              .call(d3.axisLeft(y));
+
             svg.append('g').call(xAxis);
             svg.append('g').call(yAxis);
-        
+
             // Tooltip
             const tooltip = d3.select('.chart')
-                .append('div')
-                .attr('class', 'tooltip');
-        
-        </script>
+              .append('div')
+              .attr('class', 'tooltip');
+
+          </script>
+
         </div>
         <!-- fim Gráfico -->
         <!-- Inicio tabela -->
-        
-        <div class="container">
-          <span class="ms-2">*A ordenação da tabela é feita de acordo com o vencimento do produto.</span>
-          <div class="card">
-              <div class="card-body">
-                  <h5 class="card-title"><img src="../assets/img/clock.png" alt="" style="width: 50px; margin-right: 10px;" id="icos" class="opcao">Proximos do
-                    vencimento ou Vencidos</h5>
-                  <div class="table-responsive">
-                      <table class="table table-bordered">
-                          <thead>
-                              <tr>
-                                  <th scope="col">Código</th>
-                                  <th scope="col">Descrição</th>
-                                  <th scope="col">Unidade</th>
-                                  <th scope="col">Validade</th>
-                                  <th scope="col">Valor Unitário</th>
-                                  <th scope="col">NCM</th>
-                              </tr>
-                          </thead>
-                          <tbody id="tabela-corpo">
-                              <!-- Os dados da tabela serão preenchidos dinamicamente aqui -->
-                          </tbody>
-                      </table>
-                  </div>
+
+        <div class="container mt-3" id="tableeee">
+
+          <div class="card border-primary">
+            <div class="card-body border-primary">
+              <h5 class="opcao card-title"><img src="../assets/img/clock.png" alt=""
+                  style="width: 30px; margin-right: 10px;" id="icos">Proximos do
+                vencimento ou Vencidos</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered border-primary">
+                  <thead>
+                    <tr>
+                      <th class="bg-primary border-white text-white" scope="col">Código</th>
+                      <th class="bg-primary border-white text-white" scope="col">Descrição</th>
+                      <th class="bg-primary border-white text-white" scope="col">Unidade</th>
+                      <th class="bg-primary border-white text-white" scope="col" class="bg-primary">Validade</th>
+                      <th class="bg-primary border-white text-white" scope="col">Valor Unitário</th>
+                      <th class="bg-primary border-white text-white" scope="col">NCM</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="tabela-corpo">
+                    <!-- Os dados da tabela serão preenchidos dinamicamente aqui -->
+                  </tbody>
+                </table>
+                <span class="ms-2">*A ordenação da tabela é feita de acordo com o vencimento do produto.</span>
+                <nav aria-label="..." class="d-flex justify-content-center">
+                  <ul class="pagination pagination-lg ">
+                    <li class="page-item " id="btnGerarLinhas"><a class="page-link bg-primary text-white"
+                        href="#tableeee">Mais dados</a></li>
+                  </ul>
+                </nav>
               </div>
+            </div>
           </div>
-      </div>
-  
-      <script>
+          
+
+        </div>
+
+        <script>
           const dados = [
-              { codigo: "001", descricao: "Produto A", unidade: "UN", validade: "2025-01-01", valor_unitario: 10.50, ncm: "12345678" },
-              { codigo: "002", descricao: "Produto B", unidade: "CX", validade: "2025-03-15", valor_unitario: 20.75, ncm: "87654321" },
-              { codigo: "178", descricao: "Produto c", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
-              { codigo: "004", descricao: "Produto C", unidade: "UN", validade: '--', valor_unitario: 3, ncm: "87654364" }
-              // Adicione mais objetos conforme necessário
+            { codigo: "001", descricao: "Produto A", unidade: "UN", validade: "2023-03-15", valor_unitario: 10.50, ncm: "12345678" },
+            { codigo: "002", descricao: "Produto B", unidade: "CX", validade: "2020-03-15", valor_unitario: 20.75, ncm: "87654321" },
+            { codigo: "003", descricao: "Produto c", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
+            { codigo: "004", descricao: "Produto d", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "005", descricao: "Produto e", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "006", descricao: "Produto f", unidade: "UN", validade: "2023-03-15", valor_unitario: 10.50, ncm: "12345678" },
+            { codigo: "007", descricao: "Produto g", unidade: "CX", validade: "2023-03-15", valor_unitario: 20.75, ncm: "87654321" },
+            { codigo: "008", descricao: "Produto h", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
+            { codigo: "009", descricao: "Produto i", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "010", descricao: "Produto j", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "011", descricao: "Produto k", unidade: "UN", validade: "2023-03-15", valor_unitario: 10.50, ncm: "12345678" },
+            { codigo: "012", descricao: "Produto l", unidade: "CX", validade: "2023-03-15", valor_unitario: 20.75, ncm: "87654321" },
+            { codigo: "178", descricao: "Produto m", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
+            { codigo: "004", descricao: "Produto n", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "004", descricao: "Produto o", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "001", descricao: "Produto p", unidade: "UN", validade: "2025-01-01", valor_unitario: 10.50, ncm: "12345678" },
+            { codigo: "002", descricao: "Produto q", unidade: "CX", validade: "2025-03-15", valor_unitario: 20.75, ncm: "87654321" },
+            { codigo: "178", descricao: "Produto r", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
+            { codigo: "004", descricao: "Produto s", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "004", descricao: "Produto t", unidade: "UN", validade: '2024-05-09', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "004", descricao: "Produto u", unidade: "UN", validade: '2024-05-09', valor_unitario: 3, ncm: "87654364" },
+            { codigo: "004", descricao: "Produto v", unidade: "UN", validade: '2024-05-09', valor_unitario: 3, ncm: "87654364" },
           ];
-  
-          // Função para preencher a tabela com os dados
+
+          // Função para preencher a tabela com os dados --> Ignore erro de portugues e nomes aleatorios das variaveis, estou documentando o codigo pra não ficar perdido!!
+
+          var mais = 0;
+
           function preencherTabela() {
-              const tabelaCorpo = document.getElementById("tabela-corpo");
-  
-              // Limpa a tabela
-              tabelaCorpo.innerHTML = "";
-  
-              // Ordena os dados com base na data de validade
-              dados.sort((a, b) => new Date(a.validade) - new Date(b.validade));
-  
-              // Preenche a tabela com os dados
-              dados.forEach((item) => {
-                  const newRow = tabelaCorpo.insertRow();
-                  const proximoVencimento = new Date(item.validade) - new Date() < 1000 * 60 * 60 * 24 * 15; // 15 dias em milissegundos
-  
-                  if (proximoVencimento) {
-                      newRow.classList.add("prox-vencimento");
-                  }
-  
-                  newRow.innerHTML = `
-                      <td>${item.codigo}</td>
-                      <td>${item.descricao}</td>
-                      <td>${item.unidade}</td>
-                      <td>${item.validade}</td>
-                      <td>${item.valor_unitario}</td>
-                      <td>${item.ncm}</td>
-                  `;
-              });
+            const tabelaCorpo = document.getElementById("tabela-corpo");
+
+            // Ordena o array de dados pela data de validade
+            dados.sort((a, b) => new Date(a.validade) - new Date(b.validade)); // funcao short igual em c#, ordena em ordem crescente
+
+            // Preenche a tabela até um máximo de 10 linhas
+            dados.slice(mais, mais + 10).forEach((item) => { // vai passar por cada objeto da tabela
+              const newRow = tabelaCorpo.insertRow(); // new row vai receber o obejto
+              const proximoVencimento = new Date(item.validade) - new Date() < 1000 * 60 * 60 * 24 * 15;
+              if (proximoVencimento) {
+                newRow.classList.add("prox-vencimento"); 
+              }
+              newRow.innerHTML = `     
+            <td>${item.codigo}</td>
+            <td>${item.descricao}</td>
+            <td>${item.unidade}</td>
+            <td>${item.validade}</td>
+            <td>${item.valor_unitario}</td>
+            <td>${item.ncm}</td>
+        `; // vai gerar as linhas em ordem de vencimento, por isso gerei a const proximo do vencimento e fiz o calculo de data
+            });
+
+            mais+=5; // adciiona mais 5, para a prox vez que clicar no botão
           }
+
           window.onload = preencherTabela;
-      </script>
+
+          const btnGerarLinhas = document.getElementById("btnGerarLinhas");
+          btnGerarLinhas.addEventListener("click", preencherTabela);
+        </script>
       </div>
     </div>
     <!-- Fim sessão Grafico -->
-    
+
   </main>
 </body>
 
