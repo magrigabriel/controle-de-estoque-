@@ -1,0 +1,18 @@
+{
+  "fornecedores": [
+    {
+      "id": "1",
+      "prioridade": "1",
+      "nome": "Atacadão",
+      "end": "Rua Macachalis 110",
+      "ctt": "31982911982"
+    },
+    {
+      "id": "2",
+      "prioridade": "2",
+      "nome": "Atacado",
+      "end": "Avenida XXXXXXX",
+      "ctt": "31984178516"
+    }
+  ]
+}
