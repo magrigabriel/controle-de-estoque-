@@ -1,0 +1,59 @@
+/* Adicione estilos específicos para a página de vendas aqui */
+
+/* Estilos para o cabeçalho */
+header {
+    background-color: #f8f9fa; /* Cor de fundo do cabeçalho */
+    padding: 10px 0; /* Espaçamento interno do cabeçalho */
+  }
+  
+  .navbar-brand img {
+    margin-top: 5px; /* Ajuste de margem superior para o logotipo */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #007bff; /* Cor dos links do menu */
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #0056b3; /* Cor dos links do menu ao passar o mouse */
+  }
+  
+  /* Estilos para a seção de destaque */
+  #destaque {
+    background-color: #f8f9fa; /* Cor de fundo da seção de destaque */
+    padding: 50px 0; /* Espaçamento interno da seção de destaque */
+  }
+  
+  #destaque h2 {
+    color: #343a40; /* Cor do título da seção de destaque */
+  }
+  
+  /* Estilos para os produtos em destaque */
+  .card {
+    border: 1px solid #dee2e6; /* Borda dos cards */
+    border-radius: 5px; /* Arredondamento das bordas dos cards */
+    transition: transform 0.3s ease; /* Transição suave ao passar o mouse */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+  }
+  
+  .card-title {
+    font-size: 18px; /* Tamanho da fonte do título do card */
+  }
+  
+  .card-text {
+    font-size: 14px; /* Tamanho da fonte do texto do card */
+  }
+  
+  /* Estilos para a seção de todos os produtos */
+  #todosProdutos {
+    background-color: #f8f9fa; /* Cor de fundo da seção de todos os produtos */
+    padding: 50px 0; /* Espaçamento interno da seção de todos os produtos */
+  }
+  
+  #todosProdutos h2 {
+    color: #343a40; /* Cor do título da seção de todos os produtos */
+  }
+  

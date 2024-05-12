@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/stylevendas.css">
+    <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
+    <title>Tela de Vendas - DataStock</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../html/telaempres.html">
+                    <img src="../assets/img/logo.png" alt="DataStock" width="70" height="50">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Início</a>
+                    <a class="nav-link" aria-current="page" href="Planos.html">Configuração</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="venda" class="container mt-5">
+            <h2 class="text-center mb-4">Registrar Venda</h2>
+            <form id="formVenda">
+                <div class="mb-3">
+                    <label for="dataVenda" class="form-label">Data da Venda</label>
+                    <input type="date" class="form-control" id="dataVenda" required>
+                </div>
+                <div class="mb-3">
+                    <label for="produtoVendido" class="form-label">Produto Vendido</label>
+                    <select class="form-select" id="produtoVendido" required>
+                    </select>
+                    <div id="avisoSemProdutos" class="form-text text-danger" style="display: none;">Não há produtos disponíveis para venda.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="quantidadeVendida" class="form-label">Quantidade Vendida</label>
+                    <input type="number" class="form-control" id="quantidadeVendida" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar Venda</button>
+            </form>
+        </section>
+
+        <section id="destaque" class="container mt-5">
+            <h2 class="text-center mb-4">Produtos em Destaque</h2>
+            <div class="row" id="destaqueProdutos">
+            </div>
+        </section>
+
+        <section id="todosProdutos" class="container mt-5">
+            <h2 class="text-center mb-4">Todos os Produtos</h2>
+            <div class="row" id="todosProdutosList">
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        if (produtos.length === 0) {
+            document.getElementById('avisoSemProdutos').style.display = 'block';
+            document.getElementById('produtoVendido').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('produtoVendido').removeAttribute('disabled');
+        }
+    </script>
+
+    <script>
+        if (!localStorage.getItem('produtos')) {
+            localStorage.setItem('produtos', JSON.stringify([]));
+        }
+        const produtos = JSON.parse(localStorage.getItem('produtos'));
+        if (produtos.length > 0) {
+            const destaqueProdutosSection = document.getElementById('destaqueProdutos');
+            const todosProdutosList = document.getElementById('todosProdutosList');
+            const produtoVendidoSelect = document.getElementById('produtoVendido');
+            function criarProdutoHTML(produto) {
+                return `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="${produto.imagem}" class="card-img-top" alt="${produto.nome}">
+                            <div class="card-body">
+                                <h5 class="card-title">${produto.nome}</h5>
+                                <p class="card-text">${produto.descricao}</p>
+                                <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
+                                <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            produtos.slice(0, 3).forEach(produto => {
+                destaqueProdutosSection.innerHTML += criarProdutoHTML(produto);
+            });
+            produtos.forEach(produto => {
+                todosProdutosList.innerHTML += criarProdutoHTML(produto);
+                const option = document.createElement('option');
+                option.value = produto.nome;
+                option.textContent = produto.nome;
+                produtoVendidoSelect.appendChild(option);
+            });
+        } else {
+            console.log('Nenhum produto encontrado no Local Storage.');
+        }
+        document.getElementById('formVenda').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const dataVenda = new Date().toISOString();
+            const produtoVendido = document.getElementById('produtoVendido').value;
+            const quantidadeVendida = parseInt(document.getElementById('quantidadeVendida').value);
+            const vendas = JSON.parse(localStorage.getItem('vendas')) || [];
+            vendas.push({
+                data: dataVenda,
+                produto: produtoVendido,
+                quantidade: quantidadeVendida
+            });
+            localStorage.setItem('vendas', JSON.stringify(vendas));
+            const produtoIndex = produtos.findIndex(produto => produto.nome === produtoVendido);
+            if (produtoIndex !== -1) {
+                produtos[produtoIndex].quantidade -= quantidadeVendida;
+                localStorage.setItem('produtos', JSON.stringify(produtos));
+            }
+        });
+    </script>
+
+</body>
+
+</html>
