@@ -114,16 +114,16 @@
       <hr>
       <h1 class="opcao">Opções</h1>
       <div class="row mt-4 mb-4 d-flex justify-content-center flex-wrap">
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
-            src="../assets/img/add.png" alt="" style="width:30px;"><strong> Adicionar</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-2 mb-2 ms-2"><img
-            src="../assets/img/barcode.png" alt="" style="width:30px;"><strong> Ver Produtos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
-            src="../assets/img/rascunho.png" alt="" style="width:30px;"><strong> Rascunhos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
-            src="../assets/img/truck.png" alt="" style="width:30px;"><strong> Centro de distrib.</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-10 col-md-11 mb-2 ms-2"><img
-            src="../assets/img/loha.png" alt="" style="width:30px;"><strong> Setor de Vendas</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2" onclick="window.location.href = 'PRODUCAO.html'"><img
+            src="../assets/img/add.png" alt="" style="width:30px;" ><strong> Adicionar</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-2 mb-2 ms-2" onclick="window.location.href = 'produtos.html'"><img
+            src="../assets/img/barcode.png" alt="" style="width:30px;" ><strong> Ver Produtos</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2" onclick="window.location.href = 'Rascunhos.html'"><img
+            src="../assets/img/rascunho.png" alt="" style="width:30px;" ><strong> Rascunhos</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2" onclick="window.location.href = 'fornecedores.html'"><img
+            src="../assets/img/truck.png" alt="" style="width:30px;" ><strong> Centro de distrib.</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-10 col-md-11 mb-2 ms-2" onclick="window.location.href = 'vendas.html'"><img
+            src="../assets/img/loha.png" alt="" style="width:30px;" onclick="window.location.href = 'vendas.html'"><strong> Setor de Vendas</strong></button>
       </div>
     </div>
     <!-- Fim Opções -->
@@ -133,17 +133,15 @@
       <h1 class="opcao"><img src="../assets/img/grafico.png" alt="" style="width: 30px;margin-bottom: 15px;">
         Gráfico total de vendas</h1>
       <div class="row">
-        <div class="col-lg-9 col-12 col-md-12 d-flex justify-content-center">
-
-          <div id="disponivel"></div>
+        <div class="col-lg-9 col-12 col-md-12 d-flex justify-content-center" id="disponivel">
           <script>
             const vendeo = {
               "vendeu": "<div class='chart'></div>",
               "naovendeu": "<div class='p-1 mt-3 mb-2 bg-primary' style='border-radius: 10px;'><div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 100px; margin-top: 30px; margin-bottom: 30px; background-color: white; padding: 10px; border-radius: 10px; margin: center;'><h1 class='text-white p-2' >Ops! O plano comprado não permite acesso ao gráfico. Faça um updade e tenha acesso agora mesmo!</h1><p class='text-white p-2'>-Me chama de termômetro e vem medir o calor das vendas comigo...Não? Desculpe, o estagiario está maluco.</P<br><a href='./Planos.html'><button type='button' class='btn mt-3 mb-3 w-100' style='background-color: white'><strong class='text-primary'>Ver Planos</strong></button></a></div></div></div></div>",
             }
-            var planoEscolhido = localStorage.getItem('planoEscolhido');
+            var planoEscolhido = localStorage.getItem('confirmacao');
             var local = document.getElementById('disponivel');
-            if (planoEscolhido == 'basicomensal' || planoEscolhido == "mediomensal" || planoEscolhido == 'basicoanual' || planoEscolhido == 'medioanual') {
+            if (planoEscolhido=='false') {
               local.innerHTML = vendeo.naovendeu;
             } else local.innerHTML = vendeo.vendeu;
           </script>
@@ -152,18 +150,18 @@
           <script>
             // substituir no banco de dados 
             const data = [
-              { mes: "Jan", vendas: 0 },
-              { mes: "Fev", vendas: 0 },
-              { mes: "Mar", vendas: 0 },
-              { mes: "Abr", vendas: 0 },
-              { mes: "Mai", vendas: 0 },
-              { mes: "Jun", vendas: 0 },
-              { mes: "Jul", vendas: 0 },
-              { mes: "Agos", vendas: 0 },
-              { mes: "Set", vendas: 0 },
-              { mes: "Out", vendas: 0 },
-              { mes: "Nov", vendas: 0 },
-              { mes: "Dez", vendas: 0 }
+              { "mes": "Jan", "vendas": "20" },
+              { "mes": "Fev", "vendas": "20" },
+              { "mes": "Mar", "vendas": "20" },
+              { "mes": "Abr", "vendas": "15" },
+              { "mes": "Mai", "vendas": "10" },
+              { "mes": "Jun", "vendas": "20" },
+              { "mes": "Jul", "vendas": "18" },
+              { "mes": "Agos","vendas": "40" },
+              { "mes": "Set", "vendas": "30" },
+              { "mes": "Out", "vendas": "35" },
+              { "mes": "Nov", "vendas": "30" },
+              { "mes": "Dez", "vendas": "20" }
             ];
 
             // Dimensões do gráfico
@@ -238,7 +236,7 @@
         <!-- fim Gráfico -->
         <!-- Inicio tabela -->
 
-        <div class="container mt-3" id="tableeee">
+        <div class="container mt-3" id="table+">
 
           <div class="card border-primary">
             <div class="card-body border-primary">
@@ -249,12 +247,12 @@
                 <table class="table table-bordered border-primary">
                   <thead>
                     <tr>
-                      <th class="bg-primary border-white text-white" scope="col">Código</th>
+                      <th class="bg-primary text-white" scope="col" style="border-left: 1px solid #007bff; border-right: 1px solid white;">Código</th>
                       <th class="bg-primary border-white text-white" scope="col">Descrição</th>
                       <th class="bg-primary border-white text-white" scope="col">Unidade</th>
                       <th class="bg-primary border-white text-white" scope="col" class="bg-primary">Validade</th>
                       <th class="bg-primary border-white text-white" scope="col">Valor Unitário</th>
-                      <th class="bg-primary border-white text-white" scope="col">NCM</th>
+                      <th class="bg-primary text-white" scope="col" style="border-rigth: 1px solid #007bff; border-left: 1px solid white;">NCM</th>
                     </tr>
                   </thead>
 

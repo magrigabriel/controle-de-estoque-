@@ -122,99 +122,104 @@
             src="../assets/img/x.png" alt="" style="width:30px;"><strong>Excluir</strong></button>
       </div>
     </div>
+    <div class="container w-75">
+      <div class="row">
+        <div class="card">
+
+          <div class="lineinput">
+            <label>Código</label>
+            <input type="text" id="cod1" placeholder="Código do produto">
+          </div>
+      
+          <div class="lineinput">
+            <label>Descrição</label>
+            <input type="text" id="descprod1" placeholder="Descrição do produto">
+            <!--Será buscada automaticamente caso exista o Código cadastrado-->
+          </div>
+      
+          <div class="lineinput">
+            <label>Lote</label>
+            <input type="text" id="loteprod1" placeholder="Novo número de lote">
+            <!--Será buscado automaticamente sendo o próximo na sequencia de lotes do determinado produto-->
+          </div>
+      
+          <div class="lineinput">
+            <label>Quantidade</label>
+            <input type="text" id="qtdprod1" placeholder="Quantidade a ser produzida">
+          </div>
+      
+          <div class="lineinput">
+            <label>Validade</label>
+            <input type="text" id="validprod1" placeholder="Validade para este lote">
+          </div>
+      
+          <button onclick="produto.salvar()" class="w-75">Salvar alterações</button>
+          <button onclick="produto.cancelar()">Cancelar</button>
+      
+        </div>
+    
+        <div class="card2">
+    
+          <div class="lineinput">
+            <label>Novo código</label>
+            <input type="text" id="cod2" placeholder="Código do produto">
+          </div>
+      
+          <div class="lineinput">
+            <label>Nova descrição</label>
+            <input type="text" id="descprod2" placeholder="Descrição do produto">
+          </div>
+      
+          <div class="lineinput">
+            <label>Lote</label>
+            <input type="text" id="loteprod2" placeholder="Novo número de lote">
+            <!--Será buscado automaticamente sendo o próximo na sequencia de lotes do determinado produto,  neste caso, iniciará com 001-->
+          </div>
+      
+          <div class="lineinput">
+            <label>Matérias primas utilizadas</label>
+            <input type="text" id="mp2" placeholder="Código das matérias primas utilizadas">
+          </div>
+      
+          <div class="lineinput">
+            <label>NCM (opcional)</label>
+            <input type="text" id="ncm2" placeholder="NCM do produto (opcional)">
+          </div>
+    
+          <div class="lineinput">
+            <label>Unidade</label>
+            <input type="text" id="un2" placeholder="Unidade do produto">
+          </div>
+      
+          <p>Observação: Futuramente os campos acima serão substituídos pelos campos do módulo "cadastro de produtos", tendo em vista que o resultado será armazenado na mesma estrutura através do JSON</p>
+    
+          <button onclick="produto.salvarnovoprod()">Salvar alterações</button>
+          <button onclick="produto.cancelar2()">Cancelar</button>
+      
+        </div>
+    
+        <div class="card3">
+    
+          <div class="lineinput">
+            <label>Código</label>
+            <input type="text" id="cod3" placeholder="Código do produto">
+          </div>
+      
+          <div class="lineinput">
+            <label>Lote</label>
+            <input type="text" id="loteprod3" placeholder="Lote a ser excluído">
+          </div>
+      
+              
+          <button onclick="produto.excluir()">Excluir</button>
+          <button onclick="produto.cancelar3()">Cancelar</button>
+      
+        </div>
+      </div>
+    </div>
     <!-- Fim Opções -->
 
-    <div class="card">
-
-      <div class="lineinput">
-        <label>Código</label>
-        <input type="text" id="cod1" placeholder="Código do produto">
-      </div>
-  
-      <div class="lineinput">
-        <label>Descrição</label>
-        <input type="text" id="descprod1" placeholder="Descrição do produto">
-        <!--Será buscada automaticamente caso exista o Código cadastrado-->
-      </div>
-  
-      <div class="lineinput">
-        <label>Lote</label>
-        <input type="text" id="loteprod1" placeholder="Novo número de lote">
-        <!--Será buscado automaticamente sendo o próximo na sequencia de lotes do determinado produto-->
-      </div>
-  
-      <div class="lineinput">
-        <label>Quantidade</label>
-        <input type="text" id="qtdprod1" placeholder="Quantidade a ser produzida">
-      </div>
-  
-      <div class="lineinput">
-        <label>Validade</label>
-        <input type="text" id="validprod1" placeholder="Validade para este lote">
-      </div>
-  
-      <button onclick="produto.salvar()">Salvar alterações</button>
-      <button onclick="produto.cancelar()">Cancelar</button>
-  
-    </div>
-
-    <div class="card2">
-
-      <div class="lineinput">
-        <label>Novo código</label>
-        <input type="text" id="cod2" placeholder="Código do produto">
-      </div>
-  
-      <div class="lineinput">
-        <label>Nova descrição</label>
-        <input type="text" id="descprod2" placeholder="Descrição do produto">
-      </div>
-  
-      <div class="lineinput">
-        <label>Lote</label>
-        <input type="text" id="loteprod2" placeholder="Novo número de lote">
-        <!--Será buscado automaticamente sendo o próximo na sequencia de lotes do determinado produto,  neste caso, iniciará com 001-->
-      </div>
-  
-      <div class="lineinput">
-        <label>Matérias primas utilizadas</label>
-        <input type="text" id="mp2" placeholder="Código das matérias primas utilizadas">
-      </div>
-  
-      <div class="lineinput">
-        <label>NCM (opcional)</label>
-        <input type="text" id="ncm2" placeholder="NCM do produto (opcional)">
-      </div>
-
-      <div class="lineinput">
-        <label>Unidade</label>
-        <input type="text" id="un2" placeholder="Unidade do produto">
-      </div>
-  
-      <p>Observação: Futuramente os campos acima serão substituídos pelos campos do módulo "cadastro de produtos", tendo em vista que o resultado será armazenado na mesma estrutura através do JSON</p>
-
-      <button onclick="produto.salvarnovoprod()">Salvar alterações</button>
-      <button onclick="produto.cancelar2()">Cancelar</button>
-  
-    </div>
-
-    <div class="card3">
-
-      <div class="lineinput">
-        <label>Código</label>
-        <input type="text" id="cod3" placeholder="Código do produto">
-      </div>
-  
-      <div class="lineinput">
-        <label>Lote</label>
-        <input type="text" id="loteprod3" placeholder="Lote a ser excluído">
-      </div>
-  
-          
-      <button onclick="produto.excluir()">Excluir</button>
-      <button onclick="produto.cancelar3()">Cancelar</button>
-  
-    </div>
+    
 
     <!-- Inicio tabela -->
 
