@@ -125,3 +125,54 @@ class btn_prod {
         return true;
     }
 }
+
+// função que salva valores do botão iniciar produção
+
+
+function produtosalvar() {
+  // Obtém os valores dos campos do formulário
+  var cod01 = document.getElementById('cod1').value;
+  var descprod01 = document.getElementById('descprod1').value;
+  var loteprod01 = document.getElementById('loteprod1').value;
+  var qtdprod01 = document.getElementById('qtdprod1').value;
+  var validprod01 = document.getElementById('validprod1').value;
+
+  // Cria um objeto para representar a nova produção
+  const salvaproducao = {
+      "codigo": cod01,
+      "descricao": descprod01,
+      "lote": loteprod01,
+      "qtd_lote": qtdprod01,
+      "valid_lote": validprod01
+  };
+
+  // Recupera a tabela "producaoinfo" do Local Storage
+  let producaoInfo = localStorage.getItem('producaoinfo');
+  
+  if (producaoInfo) {
+      // Converte a tabela de JSON para um array de objetos
+      producaoInfo = JSON.parse(producaoInfo);
+  } else {
+      // Se a tabela não existe, inicializa um novo array vazio
+      producaoInfo = [];
+  }
+  
+  // Adiciona o novo item ao array
+  producaoInfo.push(salvaproducao);
+  
+  // Converte o array atualizado de volta para JSON
+  const producaoInfoAtualizado = JSON.stringify(producaoInfo);
+  
+  // Armazena a tabela atualizada no Local Storage
+  localStorage.setItem('producaoinfo', producaoInfoAtualizado);
+  
+  // Exibe uma mensagem de sucesso
+  alert('Produção salva com sucesso');
+}
+
+
+
+// localStorage.setItem('producaoinfo', JSON.stringify(salvaproducao));
+// alert('produção salva');
+
+

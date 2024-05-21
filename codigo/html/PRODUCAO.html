@@ -15,6 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+    
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -151,12 +152,12 @@
             <input type="text" id="validprod1" placeholder="Validade para este lote">
           </div>
       
-          <button onclick="produto.salvar()" class="p-2 mb-2 mt-2 ms-2 bg-primary routend text-white">Salvar alterações</button>
-          <button onclick="produto.cancelar()" class="p-2 mb-2 mt-2 bg-primary routend text-white">Cancelar</button>
+          <button onclick="produtosalvar()" class="p-2 mb-2 mt-2 ms-2 bg-primary routend text-white">Salvar alterações</button>
+          <button onclick="produtocancelar()" class="p-2 mb-2 mt-2 bg-primary routend text-white">Cancelar</button>
       
         </div>
     
-        <div class="card border-primary p-2">
+        <div class="card2">
     
           <div class="m-2 lineinput">
             <label>Novo código</label>
@@ -191,8 +192,8 @@
       
           <p>Observação: Futuramente os campos acima serão substituídos pelos campos do módulo "cadastro de produtos", tendo em vista que o resultado será armazenado na mesma estrutura através do JSON</p>
     
-          <button onclick="produto.salvarnovoprod()">Salvar alterações</button>
-          <button onclick="produto.cancelar2()">Cancelar</button>
+          <button onclick="produtosalvarnovoprod()">Salvar alterações</button>
+          <button onclick="produtocancelar2()">Cancelar</button>
       
         </div>
     
@@ -209,8 +210,8 @@
           </div>
       
               
-          <button onclick="produto.excluir()">Excluir</button>
-          <button onclick="produto.cancelar3()">Cancelar</button>
+          <button onclick="produtoexcluir()">Excluir</button>
+          <button onclick="produtocancelar3()">Cancelar</button>
       
         </div>
       </div>
@@ -265,37 +266,17 @@
         { codigo: "10003", descricao: "Produto C", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
         { codigo: "10004", descricao: "Produto D", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
         { codigo: "10005", descricao: "Produto E", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10006", descricao: "Produto F", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10007", descricao: "Produto G", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10008", descricao: "Produto H", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10009", descricao: "Produto I", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10010", descricao: "Produto J", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10011", descricao: "Produto K", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10012", descricao: "Produto L", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10013", descricao: "Produto M", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
         { codigo: "10014", descricao: "Produto N", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10015", descricao: "Produto O", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10016", descricao: "Produto P", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10017", descricao: "Produto Q", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10018", descricao: "Produto R", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10019", descricao: "Produto S", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10020", descricao: "Produto T", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10021", descricao: "Produto U", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10022", descricao: "Produto V", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10023", descricao: "Produto W", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10024", descricao: "Produto X", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10025", descricao: "Produto Y", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10026", descricao: "Produto Z", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10027", descricao: "Produto AA", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10028", descricao: "Produto BB", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
-        { codigo: "10029", descricao: "Produto CC", lote: "50001", qtd_lote: "15", valid_lote: "2023-03-15" },
-        { codigo: "10030", descricao: "Produto DD", lote: "50001", qtd_lote: "10", valid_lote: "2023-03-15" },
       ];
 
       var mais = 0;
+                  
+      
+
 
       function preencherTabela() {
         const tabelaCorpo = document.getElementById("tabela-corpo");
+        const tabelaCorpo2 = document.ge("producaoinfo");
 
         arrayDados.sort((a, b) => a.codigo.localeCompare(b.codigo));
 
@@ -330,7 +311,9 @@
 
   </main>
 
-  <script src="../assets/javascript/PRODUCAO.js"></script>
+  <script src="../assets/javascript/Json/PRODUCAO.js"></script>
+  <script> var carregar = localStorage.getItem("producaoinfo") 
+  </script>
 
 </body>
 
