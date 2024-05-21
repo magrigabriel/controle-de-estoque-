@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Produtos</title>
+
+    <link rel="stylesheet" href="../assets/css/produtos.css">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="../assets/img/logo.png" alt="Bootstrap" width="70" height="50">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active text-light" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link text-light" aria-current="page" href="Planos.html">Configuração</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="p-3">
+
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary newUser" data-bs-toggle="modal" data-bs-target="#userForm"> Novo Produto <i class="bi bi-people"></i></button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-hover mt-3 text-center table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Data Cadastro</th>
+                            <th>Data Vencimento</th>
+                            <th>Quantidade</th>
+                            <th>Valor Unitario</th>
+                            <th>NCM</th>
+                            <th>Unidade</th>
+                            <th>Configurações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="data"></tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="modal fade" id="userForm">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Cadastrar Produto</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form action="#" id="myForm">
+
+                        <div class="card imgholder">
+                            <label for="imgInput" class="upload">
+                                <input type="file" name="" id="imgInput">
+                                <i class="bi bi-plus-circle-dotted"></i>
+                            </label>
+                            <img src="../assets/img/logo.png Icon.webp" alt="" width="200" height="200" class="img">
+                        </div>
+
+                        <div class="inputField">
+                            <div>
+                                <label for="tp1">Nome:</label>
+                                <input type="text" name="" id="tp1" required>
+                            </div>
+                            <div>
+                                <label for="tp2">Data Cadastro:</label>
+                                <input type="date" name="" id="tp2" required>
+                            </div>
+                            <div>
+                                <label for="tp3">Data Vencimento:</label>
+                                <input type="date" name="" id="tp3" required>
+                            </div>
+                            <div>
+                                <label for="tp4">Quantidade:</label>
+                                <input type="number" name="" id="tp4" minlength="1" required>
+                            </div>
+                            <div>
+                                <label for="tp5">Valor Unitario:</label>
+                                <input type="number" step="0.01" name="" id="tp5" required>
+                            </div>
+                            <div>
+                                <label for="tp6">NCM:</label>
+                                <input type="number" name="" id="tp6" required>
+                            </div>
+                            <div>
+                                <label for="tp7">Unidade:</label>
+                                <input type="text" name="" id="tp7" required>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" form="myForm" class="btn btn-primary submit">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="readData">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Produto</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form action="#" id="myForm">
+
+                        <div class="card imgholder">
+                            <img src="./image/Profile Icon.webp" alt="" width="200" height="200" class="showImg">
+                        </div>
+
+                        <div class="inputField">
+                          <div>
+                              <label for="tp1">Nome:</label>
+                              <input type="text" name="" id="th1" required>
+                          </div>
+                          <div>
+                              <label for="tp2">Data Cadastro:</label>
+                              <input type="date" name="" id="th2" required>
+                          </div>
+                          <div>
+                              <label for="tp3">Data Vencimento:</label>
+                              <input type="date" name="" id="th3" required>
+                          </div>
+                          <div>
+                              <label for="tp4">Quantidade:</label>
+                              <input type="number" name="" id="th4" minlength="1" required>
+                          </div>
+                          <div>
+                              <label for="tp5">Valor Unitario:</label>
+                              <input type="number" step="0.01" name="" id="th5" required>
+                          </div>
+                          <div>
+                              <label for="tp6">NCM:</label>
+                              <input type="number" name="" id="th6" required>
+                          </div>
+                          <div>
+                              <label for="tp7">Unidade:</label>
+                              <input type="text" name="" id="th7" required>
+                          </div>
+                      </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="../js/produtos.js"></script>
+  </body>
+</html>
