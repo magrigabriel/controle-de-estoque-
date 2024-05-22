@@ -91,7 +91,9 @@
       <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          <a class="nav-link" aria-current="page" href="Planos.html">Configuração</a>
+          <a class="nav-link" aria-current="page" href="conf.html">Configuração</a>
+          <a class="nav-link" aria-current="page" href="Planos.html">Planos</a>  <!-- remover futuramente -->
+          
         </div>
       </div>
     </nav>
@@ -102,9 +104,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center mb-3 mt-3" id="logocliente">
-          <!-- <div id="logocliente"
+           <div id="logocliente"
             style="width: 100px; height: 100px; background-color: black; background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZcmPBsVjXbWFmp12w0eGNXpQP4gnFvClKkLhUMbqKig&s); background-position: center; background-repeat: no-repeat; background-size: cover;">
-          </div> -->
+          </div> 
         </div>
       </div>
     </div>
@@ -114,19 +116,22 @@
       <hr>
       <h1 class="opcao">Opções</h1>
       <div class="row mt-4 mb-4 d-flex justify-content-center flex-wrap">
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"
+        <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
           onclick="window.location.href = 'PRODUCAO.html'"><img src="../assets/img/add.png" alt=""
             style="width:30px;"><strong> Produção</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-2 mb-2 ms-2"
+        <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
           onclick="window.location.href = 'produtos.html'"><img src="../assets/img/barcode.png" alt=""
-            style="width:30px;"><strong> Ver Produtos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"
+            style="width:30px;"><strong> Produtos</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
           onclick="window.location.href = 'Rascunhos.html'"><img src="../assets/img/rascunho.png" alt=""
             style="width:30px;"><strong> Rascunhos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"
+        <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
           onclick="window.location.href = 'fornecedores.html'"><img src="../assets/img/truck.png" alt=""
-            style="width:30px;"><strong> Centro de distrib.</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-10 col-md-11 mb-2 ms-2"
+            style="width:30px;"><strong> Fornecedores</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
+          onclick="window.location.href = 'clientes.html'"><img src="../assets/img/material-symbols--clinical-notes-outline.png" alt="" style="width:30px;"
+            onclick="window.location.href = 'clientes.html'"><strong> Clientes</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
           onclick="window.location.href = 'vendas.html'"><img src="../assets/img/loha.png" alt="" style="width:30px;"
             onclick="window.location.href = 'vendas.html'"><strong> Setor de Vendas</strong></button>
       </div>
@@ -134,11 +139,11 @@
     <!-- Fim Opções -->
     <!-- Inicio da sessão do Gráfico  -->
     <!-- Inicio gráfico -->
-    <div class="container w75">
+    <div class="container w-75">
       <h1 class="opcao"><img src="../assets/img/grafico.png" alt="" style="width: 30px;margin-bottom: 15px;">
         Gráfico total de vendas</h1>
       <div class="row">
-        <div class="col-lg-9 col-12 col-md-12 d-flex justify-content-center" id="disponivel">
+        <div class="col-lg-12 col-12 col-md-12 d-flex justify-content-center" id="disponivel">
           <script>
             const vendeo = {
               "vendeu": "<div class='chart'></div>",
@@ -246,6 +251,7 @@
 
         <div class="container mt-3" id="table+">
 
+
           <div class="card border-primary">
             <div class="card-body border-primary">
               <h5 class="opcao card-title"><img src="../assets/img/clock.png" alt=""
@@ -281,7 +287,6 @@
             </div>
           </div>
 
-
         </div>
 
         <script>
@@ -296,7 +301,7 @@
             dados.sort((a, b) => new Date(a.employeetp3) - new Date(b.employeetp3));
       
             // Preenche a tabela até um máximo de 10 linhas
-            dados.slice(mais, mais + 10).forEach((item) => {
+            dados.slice(mais, mais + 2).forEach((item) => {
               const newRow = tabelaCorpo.insertRow();
               const proximoVencimento = new Date(item.employeetp3) - new Date() < 1000 * 60 * 60 * 24 * 15;
               if (proximoVencimento) {
@@ -312,7 +317,7 @@
               `;
             });
       
-            mais += 10; // Adiciona mais 10, para a próxima vez que clicar no botão
+            mais += 2; // Adiciona mais 10, para a próxima vez que clicar no botão
           }
       
           window.onload = preencherTabela;
