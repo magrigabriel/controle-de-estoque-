@@ -92,8 +92,8 @@
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="#">Inicio</a>
           <a class="nav-link" aria-current="page" href="conf.html">Configuração</a>
-          <a class="nav-link" aria-current="page" href="Planos.html">Planos</a>  <!-- remover futuramente -->
-          
+          <a class="nav-link" aria-current="page" href="Planos.html">Planos</a> <!-- remover futuramente -->
+
         </div>
       </div>
     </nav>
@@ -104,9 +104,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center mb-3 mt-3" id="logocliente">
-           <div id="logocliente"
+          <div id="logocliente"
             style="width: 100px; height: 100px; background-color: black; background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZcmPBsVjXbWFmp12w0eGNXpQP4gnFvClKkLhUMbqKig&s); background-position: center; background-repeat: no-repeat; background-size: cover;">
-          </div> 
+          </div>
         </div>
       </div>
     </div>
@@ -129,7 +129,8 @@
           onclick="window.location.href = 'fornecedores.html'"><img src="../assets/img/truck.png" alt=""
             style="width:30px;"><strong> Fornecedores</strong></button>
         <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
-          onclick="window.location.href = 'clientes.html'"><img src="../assets/img/material-symbols--clinical-notes-outline.png" alt="" style="width:30px;"
+          onclick="window.location.href = 'clientes.html'"><img
+            src="../assets/img/material-symbols--clinical-notes-outline.png" alt="" style="width:30px;"
             onclick="window.location.href = 'clientes.html'"><strong> Clientes</strong></button>
         <button type="button" class="btn btn-outline-primary col-lg-3 col-5 col-md-3 mb-2 ms-2"
           onclick="window.location.href = 'vendas.html'"><img src="../assets/img/loha.png" alt="" style="width:30px;"
@@ -161,89 +162,82 @@
 
           <script src="https://d3js.org/d3.v7.min.js"></script>
           <script>
-            //  substituir no banco de dados 
-            const data = [
-              { "mes": "Jan", "vendas": "20" },
-              { "mes": "Fev", "vendas": "20" },
-              { "mes": "Mar", "vendas": "20" },
-              { "mes": "Abr", "vendas": "15" },
-              { "mes": "Mai", "vendas": "10" },
-              { "mes": "Jun", "vendas": "20" },
-              { "mes": "Jul", "vendas": "18" },
-              { "mes": "Agos","vendas": "40" },
-              { "mes": "Set", "vendas": "30" },
-              { "mes": "Out", "vendas": "35" },
-              { "mes": "Nov", "vendas": "30" },
-              { "mes": "Dez", "vendas": "20" }
-            ];
-
+            const vendasMensais = JSON.parse(localStorage.getItem('vendasMensais'));
             // Dimensões do gráfico
             const margin = { top: 20, right: 30, bottom: 50, left: 60 };
             let width = document.querySelector('.chart').clientWidth;
             let height = width * 0.6;
-
-            // Escala X
-            const x = d3.scalePoint()
-              .domain(data.map(d => d.mes))
-              .range([margin.left, width - margin.right]);
-
-            // Escala Y
-            const y = d3.scaleLinear()
-              .domain([0, d3.max(data, d => d.vendas)])
-              .range([height - margin.bottom, margin.top]);
-
+        
             // SVG
             const svg = d3.select('.chart')
-              .append('svg')
-              .attr('width', width)
-              .attr('height', height)
-
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+        
+            // Escala X
+            const x = d3.scaleBand()
+                .domain(vendasMensais.map(d => d.mes))
+                .range([margin.left, width - margin.right])
+                .padding(0.1);
+        
+            // Escala Y
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(vendasMensais, d => parseInt(d.vendas))])
+                .range([height - margin.bottom, margin.top]);
+        
             // Desenhar a linha
+            const line = d3.line()
+                .x(d => x(d.mes) + x.bandwidth() / 2)
+                .y(d => y(parseInt(d.vendas)));
+        
             svg.append('path')
-              .datum(data)
-              .attr('class', 'line')
-              .attr('d', d3.line()
-                .x(d => x(d.mes))
-                .y(d => y(d.vendas))
-              );
-
+                .datum(vendasMensais)
+                .attr('class', 'line')
+                .attr('d', line)
+                .attr('fill', 'none')
+                .attr('stroke', 'steelblue')
+                .attr('stroke-width', 2);
+        
             // Adicionar pontos
             svg.selectAll('.dot')
-              .data(data)
-              .enter()
-              .append('circle')
-              .attr('class', 'dot')
-              .attr('cx', d => x(d.mes))
-              .attr('cy', d => y(d.vendas))
-              .attr('r', 5)
-              .on('mouseenter', function (event, d) {
-                d3.select(this).attr('r', 8);
-                tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}`);
-                tooltip.attr('class', 'tooltip active');
-              })
-              .on('mouseleave', function () {
-                d3.select(this).attr('r', 5);
-                tooltip.attr('class', 'tooltip');
-              });
-
+                .data(vendasMensais)
+                .enter()
+                .append('circle')
+                .attr('class', 'dot')
+                .attr('cx', d => x(d.mes) + x.bandwidth() / 2)
+                .attr('cy', d => y(parseInt(d.vendas)))
+                .attr('r', 5)
+                .attr('fill', 'steelblue')
+                .on('mouseenter', function (event, d) {
+                    d3.select(this).attr('r', 8);
+                    tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}`);
+                    tooltip.attr('class', 'tooltip active');
+                })
+                .on('mouseleave', function () {
+                    d3.select(this).attr('r', 5);
+                    tooltip.attr('class', 'tooltip');
+                });
+        
             // Eixos
             const xAxis = g => g
-              .attr('transform', `translate(0,${height - margin.bottom})`)
-              .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
-
+                .attr('transform', `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(x).tickSizeOuter(0));
+        
             const yAxis = g => g
-              .attr('transform', `translate(${margin.left},0)`)
-              .call(d3.axisLeft(y));
-
+                .attr('transform', `translate(${margin.left},0)`)
+                .call(d3.axisLeft(y));
+        
             svg.append('g').call(xAxis);
             svg.append('g').call(yAxis);
-
+        
             // Tooltip
             const tooltip = d3.select('.chart')
-              .append('div')
-              .attr('class', 'tooltip');
-
-          </script>
+                .append('div')
+                .attr('class', 'tooltip');
+        
+        </script>
+        
+        
 
         </div>
         <!-- fim Gráfico -->
@@ -263,8 +257,8 @@
                     <tr>
                       <th class="bg-primary text-white" scope="col"
                         style="border-left: 1px solid #007bff; border-right: 1px solid white;">Nome</th>
-                      <th class="bg-primary border-white text-white" scope="col">quantidade</th>
-                      <th class="bg-primary border-white text-white" scope="col">Valor Unitário</th>
+                      <th class="bg-primary border-white text-white" scope="col">Quantidade</th>
+                      <th class="bg-primary border-white text-white" scope="col">Valor Unitário(R$)</th>
                       <th class="bg-primary border-white text-white" scope="col" class="bg-primary">Validade</th>
                       <th class="bg-primary border-white text-white" scope="col">NCM</th>
                       <th class="bg-primary text-white" scope="col"
@@ -276,7 +270,8 @@
                     <!-- Os dados da tabela serão preenchidos dinamicamente aqui -->
                   </tbody>
                 </table>
-                <span class="ms-2">*A ordenação da tabela é feita de acordo com o vencimento do produto.</span>
+                <span class="ms-2">*A ordenação da tabela é feita de acordo com o vencimento do produto</span>
+                <span>e produtos indisponiveis para venda não é mostrado na tabela</span>
                 <nav aria-label="..." class="d-flex justify-content-center">
                   <ul class="pagination pagination-lg ">
                     <li class="page-item " id="btnGerarLinhas"><a class="page-link bg-primary text-white"
@@ -291,37 +286,36 @@
 
         <script>
           let dados = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : [];
-      
           let mais = 0;
-      
+
           function preencherTabela() {
             const tabelaCorpo = document.getElementById("tabela-corpo");
-      
-            // Ordena o array de dados pela data de validade
-            dados.sort((a, b) => new Date(a.employeetp3) - new Date(b.employeetp3));
-      
+
+            // Filtra os produtos que têm quantidade maior que 0 e ordena pela data de validade
+            let produtosValidos = dados.filter(item => item.employeetp4 > 0).sort((a, b) => new Date(a.employeetp3) - new Date(b.employeetp3));
+
             // Preenche a tabela até um máximo de 10 linhas
-            dados.slice(mais, mais + 2).forEach((item) => {
+            produtosValidos.slice(mais, mais + 10).forEach((item) => {
               const newRow = tabelaCorpo.insertRow();
               const proximoVencimento = new Date(item.employeetp3) - new Date() < 1000 * 60 * 60 * 24 * 15;
               if (proximoVencimento) {
                 newRow.classList.add("prox-vencimento");
               }
-              newRow.innerHTML = `     
-                <td>${item.employeetp1}</td>
-                <td>${item.employeetp4}</td>
-                <td>${item.employeetp5}</td>
-                <td>${item.employeetp3}</td>
-                <td>${item.employeetp6}</td>
-                <td>${item.startDate}</td>
-              `;
+              newRow.innerHTML = `
+                      <td>${item.employeetp1}</td>
+                      <td>${item.employeetp4}</td>
+                      <td>R$: ${item.employeetp5}</td>
+                      <td>${item.employeetp3}</td>
+                      <td>${item.employeetp6}</td>
+                      <td>${item.startDate}</td>
+                  `;
             });
-      
-            mais += 2; // Adiciona mais 10, para a próxima vez que clicar no botão
+
+            mais += 10; // Adiciona mais 10, para a próxima vez que clicar no botão
           }
-      
+
           window.onload = preencherTabela;
-      
+
           const btnGerarLinhas = document.getElementById("btnGerarLinhas");
           btnGerarLinhas.addEventListener("click", preencherTabela);
         </script>
