@@ -14,7 +14,7 @@
   <title>Tela Inicial - DataStock</title>
 </head>
 
-<body>
+<body id="error">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -114,16 +114,21 @@
       <hr>
       <h1 class="opcao">Opções</h1>
       <div class="row mt-4 mb-4 d-flex justify-content-center flex-wrap">
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
-            src="../assets/img/add.png" alt="" style="width:30px;"><strong> Adicionar</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-2 mb-2 ms-2"><img
-            src="../assets/img/barcode.png" alt="" style="width:30px;"><strong> Ver Produtos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
-            src="../assets/img/rascunho.png" alt="" style="width:30px;"><strong> Rascunhos</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"><img
-            src="../assets/img/truck.png" alt="" style="width:30px;"><strong> Centro de distrib.</strong></button>
-        <button type="button" class="btn btn-outline-primary col-lg-2 col-10 col-md-11 mb-2 ms-2"><img
-            src="../assets/img/loha.png" alt="" style="width:30px;"><strong> Setor de Vendas</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"
+          onclick="window.location.href = 'PRODUCAO.html'"><img src="../assets/img/add.png" alt=""
+            style="width:30px;"><strong> Produção</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-2 mb-2 ms-2"
+          onclick="window.location.href = 'produtos.html'"><img src="../assets/img/barcode.png" alt=""
+            style="width:30px;"><strong> Ver Produtos</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"
+          onclick="window.location.href = 'Rascunhos.html'"><img src="../assets/img/rascunho.png" alt=""
+            style="width:30px;"><strong> Rascunhos</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-5 col-md-3 mb-2 ms-2"
+          onclick="window.location.href = 'fornecedores.html'"><img src="../assets/img/truck.png" alt=""
+            style="width:30px;"><strong> Centro de distrib.</strong></button>
+        <button type="button" class="btn btn-outline-primary col-lg-2 col-10 col-md-11 mb-2 ms-2"
+          onclick="window.location.href = 'vendas.html'"><img src="../assets/img/loha.png" alt="" style="width:30px;"
+            onclick="window.location.href = 'vendas.html'"><strong> Setor de Vendas</strong></button>
       </div>
     </div>
     <!-- Fim Opções -->
@@ -133,37 +138,38 @@
       <h1 class="opcao"><img src="../assets/img/grafico.png" alt="" style="width: 30px;margin-bottom: 15px;">
         Gráfico total de vendas</h1>
       <div class="row">
-        <div class="col-lg-9 col-12 col-md-12 d-flex justify-content-center">
-
-          <div id="disponivel"></div>
+        <div class="col-lg-9 col-12 col-md-12 d-flex justify-content-center" id="disponivel">
           <script>
             const vendeo = {
               "vendeu": "<div class='chart'></div>",
               "naovendeu": "<div class='p-1 mt-3 mb-2 bg-primary' style='border-radius: 10px;'><div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 100px; margin-top: 30px; margin-bottom: 30px; background-color: white; padding: 10px; border-radius: 10px; margin: center;'><h1 class='text-white p-2' >Ops! O plano comprado não permite acesso ao gráfico. Faça um updade e tenha acesso agora mesmo!</h1><p class='text-white p-2'>-Me chama de termômetro e vem medir o calor das vendas comigo...Não? Desculpe, o estagiario está maluco.</P<br><a href='./Planos.html'><button type='button' class='btn mt-3 mb-3 w-100' style='background-color: white'><strong class='text-primary'>Ver Planos</strong></button></a></div></div></div></div>",
             }
-            var planoEscolhido = localStorage.getItem('planoEscolhido');
+            var planoEscolhido = localStorage.getItem('confirmacao');
             var local = document.getElementById('disponivel');
-            if (planoEscolhido == 'basicomensal' || planoEscolhido == "mediomensal" || planoEscolhido == 'basicoanual' || planoEscolhido == 'medioanual') {
+            if (planoEscolhido == 'false') {
               local.innerHTML = vendeo.naovendeu;
             } else local.innerHTML = vendeo.vendeu;
+            // else {
+            //   window.location.href = 'Planos.html'; ----------> Fazer algo parecido, mas levar para a tela de login
+            // }
           </script>
 
           <script src="https://d3js.org/d3.v7.min.js"></script>
           <script>
-            // substituir no banco de dados 
+            //  substituir no banco de dados 
             const data = [
-              { mes: "Jan", vendas: 0 },
-              { mes: "Fev", vendas: 0 },
-              { mes: "Mar", vendas: 0 },
-              { mes: "Abr", vendas: 0 },
-              { mes: "Mai", vendas: 0 },
-              { mes: "Jun", vendas: 0 },
-              { mes: "Jul", vendas: 0 },
-              { mes: "Agos", vendas: 0 },
-              { mes: "Set", vendas: 0 },
-              { mes: "Out", vendas: 0 },
-              { mes: "Nov", vendas: 0 },
-              { mes: "Dez", vendas: 0 }
+              { "mes": "Jan", "vendas": "20" },
+              { "mes": "Fev", "vendas": "20" },
+              { "mes": "Mar", "vendas": "20" },
+              { "mes": "Abr", "vendas": "15" },
+              { "mes": "Mai", "vendas": "10" },
+              { "mes": "Jun", "vendas": "20" },
+              { "mes": "Jul", "vendas": "18" },
+              { "mes": "Agos","vendas": "40" },
+              { "mes": "Set", "vendas": "30" },
+              { "mes": "Out", "vendas": "35" },
+              { "mes": "Nov", "vendas": "30" },
+              { "mes": "Dez", "vendas": "20" }
             ];
 
             // Dimensões do gráfico
@@ -238,7 +244,7 @@
         <!-- fim Gráfico -->
         <!-- Inicio tabela -->
 
-        <div class="container mt-3" id="tableeee">
+        <div class="container mt-3" id="table+">
 
           <div class="card border-primary">
             <div class="card-body border-primary">
@@ -249,12 +255,14 @@
                 <table class="table table-bordered border-primary">
                   <thead>
                     <tr>
-                      <th class="bg-primary border-white text-white" scope="col">Código</th>
-                      <th class="bg-primary border-white text-white" scope="col">Descrição</th>
-                      <th class="bg-primary border-white text-white" scope="col">Unidade</th>
-                      <th class="bg-primary border-white text-white" scope="col" class="bg-primary">Validade</th>
+                      <th class="bg-primary text-white" scope="col"
+                        style="border-left: 1px solid #007bff; border-right: 1px solid white;">Nome</th>
+                      <th class="bg-primary border-white text-white" scope="col">quantidade</th>
                       <th class="bg-primary border-white text-white" scope="col">Valor Unitário</th>
+                      <th class="bg-primary border-white text-white" scope="col" class="bg-primary">Validade</th>
                       <th class="bg-primary border-white text-white" scope="col">NCM</th>
+                      <th class="bg-primary text-white" scope="col"
+                        style="border: 1px solid #007bff; border-left: 1px solid white;">Unidade</th>
                     </tr>
                   </thead>
 
@@ -272,68 +280,43 @@
               </div>
             </div>
           </div>
-          
+
 
         </div>
 
         <script>
-          const dados = [
-            { codigo: "001", descricao: "Produto A", unidade: "UN", validade: "2023-03-15", valor_unitario: 10.50, ncm: "12345678" },
-            { codigo: "002", descricao: "Produto B", unidade: "CX", validade: "2020-03-15", valor_unitario: 20.75, ncm: "87654321" },
-            { codigo: "003", descricao: "Produto c", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
-            { codigo: "004", descricao: "Produto d", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "005", descricao: "Produto e", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "006", descricao: "Produto f", unidade: "UN", validade: "2023-03-15", valor_unitario: 10.50, ncm: "12345678" },
-            { codigo: "007", descricao: "Produto g", unidade: "CX", validade: "2023-03-15", valor_unitario: 20.75, ncm: "87654321" },
-            { codigo: "008", descricao: "Produto h", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
-            { codigo: "009", descricao: "Produto i", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "010", descricao: "Produto j", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "011", descricao: "Produto k", unidade: "UN", validade: "2023-03-15", valor_unitario: 10.50, ncm: "12345678" },
-            { codigo: "012", descricao: "Produto l", unidade: "CX", validade: "2023-03-15", valor_unitario: 20.75, ncm: "87654321" },
-            { codigo: "178", descricao: "Produto m", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
-            { codigo: "004", descricao: "Produto n", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "004", descricao: "Produto o", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "001", descricao: "Produto p", unidade: "UN", validade: "2025-01-01", valor_unitario: 10.50, ncm: "12345678" },
-            { codigo: "002", descricao: "Produto q", unidade: "CX", validade: "2025-03-15", valor_unitario: 20.75, ncm: "87654321" },
-            { codigo: "178", descricao: "Produto r", unidade: "CX", validade: "2023-03-15", valor_unitario: 2.75, ncm: "87654324" },
-            { codigo: "004", descricao: "Produto s", unidade: "UN", validade: '2023-03-15', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "004", descricao: "Produto t", unidade: "UN", validade: '2024-05-09', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "004", descricao: "Produto u", unidade: "UN", validade: '2024-05-09', valor_unitario: 3, ncm: "87654364" },
-            { codigo: "004", descricao: "Produto v", unidade: "UN", validade: '2024-05-09', valor_unitario: 3, ncm: "87654364" },
-          ];
-
-          // Função para preencher a tabela com os dados --> Ignore erro de portugues e nomes aleatorios das variaveis, estou documentando o codigo pra não ficar perdido!!
-
-          var mais = 0;
-
+          let dados = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : [];
+      
+          let mais = 0;
+      
           function preencherTabela() {
             const tabelaCorpo = document.getElementById("tabela-corpo");
-
+      
             // Ordena o array de dados pela data de validade
-            dados.sort((a, b) => new Date(a.validade) - new Date(b.validade)); // funcao short igual em c#, ordena em ordem crescente
-
+            dados.sort((a, b) => new Date(a.employeetp3) - new Date(b.employeetp3));
+      
             // Preenche a tabela até um máximo de 10 linhas
-            dados.slice(mais, mais + 10).forEach((item) => { // vai passar por cada objeto da tabela
-              const newRow = tabelaCorpo.insertRow(); // new row vai receber o obejto
-              const proximoVencimento = new Date(item.validade) - new Date() < 1000 * 60 * 60 * 24 * 15;
+            dados.slice(mais, mais + 10).forEach((item) => {
+              const newRow = tabelaCorpo.insertRow();
+              const proximoVencimento = new Date(item.employeetp3) - new Date() < 1000 * 60 * 60 * 24 * 15;
               if (proximoVencimento) {
-                newRow.classList.add("prox-vencimento"); 
+                newRow.classList.add("prox-vencimento");
               }
               newRow.innerHTML = `     
-            <td>${item.codigo}</td>
-            <td>${item.descricao}</td>
-            <td>${item.unidade}</td>
-            <td>${item.validade}</td>
-            <td>${item.valor_unitario}</td>
-            <td>${item.ncm}</td>
-        `; // vai gerar as linhas em ordem de vencimento, por isso gerei a const proximo do vencimento e fiz o calculo de data
+                <td>${item.employeetp1}</td>
+                <td>${item.employeetp4}</td>
+                <td>${item.employeetp5}</td>
+                <td>${item.employeetp3}</td>
+                <td>${item.employeetp6}</td>
+                <td>${item.startDate}</td>
+              `;
             });
-
-            mais+=5; // adciiona mais 5, para a prox vez que clicar no botão
+      
+            mais += 10; // Adiciona mais 10, para a próxima vez que clicar no botão
           }
-
+      
           window.onload = preencherTabela;
-
+      
           const btnGerarLinhas = document.getElementById("btnGerarLinhas");
           btnGerarLinhas.addEventListener("click", preencherTabela);
         </script>
