@@ -40,13 +40,16 @@
         <div class="card w-75 mb-3">
             <div class="card-header">
               </div>
-            <div class="card-body">
-              <h5 class="card-title">Tipo do plano</h5>
-              <p>Data do próximo pagamento:</p>
-              <h6>Dados do pagamento</h6>
+            <div class="card-body" >
+              <h5 class="card-title">Tipo do plano: </h5>
+              <p id="titulo"></p>
+              <h6>Próximo Pagamento: </h6>
+              <p id="prox-pag"></p>
+              <h6>Forma do pagamento:</h6>
+              <p id="formadepagamento"></p>
               <hr>
               <h6>Gerenciar Assinatura</h6>
-           <a href="http://127.0.0.1:5500/config.empresa/dados.html" class="btn btn-outline-secondary">>>></a>
+           <a href="detalhesassinatura.html" class="btn btn-outline-secondary">>>></a>
         </div>
     </div>
           <header class="header">
@@ -92,6 +95,18 @@
             </nav>
         </footer>
         <script src="conf.js"></script>
+        <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const pagamentoinfo = JSON.parse(localStorage.getItem('pagamentoinfo'));
+                    
+                    document.getElementById('formadepagamento').innerHTML = pagamentoinfo.formadepagamento;
+                    document.getElementById('titulo').innerHTML = pagamentoinfo.tipoplano;
+                    document.getElementById('prox-pag').innerHTML = pagamentoinfo.dataproxpagamento;
+
+                    
+                    
+                });
+        </script>
 
 </body>
 </html>

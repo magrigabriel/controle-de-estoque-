@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/conf.css">
+    <link rel="shortcut icon" href="../assets/img/logo (1).png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Assinatura - DataStock</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Inicio Cabeçalho -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <!-- Logo DataStock -->
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../html/telaempres.html">
+                    <img src="../assets/img/logo.png" alt="DataStock" width="70" height="50">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <!-- Fim logo Data Stock -->
+            <!-- Opções a Direita do NAV -->
+            <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="../html/telaempres.html">Inicio</a>
+                    <a class="nav-link" href="conf.html">Configuração</a>
+                    <a class="nav-link" href="#contatos">Contato/Dúvidas</a>
+                </div>
+            </div>
+            <!-- Fim Opções e NAV -->
+        </nav>
+    </header>
+    <main>
+        <div class="container_conta">
+            <header class="header">
+                <h1 style="font-size: larger;">Detalhes da assinatura</h1>
+                <p>Detalhes da assinatura</p>
+            </header>
+            <div class="card w-75 mb-3">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title text-primary">Detalhes da assinatura: </h1>
+                    <span><strong>Nome do plano:</strong></span>
+                    <span id="nomeplano"></span><br>
+                    <br>
+                    <span><strong>Forma de pagamento:</strong></span>
+                    <span id="opcaopag"></span><br>
+                    <br>
+                    <span><strong>Tipo de Contratação:</strong></span>
+                    <span id="contrat"></span><br>
+                    <br>
+                    <span><strong>Data do último pagamento:</strong></span>
+                    <span id="pag"></span><br>
+                    <br>
+                    <span><strong>Data do próximo pagamento:</strong></span>
+                    <span id="prox"></span><br>
+                    <br>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="container_conta">
+            <div class="card w-75 mb-3">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title text-primary">Detalhes do pagamento: </h1>
+                    <span><strong>Típo do cartão:</strong></span>
+                    <span id="tipocart"></span>
+                    <br> <br>
+                    <span><strong>Nome do Cartão:</strong></span>
+                    <span id="nomecard"></span>
+                    <br> <br>
+                    <span><strong>Número do Cartão:</strong></span>
+                    <span id="numcard"></span>
+                    <br><br>
+                    <span><strong>Nome do Comprador:</strong></span>
+                    <span id="nomecomp"></span>
+                    <br><br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" onclick="editar()">
+                        Editar Cartão/forma de pagamento
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="accordion rounded-2 border border-primary border border-2"
+                                        id="accordionExample">
+                                        <div class="accordion-item" style="border-bottom: 2px solid #0D6EFD;">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    <strong id="ola"> Cartão de Crédito:</strong>
+                                                    <div id="imgpag">
+                                                        <img src="../assets/img/mastercard.svg" alt=""
+                                                            style="width: 30px; height: 100%;" class="ms-2">
+                                                        <img src="../assets/img/amex.svg" alt="" style="width: 30px;"
+                                                            class="ms-2">
+                                                        <img src="../assets/img/elo.svg" alt=""
+                                                            style="width: 30px; height: 100%;" class="ms-2">
+                                                        <img src="../assets/img/visa.svg" alt=""
+                                                            style="width: 30px; height: 100%;" class="ms-2">
+                                                    </div>
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                                data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="fo9rm">
+                                                        <form action="../html/telaempres.html">
+                                                            <div class="form-header">
+                                                                <div class="title">
+                                                                    <h2
+                                                                        class="p-2 m-1 bg-primary rounded-3 text-white mb-3">
+                                                                        Cartão
+                                                                        de<br> Crédito:
+                                                                        <div id="imgpagdps">
+                                                                            <img src="../assets/img/mastercard.svg"
+                                                                                alt=""
+                                                                                style="width: 30px; height: 100%;"
+                                                                                class="ms-2">
+                                                                            <img src="../assets/img/amex.svg" alt=""
+                                                                                style="width: 30px;" class="ms-2">
+                                                                            <img src="../assets/img/elo.svg" alt=""
+                                                                                style="width: 30px; height: 100%;"
+                                                                                class="ms-2">
+                                                                            <img src="../assets/img/visa.svg" alt=""
+                                                                                style="width: 30px; height: 100%;"
+                                                                                class="ms-2">
+                                                                        </div>
+                                                                    </h2>
+                                                                </div>
+                                                                <div class="input-group">
+                                                                    <div class="input-box ms-2" id="input">
+                                                                        <label for="nome-cartao" class="w-100 ms-2">Nome
+                                                                            Impresso no
+                                                                            Cartão</label>
+                                                                        <input id="nome-cartao" type="text"
+                                                                            name="nome-cartao"
+                                                                            placeholder="ex: JOAO O SILVA" class=" m-2"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="input-box col-lg-12 col-md-12 col-12 mt-2 mb-2"
+                                                                            id="cem">
+                                                                            <label for="validade"
+                                                                                class="w-100 ms-2">Data de
+                                                                                Validade</label>
+                                                                            <input id="validade" type="number"
+                                                                                name="validade" placeholder="MM/AA"
+                                                                                class="m-2" required>
+                                                                        </div>
+                                                                        <div class="input-box col-lg-12 col-12 col-md-12 mt-2 mb-2"
+                                                                            id="cem">
+                                                                            <label for="cvvvv"
+                                                                                class="w-100 ms-2">CVV</label>
+                                                                            <input id="cvvvv" type="number" name="cvvvv"
+                                                                                placeholder="XYZ" class="m-2" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="input-box ms-2" id="input">
+                                                                        <label for="numero-cartao"
+                                                                            class="w-100 ms-2">Número do
+                                                                            Cartão</label>
+                                                                        <input id="numero-cartao" type="number"
+                                                                            name="numero-cartao"
+                                                                            placeholder="0000 0000 0000 0000 "
+                                                                            class=" m-2" pattern="\d{16}" required>
+                                                                    </div>
+                                                                    <div class="input-box ms-2" id="input">
+                                                                        <label for="nome-completo"
+                                                                            class="w-100 ms-2">Seu nome
+                                                                            completo</label>
+                                                                        <input id="nome-completo" type="text"
+                                                                            name="nome-completo"
+                                                                            placeholder="ex: João Oli Silva" class="m-2"
+                                                                            required>
+                                                                    </div>
+                                                                    <button type="button" class="btn p-2 mt-2"
+                                                                        style="background-color: #20B2FF;width: 90%; margin-left: 11px;"
+                                                                        id="pagar"
+                                                                        onclick="salvarpagamentocred()">Comprar
+                                                                        Agora</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                    <strong> Cartão de Débito:</strong>
+                                                    <div id="imgpag">
+                                                        <img src="../assets/img/itau.svg" alt=""
+                                                            style="width: 30px; height: 100%;" class="ms-2">
+                                                        <img src="../assets/img/caixa.svg" alt="" style="width: 30px;"
+                                                            class="ms-2">
+                                                        <img src="../assets/img/banco-do-brasil.svg" alt=""
+                                                            style="width: 30px; height: 100%;" class="ms-2">
+                                                        <img src="../assets/img/santander.svg" alt=""
+                                                            style="width: 30px; height: 100%;" class="ms-2">
+                                                    </div>
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="for0m">
+                                                        <form action="../html/telaempres.html">
+                                                            <div class="form-header">
+                                                                <div class="title">
+                                                                    <h2
+                                                                        class="p-2 m-1 bg-primary rounded-3 text-white mb-3">
+                                                                        Cartão
+                                                                        de<br> Débito:
+                                                                        <div id="imgpagdps">
+                                                                            <img src="../assets/img/mastercard.svg"
+                                                                                alt=""
+                                                                                style="width: 30px; height: 100%;"
+                                                                                class="ms-2">
+                                                                            <img src="../assets/img/amex.svg" alt=""
+                                                                                style="width: 30px;" class="ms-2">
+                                                                            <img src="../assets/img/elo.svg" alt=""
+                                                                                style="width: 30px; height: 100%;"
+                                                                                class="ms-2">
+                                                                            <img src="../assets/img/visa.svg" alt=""
+                                                                                style="width: 30px; height: 100%;"
+                                                                                class="ms-2">
+                                                                        </div>
+                                                                    </h2>
+                                                                </div>
+                                                                <div class="input-group">
+                                                                    <div class="input-box ms-2" id="input">
+                                                                        <label for="nome-cartao1"
+                                                                            class=" w-100 ms-2">Nome Impresso no
+                                                                            Cartão</label>
+                                                                        <input id="nome-cartao1" type="text"
+                                                                            name="nome-cartao1"
+                                                                            placeholder="Ex: JOAO O SILVA" class=" m-2"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="input-box col-lg-12 col-md-12 col-12 mt-2 mb-2"
+                                                                            id="cem">
+                                                                            <label for="validade1"
+                                                                                class="w-100 ms-2">Data de
+                                                                                Validade</label>
+                                                                            <input id="validade1" type="text"
+                                                                                name="validade1" placeholder="MM/AA"
+                                                                                class="m-2" required>
+                                                                        </div>
+                                                                        <div class="input-box col-lg-5 col-12 col-md-5 mt-2 mb-2"
+                                                                            id="cem">
+                                                                            <label for="cvvvv1"
+                                                                                class="w-100 ms-2">CVV</label>
+                                                                            <input id="cvvvv1" type="text" name="cvvvv1"
+                                                                                placeholder="XYZ" class="m-2" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="input-box ms-2" id="input">
+                                                                        <label for="numero-cartao1"
+                                                                            class="w-100 ms-2">Número do
+                                                                            Cartão</label>
+                                                                        <input id="numero-cartao1" type="text"
+                                                                            name="numero-cartao1"
+                                                                            placeholder="0000 0000 0000 0000 "
+                                                                            class=" m-2" required>
+                                                                    </div>
+                                                                    <div class="input-box ms-2" id="input">
+                                                                        <label for="nome-completo1"
+                                                                            class="w-100 ms-2">Seu nome
+                                                                            completo</label>
+                                                                        <input id="nome-completo1" type="text"
+                                                                            name="nome-completo1"
+                                                                            placeholder="ex: João Oli Silva" class="m-2"
+                                                                            required>
+                                                                    </div>
+                                                                    <button type="button" class="btn p-2 mt-2"
+                                                                        style="background-color: #20B2FF;width: 90%; margin-left: 11px;"
+                                                                        id="pagar"
+                                                                        onclick="salvarpagamentodeb()">Comprar
+                                                                        Agora</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary">Salvar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#oi">
+                        Excluir dados de pagamento
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="oi" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">ATENÇÃO</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Todos os dados de pagamentos serão excluidos, tem certeza que deseja continuar?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" onclick="excluir()">Excluir Dados de
+                                        pagamento</button>
+                                    <button type="button" class="btn btn-primary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const pagamentoinfo = JSON.parse(localStorage.getItem('pagamentoinfo'));
+                    const planocomprado = JSON.parse(localStorage.getItem('planocompradoo'));
+
+                    document.getElementById('opcaopag').innerHTML = pagamentoinfo.formadepagamento;
+                    document.getElementById('nomeplano').innerHTML = planocomprado.titulo;
+                    document.getElementById('contrat').innerHTML = pagamentoinfo.tipoplano;
+                    document.getElementById('prox').innerHTML = pagamentoinfo.dataproxpagamento;
+                    document.getElementById('pag').innerHTML = pagamentoinfo.datapagamento;
+                    document.getElementById('tipocart').innerHTML = pagamentoinfo.formadepagamento;
+                    document.getElementById('nomecard').innerHTML = pagamentoinfo.nocart;
+                    document.getElementById('numcard').innerHTML = pagamentoinfo.numcard;
+                    document.getElementById('nomecomp').innerHTML = pagamentoinfo.nomecomple;
+                });
+
+                function editar() {
+                    var inforatual = localStorage.getItem('pagamentoinfo');
+
+                }
+            </script>
+            <script src="../assets/javascript/Json/detalhespag.js"></script>
+    </main>
+</body>
+
+</html>
