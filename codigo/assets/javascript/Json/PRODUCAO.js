@@ -1,178 +1,189 @@
-/*
-// Função para preencher a tabela com os dados
-function preencherTabela() {
-    const tabelaCorpo = document.getElementById("tabela-corpo");
-    tabelaCorpo.innerHTML = ''; // Limpa a tabela antes de preencher
-
-    // Ordena os dados pelo código
-    dados.sort((a, b) => a.codigo.localeCompare(b.codigo));
-
-    // Preenche a tabela
-    dados.slice(mais, mais + 10).forEach((item) => {
-        const newRow = tabelaCorpo.insertRow();
-        newRow.dataset.codigo = item.codigo;
-        const proximoVencimento = new Date(item.validade) - new Date() < 1000 * 60 * 60 * 24 * 15;
-        if (proximoVencimento) {
-            newRow.classList.add("prox-vencimento");
-        }
-        newRow.innerHTML = `     
-        <td>${item.codigo}</td>
-        <td>${item.descricao}</td>
-        <td>${item.lote}</td>
-        <td>${item.qtd_lote}</td>
-        <td>${item.valid_lote}</td>
-        `;
-    });
-
-    mais += 10;
-}
-
-window.onload = preencherTabela;
-
-const btnGerarLinhas = document.getElementById("btnGerarLinhas");
-btnGerarLinhas.addEventListener("click", preencherTabela);
-
-*/
+/* alert("Bem-vindo ao seu menu de produção!!!") */
 
 document.addEventListener("DOMContentLoaded", function () {
-  const cardDiv = document.querySelector(".card");
+  const cardDiv = document.querySelector("#prd1");
   cardDiv.style.display = "none";
 
-  const btnProd = document.getElementById("btn_prod");
-  btnProd.addEventListener("click", function () {
+  const btn_prod = document.getElementById("btn_prod");
+  btn_prod.addEventListener("click", function () {
     if (cardDiv.style.display === "none") {
       cardDiv.style.display = "block";
     } else {
-      cardDiv.style.display = "none"; 
+      cardDiv.style.display = "none";
+    }
+  });
+
+  const cardDiv4 = document.querySelector("#edit1");
+  cardDiv4.style.display = "none";
+
+  const btn_edit = document.getElementById("btn_edit");
+  btn_edit.addEventListener("click", function () {
+    if (cardDiv4.style.display === "none") {
+      cardDiv4.style.display = "block";
+    } else {
+      cardDiv4.style.display = "none";
+    }
+  });
+
+  const cardDiv2 = document.querySelector("#prd2");
+  cardDiv2.style.display = "none"; // Esconde o card inicialmente
+
+  const btn_novo = document.getElementById("btn_novo");
+  btn_novo.addEventListener("click", function () {
+    if (cardDiv2.style.display === "none") {
+      cardDiv2.style.display = "block"; // Exibe o card ao clicar no botão "btn_novo"
+    } else {
+      cardDiv2.style.display = "none"; // Esconde o card se já estiver visível
+    }
+  });
+
+
+  const cardDiv3 = document.querySelector("#prd3");
+  cardDiv3.style.display = "none"; // Esconde o card inicialmente
+
+  const btn_ex = document.getElementById("btn_ex");
+  btn_ex.addEventListener("click", function () {
+    if (cardDiv3.style.display === "none") {
+      cardDiv3.style.display = "block"; // Exibe o card ao clicar no botão "btn_prod"
+    } else {
+      cardDiv3.style.display = "none"; // Esconde o card se já estiver visível
     }
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const cardDiv = document.querySelector(".card2");
-    cardDiv.style.display = "none"; // Esconde o card inicialmente
-  
-    const btnProd = document.getElementById("btn_novo");
-    btnProd.addEventListener("click", function () {
-      if (cardDiv.style.display === "none") {
-        cardDiv.style.display = "block"; // Exibe o card ao clicar no botão "btn_prod"
-      } else {
-        cardDiv.style.display = "none"; // Esconde o card se já estiver visível
-      }
-    });
-  });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const cardDiv = document.querySelector(".card3");
-    cardDiv.style.display = "none"; // Esconde o card inicialmente
-  
-    const btnProd = document.getElementById("btn_ex");
-    btnProd.addEventListener("click", function () {
-      if (cardDiv.style.display === "none") {
-        cardDiv.style.display = "block"; // Exibe o card ao clicar no botão "btn_prod"
-      } else {
-        cardDiv.style.display = "none"; // Esconde o card se já estiver visível
-      }
-    });
-  });
+//Botões de validação --> Iniciar Produção
+var cadForm = document.getElementById("prd1");
 
-class btn_prod {
+// Aguardar o usuário clicar no botão cadastrar do formulário
+cadForm.addEventListener("submit", (e) => {
 
-    constructor() {
-        this.id = 1; /* Será alterado para o código do produto que será produzido */
+  // Não recarregar a página
+  e.preventDefault();
 
-    }
+  // Receber os dados do formulário
+  var cod1 = document.getElementById('cod1').value;
+  var descprod1 = document.getElementById('descprod1').value;
+  var loteprod1 = document.getElementById('loteprod1').value;
+  var qtdprod1 = document.getElementById('qtdprod1').value;
+  var validprod1 = document.getElementById('validprod1').value;
+  console.log(cod1);
+  console.log(descprod1);
+  console.log(loteprod1);
+  console.log(qtdprod1);
+  console.log(validprod1);
 
-    salvar() {
-        let in_prod = this.lerDados();
+  // O Array() é usado para criar Array de objetos
+  let prod1 = new Array();
 
-        if(this.validacampos(in_prod) == true){
-            alert("salvar")
-        } 
-    }
-
-    adicionar(in_prod){
-        this.arrayDados.push(in_prod);
-    }
-
-    lerDados() {
-        let in_prod = {}
-        produto.codigoprod = document.getElementById("cod1").value;
-        produto.descprod = document.getElementById("descprod1").value;
-        produto.loteprod = document.getElementById("loteprod1").value;
-        produto.qtdprod = document.getElementById("qtdprod1").value;
-        produto.validprod = document.getElementById("validprod1").value;
-
-        return in_prod;
-    }
-
-    validacampos(in_prod) {
-        let msg = '';
-        if (produto.codigoprod == '') {
-            msg += "Informe o código do produto \n";
-        }
-        if (produto.qtdprod == '') {
-            msg += "Informe a quantidade a ser produzida \n";
-        }
-        if (produto.validprod == '') {  
-            msg += "Informe a validade para este lote \n";
-        }
-        if(msg != ""){
-            alert(msg);
-            return false;
-        }
-
-        return true;
-    }
-}
-
-// função que salva valores do botão iniciar produção
-
-
-function produtosalvar() {
-  // Obtém os valores dos campos do formulário
-  var cod01 = document.getElementById('cod1').value;
-  var descprod01 = document.getElementById('descprod1').value;
-  var loteprod01 = document.getElementById('loteprod1').value;
-  var qtdprod01 = document.getElementById('qtdprod1').value;
-  var validprod01 = document.getElementById('validprod1').value;
-
-  // Cria um objeto para representar a nova produção
-  const salvaproducao = {
-      "codigo": cod01,
-      "descricao": descprod01,
-      "lote": loteprod01,
-      "qtd_lote": qtdprod01,
-      "valid_lote": validprod01
-  };
-
-  // Recupera a tabela "producaoinfo" do Local Storage
-  let producaoInfo = localStorage.getItem('producaoinfo');
-  
-  if (producaoInfo) {
-      // Converte a tabela de JSON para um array de objetos
-      producaoInfo = JSON.parse(producaoInfo);
-  } else {
-      // Se a tabela não existe, inicializa um novo array vazio
-      producaoInfo = [];
+  // Verifica se a propriedade no localStorage
+  if (localStorage.hasOwnProperty("prod1")) {
+    // Recuperar os valores da propriedade usuarios do localStorage
+    // Converte de String para Object
+    prod1 = JSON.parse(localStorage.getItem("prod1"));
   }
+
+  // Adiciona um novo objeto no array criado
+  prod1.push({ cod1, descprod1, loteprod1, qtdprod1, validprod1 });
+
+  // Salva no localStorage
+  localStorage.setItem("prod1", JSON.stringify(prod1));
+
+  document.getElementById("conteudo").insertAdjacentHTML('beforeend', "Nome: " + nome_usuario + "<br>E-mail: " + email_usuario + "<br><hr>");
+});
+
+
+cadForm.addEventListener("reset", (e) => {
+
+});
+
+
+//Botões de validação --> Iniciar Produção
+var cadForm = document.getElementById("prd2");
+
+// Aguardar o usuário clicar no botão cadastrar do formulário
+cadForm.addEventListener("submit", (e) => {
+
+  // Não recarregar a página
+  e.preventDefault();
+
+  // Receber os dados do formulário
+  var cod2 = document.getElementById('cod2').value;
+  var descprod2 = document.getElementById('descprod2').value;
+  var loteprod2 = document.getElementById('loteprod2').value;
+  var mp2 = document.getElementById('mp2').value;
+  var ncm2 = document.getElementById('ncm2').value;
+  var un2 = document.getElementById('un2').value;
+  console.log(cod2);
+  console.log(descprod2);
+  console.log(loteprod2);
+  console.log(mp2);
+  console.log(ncm2);
+  console.log(un2);
+
+  // O Array() é usado para criar Array de objetos,
+  let prodprd = new Array();
+
+  // Verifica se a propriedade no localStorage
+  if (localStorage.hasOwnProperty("prodprd")) {
+    // Recuperar os valores da propriedade usuarios do localStorage
+    // Converte de String para Object
+    prodprd = JSON.parse(localStorage.getItem("prodprd"));
+  }
+
+  // Adiciona um novo objeto no array criado
+  prodprd.push({ cod2, descprod2, loteprod2, mp2, ncm2, un2 });
+
+  // Salva no localStorage
+  localStorage.setItem("prodprd", JSON.stringify(prodprd));
+
+  document.getElementById("conteudo").insertAdjacentHTML('beforeend', "Nome: " + nome_usuario + "<br>E-mail: " + email_usuario + "<br><hr>");
+});
+
+
+cadForm.addEventListener("reset", (e) => {
+
+});
+
+
+//Botões de validação --> Iniciar Produção
+var cadForm = document.getElementById("prd3");
+
+// Aguardar o usuário clicar no botão cadastrar do formulário
+cadForm.addEventListener("submit", (e) => {
+
+  // Não recarregar a página
+  e.preventDefault();
+
+  // Receber os dados do formulário
+  var cod3 = document.getElementById('cod3').value;
+  var loteprod3 = document.getElementById('loteprod3').value;
+  console.log(cod3);
+  console.log(loteprod3);
   
-  // Adiciona o novo item ao array
-  producaoInfo.push(salvaproducao);
-  
-  // Converte o array atualizado de volta para JSON
-  const producaoInfoAtualizado = JSON.stringify(producaoInfo);
-  
-  // Armazena a tabela atualizada no Local Storage
-  localStorage.setItem('producaoinfo', producaoInfoAtualizado);
-  
-  // Exibe uma mensagem de sucesso
-  alert('Produção salva com sucesso');
-}
+
+  /* Parei aqui*/
+
+  // O Array() é usado para criar Array de objetos,
+  let prodprd = new Array();
+
+  // Verifica se a propriedade no localStorage
+  if (localStorage.hasOwnProperty("prodprd")) {
+    // Recuperar os valores da propriedade usuarios do localStorage
+    // Converte de String para Object
+    prodprd = JSON.parse(localStorage.getItem("prodprd"));
+  }
+
+  // Adiciona um novo objeto no array criado
+  prodprd.push({ cod2, descprod2, loteprod2, mp2, ncm2, un2 });
+
+  // Salva no localStorage
+  localStorage.setItem("prodprd", JSON.stringify(prodprd));
+
+  document.getElementById("conteudo").insertAdjacentHTML('beforeend', "Nome: " + nome_usuario + "<br>E-mail: " + email_usuario + "<br><hr>");
+});
 
 
+cadForm.addEventListener("reset", (e) => {
 
-// localStorage.setItem('producaoinfo', JSON.stringify(salvaproducao));
-// alert('produção salva');
-
-
+});

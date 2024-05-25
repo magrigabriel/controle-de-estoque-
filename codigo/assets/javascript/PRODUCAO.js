@@ -33,7 +33,7 @@ const btnGerarLinhas = document.getElementById("btnGerarLinhas");
 btnGerarLinhas.addEventListener("click", preencherTabela);
 
 */
-
+/*
 document.addEventListener("DOMContentLoaded", function () {
   const cardDiv = document.querySelector(".card");
   cardDiv.style.display = "none";
@@ -81,7 +81,7 @@ class btn_prod {
     constructor() {
         this.id = 1; /* Será alterado para o código do produto que será produzido */
 
-    }
+  /*  }
 
     salvar() {
         let in_prod = this.lerDados();
@@ -124,4 +124,4 @@ class btn_prod {
 
         return true;
     }
-}
+}*/
