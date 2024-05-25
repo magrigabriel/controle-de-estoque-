@@ -26,8 +26,9 @@
             </div>
             <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Início</a>
-                    <a class="nav-link" aria-current="page" href="Planos.html">Configuração</a>
+                    <a class="nav-link active" aria-current="page" href="telaempres.html">Início</a>
+                    <a class="nav-link active" aria-current="page" href="produtos.html">Produtos</a>
+                    <a class="nav-link active" aria-current="page" href="conf.html">Configuração</a>
                 </div>
             </div>
         </nav>
@@ -68,75 +69,96 @@
         </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        if (produtos.length === 0) {
-            document.getElementById('avisoSemProdutos').style.display = 'block';
-            document.getElementById('produtoVendido').setAttribute('disabled', 'disabled');
-        } else {
-            document.getElementById('produtoVendido').removeAttribute('disabled');
+        if (!localStorage.getItem('userProfile')) {
+            localStorage.setItem('userProfile', JSON.stringify([]));
         }
-    </script>
-
-    <script>
-        if (!localStorage.getItem('produtos')) {
-            localStorage.setItem('produtos', JSON.stringify([]));
-        }
-        const produtos = JSON.parse(localStorage.getItem('produtos'));
+        const produtos = JSON.parse(localStorage.getItem('userProfile'));
+    
         if (produtos.length > 0) {
-            const destaqueProdutosSection = document.getElementById('destaqueProdutos');
             const todosProdutosList = document.getElementById('todosProdutosList');
             const produtoVendidoSelect = document.getElementById('produtoVendido');
-            function criarProdutoHTML(produto) {
-                return `
+    
+            produtos.forEach(produto => {
+                // Criar opção no select
+                const option = document.createElement('option');
+                option.value = produto.employeetp1;
+                option.textContent = produto.employeetp1;
+                produtoVendidoSelect.appendChild(option);
+    
+                // Criar item na lista de todos os produtos
+                const produtoHTML = `
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="${produto.imagem}" class="card-img-top" alt="${produto.nome}">
+                            <img src="${produto.picture}" class="card-img-top" alt="${produto.employeetp1}">
                             <div class="card-body">
-                                <h5 class="card-title">${produto.nome}</h5>
-                                <p class="card-text">${produto.descricao}</p>
-                                <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
-                                <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
+                                <h5 class="card-title">${produto.employeetp1}</h5>
+                                <p class="card-text">Data de Vencimento: ${produto.employeetp3}</p>
+                                <p class="card-text">Preço: R$ ${parseFloat(produto.employeetp5).toFixed(2)}</p>
+                                <p class="card-text">Estoque: ${produto.employeetp4}</p>
                             </div>
                         </div>
                     </div>
                 `;
-            }
-            produtos.slice(0, 3).forEach(produto => {
-                destaqueProdutosSection.innerHTML += criarProdutoHTML(produto);
-            });
-            produtos.forEach(produto => {
-                todosProdutosList.innerHTML += criarProdutoHTML(produto);
-                const option = document.createElement('option');
-                option.value = produto.nome;
-                option.textContent = produto.nome;
-                produtoVendidoSelect.appendChild(option);
+                todosProdutosList.innerHTML += produtoHTML;
             });
         } else {
-            console.log('Nenhum produto encontrado no Local Storage.');
+            document.getElementById('avisoSemProdutos').style.display = 'block';
+            document.getElementById('produtoVendido').setAttribute('disabled', 'disabled');
         }
+    
+        // Inicializa as vendas mensais
+        const vendasMensais = JSON.parse(localStorage.getItem('vendasMensais')) || [];
+        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+        const anoAtual = new Date().getFullYear();
+    
         document.getElementById('formVenda').addEventListener('submit', function(event) {
             event.preventDefault();
-            const dataVenda = new Date().toISOString();
+            const dataVenda = new Date(document.getElementById('dataVenda').value);
+            const mes = dataVenda.getMonth();
+            const ano = dataVenda.getFullYear();
             const produtoVendido = document.getElementById('produtoVendido').value;
             const quantidadeVendida = parseInt(document.getElementById('quantidadeVendida').value);
-            const vendas = JSON.parse(localStorage.getItem('vendas')) || [];
-            vendas.push({
-                data: dataVenda,
-                produto: produtoVendido,
-                quantidade: quantidadeVendida
-            });
-            localStorage.setItem('vendas', JSON.stringify(vendas));
-            const produtoIndex = produtos.findIndex(produto => produto.nome === produtoVendido);
-            if (produtoIndex !== -1) {
-                produtos[produtoIndex].quantidade -= quantidadeVendida;
-                localStorage.setItem('produtos', JSON.stringify(produtos));
+            const produtoIndex = produtos.findIndex(produto => produto.employeetp1 === produtoVendido);
+    
+            if (produtoIndex !== -1 && produtos[produtoIndex].employeetp4 >= quantidadeVendida) {
+                // Atualiza o estoque
+                produtos[produtoIndex].employeetp4 -= quantidadeVendida;
+                localStorage.setItem('userProfile', JSON.stringify(produtos));
+    
+                // Atualiza as vendas mensais
+                const vendaExistenteIndex = vendasMensais.findIndex(venda => venda.mes === meses[mes] && venda.ano === ano);
+                if (vendaExistenteIndex !== -1) {
+                    vendasMensais[vendaExistenteIndex].vendas += quantidadeVendida;
+                } else {
+                    vendasMensais.push({
+                        mes: meses[mes],
+                        ano: ano,
+                        vendas: quantidadeVendida
+                    });
+                }
+                localStorage.setItem('vendasMensais', JSON.stringify(vendasMensais));
+    
+                const vendas = JSON.parse(localStorage.getItem('vendas')) || [];
+                vendas.push({
+                    data: dataVenda.toLocaleDateString(),
+                    produto: produtoVendido,
+                    quantidade: quantidadeVendida
+                });
+                localStorage.setItem('vendas', JSON.stringify(vendas));
+    
+                window.location.reload();
+            } else {
+                alert("Venda não registrada, possivelmente você está tentando vender produtos a mais do disponível no estoque!")
             }
         });
+    
+        document.getElementById('quantidadeVendida').addEventListener('input', function() {
+            document.getElementById('avisoQuantidadeInsuficiente').style.display = 'none';
+        });
     </script>
-
+    
 </body>
 
 </html>

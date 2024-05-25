@@ -17,8 +17,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <script src="../assets/javascript/Json/pagamento.js"></script>
-        
+    <script src="../assets/javascript/Json/pagamento.js"></script>
+
     <!-- Inicio Cabeçalho -->
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="../html/telaempres.html">Inicio</a>
-                    <a class="nav-link" href="#">Configuração</a>
+                    <a class="nav-link" href="conf.html">Configuração</a>
                     <a class="nav-link" href="#contatos">Contato/Dúvidas</a>
                 </div>
             </div>
@@ -172,7 +172,8 @@
                                                         <label for="numero-cartao" class="w-100 ms-2">Número do
                                                             Cartão</label>
                                                         <input id="numero-cartao" type="number" name="numero-cartao"
-                                                            placeholder="0000 0000 0000 0000 " class=" m-2" pattern="\d{16}" required>
+                                                            placeholder="0000 0000 0000 0000 " class=" m-2"
+                                                            pattern="\d{16}" required>
                                                     </div>
                                                     <div class="input-box ms-2" id="input">
                                                         <label for="nome-completo" class="w-100 ms-2">Seu nome
@@ -185,8 +186,9 @@
                                                             class="form-label w-100 m-2">Parcelar em ...</label>
                                                         <select class="form-select p-2" id="validationCustom04"
                                                             required>
-                                                            <option selected value="">1x -R$: XX,XX/mês Sem juros</option>
-                                                            <option  value="">2x -R$: XX,XX/mês Sem juros</span>
+                                                            <option selected value="">1x -R$: XX,XX/mês Sem juros
+                                                            </option>
+                                                            <option value="">2x -R$: XX,XX/mês Sem juros</span>
                                                             </option>
                                                             <option value="">3x -R$: XX,XX/mês Sem juros</option>
                                                             <option value="">4x -R$: XX,XX/mês Sem juros</option>
@@ -205,7 +207,8 @@
                                                     </div>
                                                     <button type="button" class="btn p-2 mt-2"
                                                         style="background-color: #20B2FF;width: 90%; margin-left: 11px;"
-                                                        id="pagar" onclick="salvarpagamentocred()">Comprar Agora</button>
+                                                        id="pagar" onclick="salvarpagamentocred()">Comprar
+                                                        Agora</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -252,37 +255,37 @@
                                                 </div>
                                                 <div class="input-group">
                                                     <div class="input-box ms-2" id="input">
-                                                        <label for="nome-cartao" class=" w-100 ms-2">Nome Impresso no
+                                                        <label for="nome-cartao1" class=" w-100 ms-2">Nome Impresso no
                                                             Cartão</label>
-                                                        <input id="nome-cartao" type="text" name="nome-cartao"
+                                                        <input id="nome-cartao1" type="text" name="nome-cartao1"
                                                             placeholder="Ex: JOAO O SILVA" class=" m-2" required>
                                                     </div>
                                                     <div class="row">
                                                         <div class="input-box col-lg-5 col-md-5 col-12 mt-2 mb-2"
                                                             id="cem">
-                                                            <label for="validade" class="w-100 ms-2">Data de
+                                                            <label for="validade1" class="w-100 ms-2">Data de
                                                                 Validade</label>
-                                                            <input id="validade" type="text" name="validade"
+                                                            <input id="validade1" type="text" name="validade1"
                                                                 placeholder="MM/AA" class="m-2" required>
                                                         </div>
                                                         <div class="input-box col-lg-5 col-12 col-md-5 mt-2 mb-2"
                                                             id="cem">
-                                                            <label for="cvvvv" class="w-100 ms-2">CVV</label>
-                                                            <input id="cvvvv" type="text" name="cvvvv"
-                                                                placeholder="XYZ" class="m-2" required>
+                                                            <label for="cvvvv1" class="w-100 ms-2">CVV</label>
+                                                            <input id="cvvvv1" type="text" name="cvvvv1" placeholder="XYZ"
+                                                                class="m-2" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="input-box ms-2" id="input">
-                                                        <label for="numero-cartao" class="w-100 ms-2">Número do
+                                                        <label for="numero-cartao1" class="w-100 ms-2">Número do
                                                             Cartão</label>
-                                                        <input id="numero-cartao" type="text" name="numero-cartao"
+                                                        <input id="numero-cartao1" type="text" name="numero-cartao1"
                                                             placeholder="0000 0000 0000 0000 " class=" m-2" required>
                                                     </div>
                                                     <div class="input-box ms-2" id="input">
-                                                        <label for="nome-completo" class="w-100 ms-2">Seu nome
+                                                        <label for="nome-completo1" class="w-100 ms-2">Seu nome
                                                             completo</label>
-                                                        <input id="nome-completo" type="text" name="nome-completo"
+                                                        <input id="nome-completo1" type="text" name="nome-completo1"
                                                             placeholder="ex: João Oli Silva" class="m-2" required>
                                                     </div>
                                                     <button type="button" class="btn p-2 mt-2"
@@ -348,9 +351,8 @@
                     onclick="window.location.href = 'https://x.com'"><img src="../assets/img/twitter.png" alt=""
                         style="width: 20px; height: 20px;" id="rede"><span id="sumir"> Twitter/x</span></button>
                 <button type="button" class="btn btn-outline-primary mt-2 col-12 col-md-5 ms-2 col-lg-2 "
-                    onclick="window.location.href = 'https://facebook.com'"><img
-                        src="../assets/img/logos--facebook.png" alt="" style="width: 20px; height: 20px;"
-                        id="rede"><span id="sumir"> Facebook</span></button>
+                    onclick="window.location.href = 'https://facebook.com'"><img src="../assets/img/logos--facebook.png"
+                        alt="" style="width: 20px; height: 20px;" id="rede"><span id="sumir"> Facebook</span></button>
                 <button type="button" class="btn btn-outline-danger mt-2 col-12 col-md-5 ms-2 col-lg-2 "
                     onclick="window.location.href = 'https://instagram.com'"><img src="../assets/img/insta.png" alt=""
                         style="width: 20px; height: 20px;"><span id="sumir">
@@ -401,9 +403,9 @@
                     "background": "<div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 90px; margin: 30px; background-color: white; padding: 10px; border-radius: 10px;''><h1 class='text-white p-2' >404... Ops! Parece que você navegou de mais e perdeu o rumo...</h1><p class='text-white p-2'>(Ou será que você não nos contratou e se perdeu no meio do estoque?)</P<br><a href='./Planos.html'><button type='button' class='btn mt-3 mb-3 w-100' style='background-color: white'><strong class='text-primary'>Voltar a Terra Firme</strong></button></a></div></div></div>",
                 }
 
-                parcelar={
+                parcelar = {
                     "sem": "<p class='m-2 text-primary'>Planos Mensais são adquiridos de apenas 1x (Uma vez)</p>"
-                    
+
                 }
 
                 const JsonData = JSON.stringify(planoss)
@@ -418,8 +420,8 @@
                     var grafico = document.getElementById('grafico');
                     var distribuicao = document.getElementById('distribuicao');
                     var gb = document.getElementById('gb');
-                    var parcelou=document.getElementById('parcelamento');
-                    
+                    var parcelou = document.getElementById('parcelamento');
+
                     if (planoEscolhido == 'basicomensal') {
                         titulo.innerHTML = planoss.plano1.titulo;
                         valor.innerHTML = planoss.plano1.valor;
@@ -477,7 +479,7 @@
                     }
                 });
             </script>
-            
+
             <hr>
         </div>
     </main>
