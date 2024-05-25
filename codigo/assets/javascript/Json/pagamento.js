@@ -133,7 +133,7 @@ function salvarpagamentocred() {
                 localStorage.setItem('confirmacao', 'true');
             }
             alert("Pagamento Realizado com Sucesso!");
-            alert("Você comprou um plano Anual, lembre-se que a renovação automatica está ativada!");
+            alert("Você comprou um plano Anual");
             window.location.href = 'telaempres.html';
         } else {
             alert("Não foi possível prosseguir com o pagamento, verifique as informações e tente novamente!")
