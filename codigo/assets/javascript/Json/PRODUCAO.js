@@ -1,6 +1,6 @@
 /* alert("Bem-vindo ao seu menu de produção!!!") */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {3652
   const cardDiv = document.querySelector("#prd1");
   cardDiv.style.display = "none";
 
@@ -193,3 +193,9 @@ cadForm.addEventListener("submit", (e) => {
 cadForm.addEventListener("reset", (e) => {
 
 });
+
+
+
+
+
+// filtro tabela prod1
