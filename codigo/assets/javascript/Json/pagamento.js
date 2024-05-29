@@ -47,7 +47,7 @@ function salvarpagamentocred() {
         //const parcelame = document.getElementById('validationCustom04').value;
         const numcard = document.getElementById('numero-cartao').value;
 
-        if (nocart.length >= 5 && valid.length == 4 && cvvv.length == 3 || cvvv == 4 && nomecomple > 10 && numcard.length == 1) {
+        if (nocart.length >= 10 && valid.length == 4 && cvvv.length == 3 || cvvv == 4 && nomecomple > 10 && numcard.length == 16) {
 
             const dataproxpag = soma30dias()
             const hojee = hoje()
