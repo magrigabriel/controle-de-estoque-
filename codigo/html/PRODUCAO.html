@@ -277,7 +277,7 @@
             <div class="mb-3">
               <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar...">
             </div>
-            <table class="table table-bordered border-primary">
+            <table id="showtable" class="table table-bordered border-primary">
               <thead>
                 <tr>
                   <th class="bg-primary border-white text-white" scope="col">Código</th>
@@ -319,7 +319,23 @@
 
         inputbusca.addEventListener('keyup', () => {
           let expressao = inputbusca.value;
-          console.log(expressao);
+          let linhas = tabelaCorpo.getElementsByTagName('tr');
+
+          console.log(linhas);
+          for(let posicao in linhas){
+            if(true === isNaN(posicao)){
+              continue;
+            }
+
+            let conteudolinha =  linhas[posicao].innerHTML;
+
+            if(true === conteudolinha.includes(expressao)){
+              linhas[posicao].style.display = '' ;
+            }
+            else{
+              linhas[posicao].style.display = 'none';
+            }
+          }
         });
 
         tableprd = JSON.parse(localStorage.getItem("prod1"));
@@ -327,7 +343,7 @@
         tableprd.sort((a, b) => a.cod1.localeCompare(b.cod1));
 
         // Preenche a tabela até um máximo de 10 linhas
-        tableprd.slice(mais, mais + 10).forEach((item) => { // vai passar por cada objeto da tabela
+        tableprd.slice(mais, mais + 999).forEach((item) => { // vai passar por cada objeto da tabela
           const newRow = tabelaCorpo.insertRow(); // new row vai receber o obejto
 
           newRow.innerHTML = `     
@@ -339,7 +355,7 @@
         `;
         });
 
-        mais += 10;
+        mais += 999;
       }
 
       window.onload = preencherTabela;
