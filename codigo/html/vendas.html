@@ -84,13 +84,11 @@
             const produtoVendidoSelect = document.getElementById('produtoVendido');
     
             produtos.forEach(produto => {
-                // Criar opção no select
                 const option = document.createElement('option');
                 option.value = produto.employeetp1;
                 option.textContent = produto.employeetp1;
                 produtoVendidoSelect.appendChild(option);
     
-                // Criar item na lista de todos os produtos
                 const produtoHTML = `
                     <div class="col-md-4 mb-4">
                         <div class="card">
@@ -111,7 +109,6 @@
             document.getElementById('produtoVendido').setAttribute('disabled', 'disabled');
         }
     
-        // Inicializa as vendas mensais
         const vendasMensais = JSON.parse(localStorage.getItem('vendasMensais')) || [];
         const meses = ["Jan", "Fev", "Mar", "Abr", "Mai",
         "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
@@ -128,15 +125,12 @@
             const produtoIndex = produtos.findIndex(produto => produto.employeetp1 === produtoVendido);
 
             if (produtoIndex !== -1 && produtos[produtoIndex].employeetp4 >= quantidadeVendida) {
-                // Atualiza o estoque
                 produtos[produtoIndex].employeetp4 -= quantidadeVendida;
                 if (produtos[produtoIndex].employeetp4 === 0) {
-                    // Remove o produto da lista de seleção
                     document.querySelector(`#produtoVendido option[value="${produtos[produtoIndex].employeetp1}"]`).remove();
                 }
                 localStorage.setItem('userProfile', JSON.stringify(produtos));
 
-                // Atualiza as vendas mensais
                 const vendaExistenteIndex = vendasMensais.findIndex(venda => venda.mes === meses[mes] && venda.ano === ano);
                 if (vendaExistenteIndex !== -1) {
                     vendasMensais[vendaExistenteIndex].vendas += quantidadeVendida;
@@ -157,7 +151,6 @@
                 });
                 localStorage.setItem('vendas', JSON.stringify(vendas));
 
-                // Exibe mensagem de sucesso
                 document.getElementById('mensagemSucesso').style.display = 'block';
             } else {
                 alert("Venda não registrada, possivelmente você está tentando vender produtos a mais do disponível no estoque!")
@@ -172,4 +165,3 @@
 </body>
 
 </html>
-
