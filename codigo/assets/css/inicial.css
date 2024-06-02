@@ -1,0 +1,241 @@
+body{
+  background: linear-gradient(to top, rgb(196, 227, 252), rgb(255, 255, 255));
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+.container-sobre, .container-caract, .container-ferramentas {
+  margin: 0 auto;
+  padding: 20px;
+  display: block;
+
+}
+.container-sobre img {
+     margin-left: 35%;
+}
+
+.container-sobre h1, .container-sobre p {
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.container-sobre h1 {
+  font-size: 3em;
+}
+
+.container-sobre p {
+  font-size: 1.3em;
+}
+.btnbtn-primary{
+margin-inline: 5%;
+}
+.container-caract {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+ 
+}
+
+.container-caract h2 {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 10px;
+  color: rgba(3, 3, 114, 0.87);
+  text-shadow:0 4px 8px rgba(0, 0, 0, 0.1); ;
+}
+
+.container-caract p {
+  text-align: center;
+  margin-left: 5%;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+.container-caract img {
+  margin-top: 20px;
+}
+.button-cadastro {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: rgb(0 107 179);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    border: 3px solid #ffffff4d;
+    outline: none;
+    overflow: hidden;
+    font-size: 15px;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .button:hover {
+    transform: scale(1.05);
+    border-color: #fff9;
+  }
+  
+  .button:hover .icon {
+    transform: translate(4px);
+  }
+  
+  .button:hover::before {
+    animation: shine 1.5s ease-out infinite;
+  }
+
+  
+  .button::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+  }
+  
+  @keyframes shine {
+    0% {
+      left: -100px;
+    }
+  
+    60% {
+      left: 100%;
+    }
+  
+    to {
+      left: 100%;
+    }
+  }
+
+.button-cadastro .icon {
+  margin-left: 10px;
+}
+
+.container-ferramentas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 40px;
+  
+}
+
+.container-ferramentas h2 {
+  width: 100%;
+  text-align: center;
+  color: rgb(0, 0, 58);
+}
+
+.card {
+  margin: 10px;
+  border-style: solid;
+  border-color: rgb(13, 84, 117);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  float: left;
+  margin-left: 15%;
+}
+
+.card .card-body {
+  text-align: center;
+  margin-top: 3%;
+}
+.review-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+  margin-left: 40%;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 2em;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+  color: gold;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+footer {
+	background-color: #76bbc7;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+  
