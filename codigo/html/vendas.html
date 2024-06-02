@@ -53,6 +53,9 @@
                     <input type="number" class="form-control" id="quantidadeVendida" min="1" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Registrar Venda</button>
+                <div id="mensagemSucesso" class="alert alert-success" style="display: none;" role="alert">
+                    Venda registrada com sucesso!
+                </div>
             </form>
         </section>
 
@@ -110,9 +113,10 @@
     
         // Inicializa as vendas mensais
         const vendasMensais = JSON.parse(localStorage.getItem('vendasMensais')) || [];
-        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai",
+        "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
         const anoAtual = new Date().getFullYear();
-    
+
         document.getElementById('formVenda').addEventListener('submit', function(event) {
             event.preventDefault();
             const dataVenda = new Date(document.getElementById('dataVenda').value);
@@ -120,13 +124,18 @@
             const ano = dataVenda.getFullYear();
             const produtoVendido = document.getElementById('produtoVendido').value;
             const quantidadeVendida = parseInt(document.getElementById('quantidadeVendida').value);
+
             const produtoIndex = produtos.findIndex(produto => produto.employeetp1 === produtoVendido);
-    
+
             if (produtoIndex !== -1 && produtos[produtoIndex].employeetp4 >= quantidadeVendida) {
                 // Atualiza o estoque
                 produtos[produtoIndex].employeetp4 -= quantidadeVendida;
+                if (produtos[produtoIndex].employeetp4 === 0) {
+                    // Remove o produto da lista de seleção
+                    document.querySelector(`#produtoVendido option[value="${produtos[produtoIndex].employeetp1}"]`).remove();
+                }
                 localStorage.setItem('userProfile', JSON.stringify(produtos));
-    
+
                 // Atualiza as vendas mensais
                 const vendaExistenteIndex = vendasMensais.findIndex(venda => venda.mes === meses[mes] && venda.ano === ano);
                 if (vendaExistenteIndex !== -1) {
@@ -139,7 +148,7 @@
                     });
                 }
                 localStorage.setItem('vendasMensais', JSON.stringify(vendasMensais));
-    
+
                 const vendas = JSON.parse(localStorage.getItem('vendas')) || [];
                 vendas.push({
                     data: dataVenda.toLocaleDateString(),
@@ -147,18 +156,20 @@
                     quantidade: quantidadeVendida
                 });
                 localStorage.setItem('vendas', JSON.stringify(vendas));
-    
-                window.location.reload();
+
+                // Exibe mensagem de sucesso
+                document.getElementById('mensagemSucesso').style.display = 'block';
             } else {
                 alert("Venda não registrada, possivelmente você está tentando vender produtos a mais do disponível no estoque!")
             }
         });
-    
+
         document.getElementById('quantidadeVendida').addEventListener('input', function() {
             document.getElementById('avisoQuantidadeInsuficiente').style.display = 'none';
         });
     </script>
-    
+
 </body>
 
 </html>
+
