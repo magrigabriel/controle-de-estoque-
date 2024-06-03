@@ -1,0 +1,15 @@
+{
+    "tipo-plano": "Plano Básico",
+    "prox-pagamento": "10/05/2024",
+    "formaPagamento": {
+      "tipo": "Cartão de Crédito",
+      "numero": "**** **** **** 1234",
+      "dataExpiracao": "12/26"
+    },
+    "filiais": 3
+  } 
+
+  
+
+  
+  

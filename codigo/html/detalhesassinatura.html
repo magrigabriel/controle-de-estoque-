@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/conf.css">
+    <link rel="shortcut icon" href="../assets/img/logo (1).png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Assinatura - DataStock</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Inicio Cabeçalho -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <!-- Logo DataStock -->
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../html/telaempres.html">
+                    <img src="../assets/img/logo.png" alt="DataStock" width="70" height="50">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <!-- Fim logo Data Stock -->
+            <!-- Opções a Direita do NAV -->
+            <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="../html/telaempres.html">Inicio</a>
+                    <a class="nav-link" href="conf.html">Configuração</a>
+                    <a class="nav-link" href="#contatos">Contato/Dúvidas</a>
+                </div>
+            </div>
+            <!-- Fim Opções e NAV -->
+        </nav>
+    </header>
+    <main>
+        <div class="container_conta">
+            <header class="header">
+                <h1 style="font-size: larger;">Detalhes da assinatura</h1>
+                <p>Detalhes da assinatura</p>
+            </header>
+            <div class="card w-75 mb-3">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title text-primary">Detalhes da assinatura: </h1>
+                    <span><strong>Nome do plano:</strong></span>
+                    <span id="nomeplano"></span><br>
+                    <br>
+                    <span><strong>Tipo de Contratação:</strong></span>
+                    <span id="contrat"></span><br>
+                    <br>
+                    <span><strong>Data do último pagamento:</strong></span>
+                    <span id="pag"></span><br>
+                    <br>
+                    <span><strong>Data do próximo pagamento:</strong></span>
+                    <span id="prox"></span><br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="container_conta">
+            <div class="card w-75 mb-3">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title text-primary">Detalhes do pagamento: </h1>
+                    <span><strong>Tipo do cartão:</strong></span>
+                    <span id="tipocart"></span>
+                    <br> <br>
+                    <span><strong>Nome do Cartão:</strong></span>
+                    <span id="nomecard"></span>
+                    <br> <br>
+                    <span><strong>Número do Cartão:</strong></span>
+                    <span id="numcard"></span>
+                    <br><br>
+                    <span><strong>Nome do Comprador:</strong></span>
+                    <span id="nomecomp"></span>
+                    <br><br>
+                    <span>*Esses dados são apenas para parametro, para a sua segurança, os dados do pagamento do plano
+                        não serão mostrado aqui, para mostrar os cartões, adicione o cartão na seção abaixo</span>
+                </div>
+            </div>
+            <div class="card w-75 mb-3">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title text-primary">Cartões Cadastrados</h1>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Adicionar Cartão
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Cartão</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="cartaoForm">
+                                        <div class="mb-3">
+                                            <label for="nocart" class="form-label">Nome do Cartão:</label>
+                                            <input type="text" class="form-control" id="nocart" name="nocart" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="valid" class="form-label">Validade (MM/AA):</label>
+                                            <input type="text" class="form-control" id="valid" name="valid" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="cvvv" class="form-label">CVV:</label>
+                                            <input type="text" class="form-control" id="cvvv" name="cvvv" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nomecomple" class="form-label">Nome Completo:</label>
+                                            <input type="text" class="form-control" id="nomecomple" name="nomecomple"
+                                                required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="numcard" class="form-label">Número do Cartão:</label>
+                                            <input type="text" class="form-control" id="numerocart" name="numcard"
+                                                required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tipodocartao" class="form-label">Tipo do Cartão:</label>
+                                            <select class="form-select" id="tipodocartao" name="tipodocartao" required>
+                                                <option value="Crédito">Crédito</option>
+                                                <option value="Débito">Débito</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" onclick="adicionarCartao()">Adicionar
+                                        Cartão</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-striped mt-4" id="cartoesTable">
+                        <thead>
+                            <tr>
+                                <th>Nome do Cartão</th>
+                                <th>Validade</th>
+                                <th>CVV</th>
+                                <th>Nome Completo</th>
+                                <th>Número do Cartão</th>
+                                <th>Tipo do Cartão</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Linhas de cartões serão adicionadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                renderizarCartoes();
+            });
+
+            function adicionarCartao() {
+
+                const nocart = document.getElementById('nocart').value;
+                const valid = document.getElementById('valid').value;
+                const cvvv = document.getElementById('cvvv').value;
+                const nomecomple = document.getElementById('nomecomple').value;
+                const numerocart1 = document.getElementById('numerocart').value;
+                const numerocart = cartaooculto(numerocart1);
+                const tipodocartao = document.getElementById('tipodocartao').value;
+                if (nocart.length >= 10 && valid.length == 4 && cvvv.length == 3 && nomecomple.length >= 10 && numerocart.length == 16) {
+                    const pagamentoinfo3 = {
+                        "nocart": nocart,
+                        "valid": valid,
+                        "cvvv": cvvv,
+                        "nomecomple": nomecomple,
+                        "numcard": numerocart,
+                        "tipodocartao": tipodocartao
+                    };
+
+                    let cartoes = JSON.parse(localStorage.getItem('cartoes')) || [];
+                    cartoes.push(pagamentoinfo3);
+                    localStorage.setItem('cartoes', JSON.stringify(cartoes));
+                    console.log(cartoes)
+
+                    renderizarCartoes();
+                    document.getElementById('cartaoForm').reset();
+                } else {
+                    alert("Por favor, preencha todos os campos corretamente.");
+                }
+            }
+
+            function renderizarCartoes() {
+                const cartoesTable = document.getElementById('cartoesTable').getElementsByTagName('tbody')[0];
+                cartoesTable.innerHTML = '';
+                const cartoes = JSON.parse(localStorage.getItem('cartoes')) || [];
+
+                cartoes.forEach((cartao, index) => {
+                    const newRow = cartoesTable.insertRow();
+
+                    Object.values(cartao).forEach(val => {
+                        const newCell = newRow.insertCell();
+                        const newText = document.createTextNode(val);
+                        newCell.appendChild(newText);
+                    });
+
+                    const actionsCell = newRow.insertCell();
+                    actionsCell.innerHTML = `
+                    
+                    <button class="btn btn-primary" onclick="editarCartao(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+                        <button class="btn btn-danger" onclick="excluirCartao(${index})">Excluir</button>
+                    `;
+                });
+            }
+
+            function excluirCartao(index) {
+                let cartoes = JSON.parse(localStorage.getItem('cartoes'));
+                cartoes.splice(index, 1);
+                localStorage.setItem('cartoes', JSON.stringify(cartoes));
+                renderizarCartoes();
+            }
+
+            function editarCartao(index) {
+                let cartoes = JSON.parse(localStorage.getItem('cartoes'));
+                const cartao = cartoes[index];
+
+                document.getElementById('nocart').value = cartao.nocart;
+                document.getElementById('valid').value = cartao.valid;
+                document.getElementById('cvvv').value = cartao.cvvv;
+                document.getElementById('nomecomple').value = cartao.nomecomple;
+                document.getElementById('numcard').value = cartao.numcard;
+                document.getElementById('tipodocartao').value = cartao.tipodocartao;
+
+                excluirCartao(index);
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const pagamentoinfo = JSON.parse(localStorage.getItem('pagamentoinfo'));
+                const planocomprado = JSON.parse(localStorage.getItem('planocompradoo'));
+
+                document.getElementById('nomeplano').innerHTML = planocomprado.titulo;
+                document.getElementById('contrat').innerHTML = pagamentoinfo.tipoplano;
+                document.getElementById('prox').innerHTML = pagamentoinfo.dataproxpagamento;
+                document.getElementById('pag').innerHTML = pagamentoinfo.datapagamento;
+                document.getElementById('tipocart').innerHTML = pagamentoinfo.formadepagamento;
+                document.getElementById('nomecard').innerHTML = pagamentoinfo.nocart;
+                document.getElementById('numcard').innerHTML = cartaooculto(pagamentoinfo.numcard);
+                document.getElementById('nomecomp').innerHTML = pagamentoinfo.nomecomple;
+            });
+
+            function editar() {
+                var inforatual = localStorage.getItem('pagamentoinfo');
+
+            }
+            function cartaooculto(numCartao) {
+                const numcartfor = numCartao.slice(-4); 
+                return `************${numcartfor}`; 
+            }
+        </script>
+        </script>
+    </main>
+</body>
+
+</html>

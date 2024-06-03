@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/stylevendas.css">
+    <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
+    <title>Tela de Vendas - DataStock</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../html/telaempres.html">
+                    <img src="../assets/img/logo.png" alt="DataStock" width="70" height="50">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="telaempres.html">Início</a>
+                    <a class="nav-link active" aria-current="page" href="produtos.html">Produtos</a>
+                    <a class="nav-link active" aria-current="page" href="conf.html">Configuração</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="venda" class="container mt-5">
+            <h2 class="text-center mb-4">Registrar Venda</h2>
+            <form id="formVenda">
+                <div class="mb-3">
+                    <label for="dataVenda" class="form-label">Data da Venda</label>
+                    <input type="date" class="form-control" id="dataVenda" required>
+                </div>
+                <div class="mb-3">
+                    <label for="produtoVendido" class="form-label">Produto Vendido</label>
+                    <select class="form-select" id="produtoVendido" required>
+                    </select>
+                    <div id="avisoSemProdutos" class="form-text text-danger" style="display: none;">Não há produtos disponíveis para venda.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="quantidadeVendida" class="form-label">Quantidade Vendida</label>
+                    <input type="number" class="form-control" id="quantidadeVendida" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar Venda</button>
+                <div id="mensagemSucesso" class="alert alert-success" style="display: none;" role="alert">
+                    Venda registrada com sucesso!
+                </div>
+            </form>
+        </section>
+
+        <section id="destaque" class="container mt-5">
+            <h2 class="text-center mb-4">Produtos em Destaque</h2>
+            <div class="row" id="destaqueProdutos">
+            </div>
+        </section>
+
+        <section id="todosProdutos" class="container mt-5">
+            <h2 class="text-center mb-4">Todos os Produtos</h2>
+            <div class="row" id="todosProdutosList">
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        if (!localStorage.getItem('userProfile')) {
+            localStorage.setItem('userProfile', JSON.stringify([]));
+        }
+        const produtos = JSON.parse(localStorage.getItem('userProfile'));
+    
+        if (produtos.length > 0) {
+            const todosProdutosList = document.getElementById('todosProdutosList');
+            const produtoVendidoSelect = document.getElementById('produtoVendido');
+    
+            produtos.forEach(produto => {
+                const option = document.createElement('option');
+                option.value = produto.employeetp1;
+                option.textContent = produto.employeetp1;
+                produtoVendidoSelect.appendChild(option);
+    
+                const produtoHTML = `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="${produto.picture}" class="card-img-top" alt="${produto.employeetp1}">
+                            <div class="card-body">
+                                <h5 class="card-title">${produto.employeetp1}</h5>
+                                <p class="card-text">Data de Vencimento: ${produto.employeetp3}</p>
+                                <p class="card-text">Preço: R$ ${parseFloat(produto.employeetp5).toFixed(2)}</p>
+                                <p class="card-text">Estoque: ${produto.employeetp4}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                todosProdutosList.innerHTML += produtoHTML;
+            });
+        } else {
+            document.getElementById('avisoSemProdutos').style.display = 'block';
+            document.getElementById('produtoVendido').setAttribute('disabled', 'disabled');
+        }
+    
+        const vendasMensais = JSON.parse(localStorage.getItem('vendasMensais')) || [];
+        const meses = ["Jan", "Fev", "Mar", "Abr", "Mai",
+        "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+        const anoAtual = new Date().getFullYear();
+
+        document.getElementById('formVenda').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const dataVenda = new Date(document.getElementById('dataVenda').value);
+            const mes = dataVenda.getMonth();
+            const ano = dataVenda.getFullYear();
+            const produtoVendido = document.getElementById('produtoVendido').value;
+            const quantidadeVendida = parseInt(document.getElementById('quantidadeVendida').value);
+
+            const produtoIndex = produtos.findIndex(produto => produto.employeetp1 === produtoVendido);
+
+            if (produtoIndex !== -1 && produtos[produtoIndex].employeetp4 >= quantidadeVendida) {
+                produtos[produtoIndex].employeetp4 -= quantidadeVendida;
+                if (produtos[produtoIndex].employeetp4 === 0) {
+                    document.querySelector(`#produtoVendido option[value="${produtos[produtoIndex].employeetp1}"]`).remove();
+                }
+                localStorage.setItem('userProfile', JSON.stringify(produtos));
+
+                const vendaExistenteIndex = vendasMensais.findIndex(venda => venda.mes === meses[mes] && venda.ano === ano);
+                if (vendaExistenteIndex !== -1) {
+                    vendasMensais[vendaExistenteIndex].vendas += quantidadeVendida;
+                } else {
+                    vendasMensais.push({
+                        mes: meses[mes],
+                        ano: ano,
+                        vendas: quantidadeVendida
+                    });
+                }
+                localStorage.setItem('vendasMensais', JSON.stringify(vendasMensais));
+
+                const vendas = JSON.parse(localStorage.getItem('vendas')) || [];
+                vendas.push({
+                    data: dataVenda.toLocaleDateString(),
+                    produto: produtoVendido,
+                    quantidade: quantidadeVendida
+                });
+                localStorage.setItem('vendas', JSON.stringify(vendas));
+
+                document.getElementById('mensagemSucesso').style.display = 'block';
+            } else {
+                alert("Venda não registrada, possivelmente você está tentando vender produtos a mais do disponível no estoque!")
+            }
+        });
+
+        document.getElementById('quantidadeVendida').addEventListener('input', function() {
+            document.getElementById('avisoQuantidadeInsuficiente').style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>

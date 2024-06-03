@@ -1,0 +1,187 @@
+HEAD
+#efeito {
+    width: 120px;
+    height: 10px;
+    background-color: rgba(0, 0, 255, 0.633);
+    margin-top: -20px;
+    margin-left: 25px;
+}
+
+.opcoes {
+    text-decoration: none;
+    
+}
+
+
+
+#efeito1 {
+    width: 300px;
+    height: 10px;
+    background-color: rgba(0, 0, 255, 0.633);
+    margin-top: -30px;
+    margin-left: 190px;
+}
+
+h1, .card-title {
+    font-size: 22px;
+    text-shadow: -1px -1px 50px rgba(0, 0, 255, 0.453);
+    color: blue;
+}
+
+@media (min-width: 100px) and (max-width: 1079px) {
+
+
+    #PRODUC01 {
+        width: 10%;
+    }
+
+    .chart {
+        width: 900px;
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      position: relative;
+    }
+
+
+
+}
+
+.lineinput{
+    display: grid;
+    margin-bottom: 10px;
+}
+
+input{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    outline: 0;
+}
+
+.card > button{
+    border: 0px;
+    padding: 10px;
+    outline:0;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.card2 > button{
+    border: 0px;
+    padding: 10px;
+    outline:0;
+    border-radius: 3px;
+    font-weight: bold;
+}
+.card3 > button{
+    border: 0px;
+    padding: 10px;
+    outline:0;
+    border-radius: 3px;
+    font-weight: bold;
+}
+#efeito {
+    width: 120px;
+    height: 10px;
+    background-color: rgba(0, 0, 255, 0.633);
+    margin-top: -20px;
+    margin-left: 25px;
+}
+
+.opcoes {
+    text-decoration: none;
+    
+}
+
+
+
+#efeito1 {
+    width: 300px;
+    height: 10px;
+    background-color: rgba(0, 0, 255, 0.633);
+    margin-top: -30px;
+    margin-left: 190px;
+}
+
+h1, .card-title {
+    font-size: 22px;
+    text-shadow: -1px -1px 50px rgba(0, 0, 255, 0.453);
+    color: blue;
+}
+
+@media (min-width: 100px) and (max-width: 1079px) {
+
+
+    #PRODUC01 {
+        width: 10%;
+    }
+
+    .chart {
+        width: 900px;
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      position: relative;
+    }
+
+
+
+}
+
+.lineinput{
+    display: grid;
+    margin-bottom: 10px;
+}
+
+input{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    outline: 0;
+}
+
+.card > button{
+    border: 0px;
+    padding: 10px;
+    outline:0;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.card2 > button{
+    border: 0px;
+    padding: 10px;
+    outline:0;
+    border-radius: 3px;
+    font-weight: bold;
+}
+.card3 > button{
+    border: 0px;
+    padding: 10px;
+    outline:0;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+
+#cod1:focus{
+    border: 1px solid black;
+    box-shadow: 2px 5px 10px -1px  rgba(0, 0, 0, 0.948);
+}
+#loteprod1:focus{
+    border: 1px solid black;
+    box-shadow: 2px 5px 10px -1px  rgba(0, 0, 0, 0.948);
+}
+#descprod1:focus{
+    border: 1px solid black;
+    box-shadow: 2px 5px 10px -1px  rgba(0, 0, 0, 0.948);
+}
+#qtdprod1:focus{
+    border: 1px solid black;
+    box-shadow: 2px 5px 10px -1px  rgba(0, 0, 0, 0.948);
+}
+#validprod1:focus{
+    border: 1px solid black;
+    box-shadow: 2px 5px 10px -1px  rgba(0, 0, 0, 0.948);
+}
