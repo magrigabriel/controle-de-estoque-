@@ -274,9 +274,27 @@
           <h5 class="opcao card-title"><img src="../assets/img/clock.png" alt=""
               style="width: 30px; margin-right: 10px;" id="PRODUC01">Lotes fabricados</h5>
           <div class="table-responsive">
+
+
+            <form id="filtro1">
+              <input type="checkbox" id="checkcod" name="codigo" value="checkcod" class="valores">
+              <label for="checkcod"> Código</label><br>
+              <input type="checkbox" id="checkdesc" name="descricao" value="checkdesc" class="valores">
+              <label for="checkdesc"> Descrição</label><br>
+              <input type="checkbox" id="checkvalid" name="validade" value="checkvalid" class="valores">
+              <label for="checkvalid"> Validade Lote</label><br><br>
+            </form>
+
             <div class="mb-3">
               <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar...">
             </div>
+            <form>
+              <input id="filtro01" class="p-2 mb-2 mt-2 ms-2 bg-primary routend text-white" type="submit"
+                value="Filtrar"><br><br>
+            </form>
+
+
+
             <table id="showtable" class="table table-bordered border-primary">
               <thead>
                 <tr>
@@ -294,12 +312,12 @@
               </tbody>
             </table>
             <span class="ms-2">*A ordenação da tabela é feita de acordo com o código do produto.</span>
-            <nav aria-label="..." class="d-flex justify-content-center">
+            <!-- <nav aria-label="..." class="d-flex justify-content-center">
               <ul class="pagination pagination-lg ">
                 <li class="page-item " id="btnGerarLinhas"><a class="page-link bg-primary text-white"
                     href="#PRODUCAO">Mais dados</a></li>
               </ul>
-            </nav>
+            </nav> -->
           </div>
         </div>
       </div>
@@ -315,38 +333,56 @@
       function preencherTabela() {
         const tabelaCorpo = document.getElementById("tabela-corpo");
         const inputbusca = document.getElementById('searchInput');
-        const tabprod1 = document.getElementById('prod1');
 
-        inputbusca.addEventListener('keyup', () => {
-          let expressao = inputbusca.value;
-          let linhas = tabelaCorpo.getElementsByTagName('tr');
+        const checkcod = document.getElementById("checkcod").checked;
+        const checkdesc = document.getElementById("checkdesc").checked;
+        const checkvalid = document.getElementById("checkvalid").checked;
+        let expressao = inputbusca.value.toLowerCase();
 
-          console.log(linhas);
-          for(let posicao in linhas){
-            if(true === isNaN(posicao)){
-              continue;
-            }
+        tabelaCorpo.innerHTML = "";
 
-            let conteudolinha =  linhas[posicao].innerHTML;
+        let tableprd = JSON.parse(localStorage.getItem("prod1")) || [];
 
-            if(true === conteudolinha.includes(expressao)){
-              linhas[posicao].style.display = '' ;
-            }
-            else{
-              linhas[posicao].style.display = 'none';
-            }
-          }
-        });
 
-        tableprd = JSON.parse(localStorage.getItem("prod1"));
 
         tableprd.sort((a, b) => a.cod1.localeCompare(b.cod1));
 
-        // Preenche a tabela até um máximo de 10 linhas
-        tableprd.slice(mais, mais + 999).forEach((item) => { // vai passar por cada objeto da tabela
-          const newRow = tabelaCorpo.insertRow(); // new row vai receber o obejto
+        tableprd.forEach((item) => {
+          let addRow = false;
 
-          newRow.innerHTML = `     
+          if (checkcod && item.cod1.toLowerCase().includes(expressao)) {
+            addRow = true;
+          }
+          if (checkdesc && item.descprod1.toLowerCase().includes(expressao)) {
+            addRow = true;
+          }
+          if (checkvalid && item.validprod1.toLowerCase().includes(expressao)) {
+            addRow = true;
+          }
+
+          if (addRow) {
+            const newRow = tabelaCorpo.insertRow();
+            newRow.innerHTML = `
+          <td>${item.cod1}</td>
+          <td>${item.descprod1}</td>
+          <td>${item.loteprod1}</td>
+          <td>${item.qtdprod1}</td>
+          <td>${item.validprod1}</td>
+        `;
+          }
+        });
+      }
+
+      function tabelacompleta() {
+        const tabelaCorpo = document.getElementById("tabela-corpo");
+        tabelaCorpo.innerHTML = "";
+
+        let tableprd = JSON.parse(localStorage.getItem("prod1")) || [];
+        tableprd.sort((a, b) => a.cod1.localeCompare(b.cod1));
+
+        tableprd.forEach((item) => {
+          const newRow = tabelaCorpo.insertRow();
+          newRow.innerHTML = `
             <td>${item.cod1}</td>
             <td>${item.descprod1}</td>
             <td>${item.loteprod1}</td>
@@ -354,19 +390,67 @@
             <td>${item.validprod1}</td>
         `;
         });
-
-        mais += 999;
       }
 
-      window.onload = preencherTabela;
 
-      const btnGerarLinhas = document.getElementById("btnGerarLinhas");
-      btnGerarLinhas.addEventListener("click", function (event) {
+
+      function aplicarFiltros() {
+        const inputbusca = document.getElementById('searchInput');
+        const expressao = inputbusca.value.toLowerCase();
+
+        const checkcod1 = document.getElementById("checkcod").checked;
+        const checkdesc = document.getElementById("checkdesc").checked;
+        const checkvalid = document.getElementById("checkvalid").checked;
+
+        let tableprd = JSON.parse(localStorage.getItem("prod1")) || [];
+
+        tableprd.sort((a, b) => a.cod1.localeCompare(b.cod1));
+
+        const filteredTable = tableprd.filter((item) => {
+          let addRow = false;
+          if (checkcod1 && item.cod1.toLowerCase().includes(expressao)) {
+            addRow = true;
+          }
+          if (checkdesc && item.descprod1.toLowerCase().includes(expressao)) {
+            addRow = true;
+          }
+          if (checkvalid && item.validprod1.toLowerCase().includes(expressao)) {
+            addRow = true;
+          }
+          return addRow;
+        });
+
+        if (expressao === "" && !checkcod1 && !checkdesc && !checkvalid) {
+          tabelacompleta(tableprd);
+        } else {
+          preencherTabela(filteredTable);
+        }
+      }
+
+
+      window.onload = function () {
+        let tableprd = JSON.parse(localStorage.getItem("prod1")) || [];
+        tableprd.sort((a, b) => a.cod1.localeCompare(b.cod1));
+        tabelacompleta(tableprd);
+      }
+
+      const btnFiltrar = document.getElementById("filtro01");
+      btnFiltrar.addEventListener("click", function (event) {
         event.preventDefault();
-        preencherTabela();
+        aplicarFiltros();
       });
 
+     /* const btnGerarLinhas = document.getElementById("btnGerarLinhas");
+      btnGerarLinhas.addEventListener("click", function (event) {
+        event.preventDefault();
+        aplicarFiltros();
+      }); */
+
+
+
+
     </script>
+
 
 
   </main>
@@ -374,7 +458,9 @@
 
   <script src="../assets/javascript/Json/PRODUCAO.js"></script>
 
+
 </body>
+
 
 
 </html>

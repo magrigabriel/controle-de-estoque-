@@ -1,6 +1,8 @@
 /* alert("Bem-vindo ao seu menu de produção!!!") */
 
-document.addEventListener("DOMContentLoaded", function () {3652
+
+
+document.addEventListener("DOMContentLoaded", function () {
   const cardDiv = document.querySelector("#prd1");
   cardDiv.style.display = "none";
 
@@ -49,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {3652
       cardDiv3.style.display = "none"; // Esconde o card se já estiver visível
     }
   });
+  preencherTabela();
 });
 
 
@@ -99,10 +102,10 @@ cadForm.addEventListener("reset", (e) => {
 
 
 //Botões de validação --> Iniciar Produção
-var cadForm = document.getElementById("prd2");
+var cadForm2 = document.getElementById("prd2");
 
 // Aguardar o usuário clicar no botão cadastrar do formulário
-cadForm.addEventListener("submit", (e) => {
+cadForm2.addEventListener("submit", (e) => {
 
   // Não recarregar a página
   e.preventDefault();
@@ -141,16 +144,16 @@ cadForm.addEventListener("submit", (e) => {
 });
 
 
-cadForm.addEventListener("reset", (e) => {
+cadForm2.addEventListener("reset", (e) => {
 
 });
 
 
 //Botões de validação --> Iniciar Produção
-var cadForm = document.getElementById("prd3");
+var cadForm3 = document.getElementById("prd3");
 
 // Aguardar o usuário clicar no botão cadastrar do formulário
-cadForm.addEventListener("submit", (e) => {
+cadForm3.addEventListener("submit", (e) => {
 
   // Não recarregar a página
   e.preventDefault();
@@ -184,7 +187,7 @@ cadForm.addEventListener("submit", (e) => {
 });
 
 
-cadForm.addEventListener("reset", (e) => {
+cadForm3.addEventListener("reset", (e) => {
 
 });
 
