@@ -290,8 +290,11 @@
             </div>
             <form>
               <input id="filtro01" class="p-2 mb-2 mt-2 ms-2 bg-primary routend text-white" type="submit"
-                value="Filtrar"><br><br>
+                value="Filtrar">
+              <input id="filtro02" class="p-2 mb-2 mt-2 ms-2 bg-primary routend text-white" type="submit"
+                value="Cancelar filtro"><br><br>
             </form>
+
 
 
 
@@ -438,6 +441,12 @@
       btnFiltrar.addEventListener("click", function (event) {
         event.preventDefault();
         aplicarFiltros();
+      });
+
+      const btnsemfiltro = document.getElementById("filtro02");
+      btnFiltrar.addEventListener("click", function (event) {
+        event.preventDefault();
+        tabelacompleta(tableprd);
       });
 
      /* const btnGerarLinhas = document.getElementById("btnGerarLinhas");
