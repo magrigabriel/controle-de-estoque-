@@ -88,8 +88,11 @@
                     <span><strong>Nome do Comprador:</strong></span>
                     <span id="nomecomp"></span>
                     <br><br>
-                    <span>*Esses dados são apenas para parametro, para a sua segurança, os dados do pagamento do plano
-                        não serão mostrado aqui, para mostrar os cartões, adicione o cartão na seção abaixo</span>
+                    <span><strong>Valor do pagamento:</strong></span>
+                    <span id="valorpag"></span>
+                    <br><br>
+                    <span>*Esses dados são apenas para parâmetro, para a sua segurança, os dados do pagamento do plano
+                        não serão mostrados aqui, para mostrar os cartões, adicione o cartão na seção abaixo</span>
                 </div>
             </div>
             <div class="card w-75 mb-3">
@@ -174,13 +177,35 @@
                 </div>
             </div>
         </div>
+
+        <!-- Toasts -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="toastSucesso" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Sucesso</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Cartão adicionado com sucesso!
+                </div>
+            </div>
+            <div id="toastErro" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Erro</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Por favor, preencha todos os campos corretamente.
+                </div>
+            </div>
+        </div>
+
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 renderizarCartoes();
             });
 
             function adicionarCartao() {
-
                 const nocart = document.getElementById('nocart').value;
                 const valid = document.getElementById('valid').value;
                 const cvvv = document.getElementById('cvvv').value;
@@ -188,7 +213,8 @@
                 const numerocart1 = document.getElementById('numerocart').value;
                 const numerocart = cartaooculto(numerocart1);
                 const tipodocartao = document.getElementById('tipodocartao').value;
-                if (nocart.length >= 10 && valid.length == 4 && cvvv.length == 3 && nomecomple.length >= 10 && numerocart.length == 16) {
+
+                if (nocart.length >= 10 && valid.length == 4 && cvvv.length == 3 && nomecomple.length >= 10 && numerocart1.length == 16) {
                     const pagamentoinfo3 = {
                         "nocart": nocart,
                         "valid": valid,
@@ -205,8 +231,9 @@
 
                     renderizarCartoes();
                     document.getElementById('cartaoForm').reset();
+                    mostrarToast('toastSucesso');
                 } else {
-                    alert("Por favor, preencha todos os campos corretamente.");
+                    mostrarToast('toastErro');
                 }
             }
 
@@ -215,7 +242,7 @@
                 cartoesTable.innerHTML = '';
                 const cartoes = JSON.parse(localStorage.getItem('cartoes')) || [];
 
-                cartoes.forEach((cartao, index) => {
+                cartoes.Eachfor((cartao, index) => {
                     const newRow = cartoesTable.insertRow();
 
                     Object.values(cartao).forEach(val => {
@@ -226,9 +253,8 @@
 
                     const actionsCell = newRow.insertCell();
                     actionsCell.innerHTML = `
-                    
                     <button class="btn btn-primary" onclick="editarCartao(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-                        <button class="btn btn-danger" onclick="excluirCartao(${index})">Excluir</button>
+                    <button class="btn btn-danger" onclick="excluirCartao(${index})">Excluir</button>
                     `;
                 });
             }
@@ -248,17 +274,22 @@
                 document.getElementById('valid').value = cartao.valid;
                 document.getElementById('cvvv').value = cartao.cvvv;
                 document.getElementById('nomecomple').value = cartao.nomecomple;
-                document.getElementById('numcard').value = cartao.numcard;
+                document.getElementById('numerocart').value = cartao.numcard;
                 document.getElementById('tipodocartao').value = cartao.tipodocartao;
 
                 excluirCartao(index);
             }
-        </script>
-        <script>
+
+            function mostrarToast(toastId) {
+                const toastElement = document.getElementById(toastId);
+                const toast = new bootstrap.Toast(toastElement);
+                toast.show();
+            }
+
             document.addEventListener('DOMContentLoaded', function () {
                 const pagamentoinfo = JSON.parse(localStorage.getItem('pagamentoinfo'));
                 const planocomprado = JSON.parse(localStorage.getItem('planocompradoo'));
-
+     
                 document.getElementById('nomeplano').innerHTML = planocomprado.titulo;
                 document.getElementById('contrat').innerHTML = pagamentoinfo.tipoplano;
                 document.getElementById('prox').innerHTML = pagamentoinfo.dataproxpagamento;
@@ -267,17 +298,13 @@
                 document.getElementById('nomecard').innerHTML = pagamentoinfo.nocart;
                 document.getElementById('numcard').innerHTML = cartaooculto(pagamentoinfo.numcard);
                 document.getElementById('nomecomp').innerHTML = pagamentoinfo.nomecomple;
+                document.getElementById('valorpag').innerHTML = planocomprado.valor;
             });
 
-            function editar() {
-                var inforatual = localStorage.getItem('pagamentoinfo');
-
-            }
             function cartaooculto(numCartao) {
                 const numcartfor = numCartao.slice(-4); 
                 return `************${numcartfor}`; 
             }
-        </script>
         </script>
     </main>
 </body>

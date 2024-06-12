@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   btn_prod.addEventListener("click", function () {
     if (cardDiv.style.display === "none") {
       cardDiv.style.display = "block";
+      cardDiv4.style.display = "none";
+      cardDiv2.style.display = "none";
+      cardDiv3.style.display = "none";
     } else {
       cardDiv.style.display = "none";
     }
@@ -21,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const btn_edit = document.getElementById("btn_edit");
   btn_edit.addEventListener("click", function () {
     if (cardDiv4.style.display === "none") {
+      cardDiv.style.display = "none";
       cardDiv4.style.display = "block";
+      cardDiv2.style.display = "none";
+      cardDiv3.style.display = "none";
     } else {
       cardDiv4.style.display = "none";
     }
@@ -33,7 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const btn_novo = document.getElementById("btn_novo");
   btn_novo.addEventListener("click", function () {
     if (cardDiv2.style.display === "none") {
-      cardDiv2.style.display = "block"; // Exibe o card ao clicar no botão "btn_novo"
+      cardDiv.style.display = "none";
+      cardDiv4.style.display = "none";
+      cardDiv2.style.display = "block";
+      cardDiv3.style.display = "none"; // Exibe o card ao clicar no botão "btn_novo"
     } else {
       cardDiv2.style.display = "none"; // Esconde o card se já estiver visível
     }
@@ -46,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const btn_ex = document.getElementById("btn_ex");
   btn_ex.addEventListener("click", function () {
     if (cardDiv3.style.display === "none") {
+      cardDiv.style.display = "none";
+      cardDiv4.style.display = "none";
+      cardDiv2.style.display = "none";
       cardDiv3.style.display = "block"; // Exibe o card ao clicar no botão "btn_prod"
     } else {
       cardDiv3.style.display = "none"; // Esconde o card se já estiver visível
@@ -70,12 +82,6 @@ cadForm.addEventListener("submit", (e) => {
   var loteprod1 = document.getElementById('loteprod1').value;
   var qtdprod1 = document.getElementById('qtdprod1').value;
   var validprod1 = document.getElementById('validprod1').value;
-  console.log(cod1);
-  console.log(descprod1);
-  console.log(loteprod1);
-  console.log(qtdprod1);
-  console.log(validprod1);
-
   // O Array() é usado para criar Array de objetos
   let prod1 = new Array();
 

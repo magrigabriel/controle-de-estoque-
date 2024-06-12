@@ -145,61 +145,62 @@
         Gráfico total de vendas</h1>
       <div class="row">
         <div class="col-lg-12 col-12 col-md-12 d-flex justify-content-center" id="disponivel">
+          <script src="https://d3js.org/d3.v7.min.js"></script>
           <script>
             const vendeo = {
               "vendeu": "<div class='chart'></div>",
-              "naovendeu": "<div class='p-1 mt-3 mb-2 bg-primary' style='border-radius: 10px;'><div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 100px; margin-top: 30px; margin-bottom: 30px; background-color: white; padding: 10px; border-radius: 10px; margin: center;'><h1 class='text-white p-2' >Ops! O plano comprado não permite acesso ao gráfico. Faça um updade e tenha acesso agora mesmo!</h1><p class='text-white p-2'>-Me chama de termômetro e vem medir o calor das vendas comigo...Não? Desculpe, o estagiario está maluco.</P<br><a href='./Planos.html'><button type='button' class='btn mt-3 mb-3 w-100' style='background-color: white'><strong class='text-primary'>Ver Planos</strong></button></a></div></div></div></div>",
+              "naovendeu": "<div class='p-1 mt-3 mb-2 bg-primary' style='border-radius: 10px;'><div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 100px; margin-top: 30px; margin-bottom: 30px; background-color: white; padding: 10px; border-radius: 10px; margin: center;'><h1 class='text-white p-2' >Ops! O plano comprado não permite acesso ao gráfico. Faça um updade e tenha acesso agora mesmo!</h1><p class='text-white p-2'>-Me chama de termômetro e vem medir o calor das vendas comigo...Não? Desculpe, o estagiario está maluco.</p><br><a href='./Planos.html'><button type='button' class='btn mt-3 mb-3 w-100' style='background-color: white'><strong class='text-primary'>Ver Planos</strong></button></a></div></div></div></div>",
+              "naovendeuu": "<div class='p-1 mt-3 mb-2 bg-primary' style='border-radius: 10px;'><div class='container w-75 mx-auto bg-primary' style='border-radius: 10px;'><div class='row'><div class='col-lg-12 col-md-12 col-12'><img src='../assets/img/logo.png' style='width: 100px; margin-top: 30px; margin-bottom: 30px; background-color: white; padding: 10px; border-radius: 10px; margin: center;'><h1 class='text-white p-2' >Parece que você não vendeu nenhum produto ainda, por isso o gráfico não surgiu ainda. </h1><p class='text-white p-2'>Registre uma venda para o gráfico surgir! Vamos ver esse gráfico subir juntos! <3</p><br></div></div></div></div>"
             }
             var planoEscolhido = localStorage.getItem('confirmacao');
             var local = document.getElementById('disponivel');
+            const vendasMensais = JSON.parse(localStorage.getItem('vendasMensais'))
             if (planoEscolhido == 'false') {
               local.innerHTML = vendeo.naovendeu;
-            } else local.innerHTML = vendeo.vendeu;
-            // else {
-            //   window.location.href = 'Planos.html'; ----------> Fazer algo parecido, mas levar para a tela de login
-            // }
-          </script>
+            } else if (vendasMensais == null && planoEscolhido == 'true'){ local.innerHTML = vendeo.naovendeuu }
+            else {
+              local.innerHTML = vendeo.vendeu
+              // else {
+              //   window.location.href = 'Planos.html'; ----------> Fazer algo parecido, mas levar para a tela de login
+              // }
 
-          <script src="https://d3js.org/d3.v7.min.js"></script>
-          <script>
-            const vendasMensais = JSON.parse(localStorage.getItem('vendasMensais'));
-            // Dimensões do gráfico
-            const margin = { top: 20, right: 30, bottom: 50, left: 60 };
-            let width = document.querySelector('.chart').clientWidth;
-            let height = width * 0.6;
-        
-            // SVG
-            const svg = d3.select('.chart')
+              // Dimensões do gráfico
+              const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+              let width = document.querySelector('.chart').clientWidth;
+              let height = width * 0.6;
+
+              // SVG
+              const svg = d3.select('.chart')
                 .append('svg')
                 .attr('width', width)
                 .attr('height', height);
-        
-            // Escala X
-            const x = d3.scaleBand()
+
+              // Escala X
+              const x = d3.scaleBand()
                 .domain(vendasMensais.map(d => d.mes))
                 .range([margin.left, width - margin.right])
                 .padding(0.1);
-        
-            // Escala Y
-            const y = d3.scaleLinear()
+
+              // Escala Y
+              const y = d3.scaleLinear()
                 .domain([0, d3.max(vendasMensais, d => parseInt(d.vendas))])
                 .range([height - margin.bottom, margin.top]);
-        
-            // Desenhar a linha
-            const line = d3.line()
+
+              // Desenhar a linha
+              const line = d3.line()
                 .x(d => x(d.mes) + x.bandwidth() / 2)
                 .y(d => y(parseInt(d.vendas)));
-        
-            svg.append('path')
+
+              svg.append('path')
                 .datum(vendasMensais)
                 .attr('class', 'line')
                 .attr('d', line)
                 .attr('fill', 'none')
                 .attr('stroke', 'steelblue')
                 .attr('stroke-width', 2);
-        
-            // Adicionar pontos
-            svg.selectAll('.dot')
+
+              // Adicionar pontos
+              svg.selectAll('.dot')
                 .data(vendasMensais)
                 .enter()
                 .append('circle')
@@ -209,35 +210,37 @@
                 .attr('r', 5)
                 .attr('fill', 'steelblue')
                 .on('mouseenter', function (event, d) {
-                    d3.select(this).attr('r', 8);
-                    tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}`);
-                    tooltip.attr('class', 'tooltip active');
+                  d3.select(this).attr('r', 8);
+                  tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}`);
+                  tooltip.attr('class', 'tooltip active');
                 })
                 .on('mouseleave', function () {
-                    d3.select(this).attr('r', 5);
-                    tooltip.attr('class', 'tooltip');
+                  d3.select(this).attr('r', 5);
+                  tooltip.attr('class', 'tooltip');
                 });
-        
-            // Eixos
-            const xAxis = g => g
+
+              // Eixos
+              const xAxis = g => g
                 .attr('transform', `translate(0,${height - margin.bottom})`)
                 .call(d3.axisBottom(x).tickSizeOuter(0));
-        
-            const yAxis = g => g
+
+              const yAxis = g => g
                 .attr('transform', `translate(${margin.left},0)`)
                 .call(d3.axisLeft(y));
-        
-            svg.append('g').call(xAxis);
-            svg.append('g').call(yAxis);
-        
-            // Tooltip
-            const tooltip = d3.select('.chart')
+
+              svg.append('g').call(xAxis);
+              svg.append('g').call(yAxis);
+
+              // Tooltip
+              const tooltip = d3.select('.chart')
                 .append('div')
                 .attr('class', 'tooltip');
-        
-        </script>
-        
-        
+
+            }
+
+          </script>
+
+
 
         </div>
         <!-- fim Gráfico -->
@@ -285,39 +288,63 @@
         </div>
 
         <script>
-          let dados = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : [];
+          let employeetp1 = [], employeetp2 = [], employeetp3 = [], employeetp4 = [], employeetp5 = [], employeetp6 = [], employeetp7 = [], img = [];
+
+          window.onload = function () {
+            var storedUserProfile = localStorage.getItem("userProfile");
+            if (storedUserProfile) {
+              var userProfile = JSON.parse(storedUserProfile);
+              employeetp1 = userProfile.tp1 || [];
+              employeetp2 = userProfile.tp2 || [];
+              employeetp3 = userProfile.tp3 || [];
+              employeetp4 = userProfile.tp4 || [];
+              employeetp5 = userProfile.tp5 || [];
+              employeetp6 = userProfile.tp6 || [];
+              employeetp7 = userProfile.tp7 || [];
+              img = userProfile.img || [];
+            }
+            preencherTabela();
+          }
+
           let mais = 0;
 
           function preencherTabela() {
             const tabelaCorpo = document.getElementById("tabela-corpo");
+            tabelaCorpo.innerHTML = "";  // Limpa a tabela antes de preenchê-la novamente
 
             // Filtra os produtos que têm quantidade maior que 0 e ordena pela data de validade
-            let produtosValidos = dados.filter(item => item.employeetp4 > 0).sort((a, b) => new Date(a.employeetp3) - new Date(b.employeetp3));
+            let produtosValidos = employeetp1.map((_, index) => ({
+              tp1: employeetp1[index],
+              tp2: employeetp2[index],
+              tp3: employeetp3[index],
+              tp4: employeetp4[index],
+              tp5: employeetp5[index],
+              tp6: employeetp6[index],
+              tp7: employeetp7[index],
+              img: img[index]
+            })).filter(item => item.tp4 > 0).sort((a, b) => new Date(a.tp3) - new Date(b.tp3));
 
             // Preenche a tabela até um máximo de 10 linhas
             produtosValidos.slice(mais, mais + 10).forEach((item) => {
               const newRow = tabelaCorpo.insertRow();
-              const proximoVencimento = new Date(item.employeetp3) - new Date() < 1000 * 60 * 60 * 24 * 15;
+              const proximoVencimento = new Date(item.tp3) - new Date() < 1000 * 60 * 60 * 24 * 15;
               if (proximoVencimento) {
                 newRow.classList.add("prox-vencimento");
               }
               newRow.innerHTML = `
-                      <td>${item.employeetp1}</td>
-                      <td>${item.employeetp4}</td>
-                      <td>R$: ${item.employeetp5}</td>
-                      <td>${item.employeetp3}</td>
-                      <td>${item.employeetp6}</td>
-                      <td>${item.startDate}</td>
+                      <td>${item.tp1}</td>
+                      <td>${item.tp4}</td>
+                      <td>R$: ${item.tp5}</td>
+                      <td>${item.tp3}</td>
+                      <td>${item.tp6}</td>
+                      <td>${item.tp7}</td>
                   `;
             });
 
             mais += 10; // Adiciona mais 10, para a próxima vez que clicar no botão
           }
 
-          window.onload = preencherTabela;
-
-          const btnGerarLinhas = document.getElementById("btnGerarLinhas");
-          btnGerarLinhas.addEventListener("click", preencherTabela);
+          document.getElementById("btnGerarLinhas").addEventListener("click", preencherTabela);
         </script>
       </div>
     </div>
