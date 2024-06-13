@@ -1,200 +1,143 @@
 body {
-    background-color: rgba(128, 128, 128, 0.153);
-    margin-top: 100px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #1f96f7, #c3ccff);
 }
 
-nav {
-    box-shadow: 1px -1px 20px rgba(0, 0, 0, 0.267);
+.main {
+  width: 350px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 5px 20px 50px #000;
 }
 
-#efeito {
-    width: 220px;
-    height: 10px;
-    background-color: rgba(0, 0, 255, 0.633);
-    margin-top: -20px;
-    margin-left: 60px;
-    
+#chk {
+  display: none;
 }
 
-#efeito1 {
-    width: 220px;
-    height: 10px;
-    background-color: rgba(0, 0, 255, 0.633);
-    margin-top: -20px;
-    margin-left: 35px;
+.cadastrar {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-#efeito2 {
-    width: 120px;
-    height: 10px;
-    background-color: rgba(0, 0, 255, 0.633);
-    margin-top: -20px;
-    margin-left: 46.5%;
+label {
+  color: #fff;
+  font-size: 2.1em;
+  justify-content: center;
+  display: flex;
+  margin: 60px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .5s ease-in-out;
 }
 
-#teste {
-    z-index: 1;
-    transition: transform 0.5s;
+input,
+button {
+  width: 60%;
+  height: 20px;
+  background: #e0dede;
+  justify-content: center;
+  display: flex;
+  margin: 30px auto;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
 }
 
-#teste:hover {
-    transform: scale(1.04);
-    box-shadow: 1px -1px 20px rgba(0, 0, 0, 0.267);
+button {
+  width: 60%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #fff;
+  background: #1f96f7;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: .2s ease-in;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-#teste:hover>button {
-    box-shadow: 1px 1px 10px 2px rgba(0, 195, 255, 0.486);
+button:hover {
+  background: #a7d7fd;
 }
 
-#pagar:hover{
-    box-shadow: 1px 1px 10px 2px rgba(0, 195, 255, 0.486);
-}
-#te:hover{
-    box-shadow: 1px 1px 10px 2px rgba(0, 195, 255, 0.486);
-}
-
-#rede {
-    transition: transform 0.5s;
+.entrar {
+  height: 460px;
+  background: #eee;
+  border-radius: 60% / 10%;
+  transform: translateY(-180px);
+  transition: .8s ease-in-out;
 }
 
-#rede:hover {
-    transform: scale(1.2);
+.entrar label {
+  color: #389cee;
+  transform: scale(.8);
 }
 
-#imgpagdps {
-    display: none;
+.entrar label.forgot-password {
+  color: #389cee;
+  font-size: 14px;
+  margin-top: 22px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-#confirmarpag {
-    margin-left: 10px;
+.entrar label.forgot-password:hover {
+  color: #389cee;
 }
 
-/* formulario */
-
-input {
-    width: 75%;
-    padding: 8px;
-    border: none;
-    border-bottom: 2px solid #507dfab6;
-    border-radius: 0px;
-    mask-border-outset: none;
-    outline: none;
-
+#chk:checked ~ .entrar {
+  transform: translateY(-500px);
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+#chk:checked ~ .entrar label {
+  transform: scale(1);
 }
 
-input:focus{
-    border-bottom: 2px solid #2027ff;
+#chk:checked ~ .cadastro label {
+  transform: scale(.8);
 }
 
+@media (max-width: 576px) {
+  .main {
+      width: 90%;
+      max-width: 350px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
 
+  input,
+  button {
+      width: 80%;
+      margin-top: 20px;
+  }
 
+  label {
+      font-size: 1.8em;
+      margin: 30px 0;
+  }
 
-#metadeform{
-    width: 40%;
+  .entrar label {
+  
+      font-size: 1.6em;
+      margin: 55px 0;
+  }
+
+  .entrar label.forgot-password {
+      margin-top: 20px;
+  }
 }
-
-#titulosem{
-    width: 100%;
-}
-
-#dv{
-    width: 75%;
-}
-#metadeform1{
-    width: 40%;
-}
-
-#titulosem1{
-    width: 100%;
-}
-
-#cvv{
-    width: 75%;
-}
-
-#contprincipal{
-    width: 75%;
-}
-
-
-@media (min-width: 100px) and (max-width: 988px) {
-
-    #efeito1,
-    #efeito,
-    #efeito2 {
-        display: none;
-    }
-
-    #Entrecttnos {
-        font-size: 17px;
-    }
-
-    .contato {
-        margin-left: 0px;
-    }
-
-    h1 {
-        text-shadow: -1px -1px 50px rgba(0, 0, 255, 0.453);
-        color: blue;
-    }
-
-    #sumi4r {
-        display: none;
-    }
-
-    #confirmarpag {
-        margin-top: 10px;
-        margin-left: 0;
-    }
-
-    #imgpag {
-        display: none;
-    }
-
-    #imgpagdps {
-        display: block;
-    }
-
-    #input {
-        width: 100%;
-    }
-
-    #metadeform{
-        width: 100%;
-    }
-    
-    #titulosem{
-        width: 100%;
-    }
-    
-    #dv{
-        width: 75%;
-    }
-
-    #metadeform1{
-        width: 100%;
-    }
-    
-    #titulosem1{
-        width: 100%;
-    }
-    
-    #cvv{
-        width: 75%;
-    }
-
-    #contprincipal{
-        width: 90%;
-    }
-
-}
-
-
-
-
