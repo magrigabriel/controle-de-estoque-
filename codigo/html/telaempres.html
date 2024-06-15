@@ -211,7 +211,7 @@
                 .attr('fill', 'steelblue')
                 .on('mouseenter', function (event, d) {
                   d3.select(this).attr('r', 8);
-                  tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}`);
+                  tooltip.text(`Mês: ${d.mes}, Vendas: ${d.vendas}, Ano: ${d.ano}`);
                   tooltip.attr('class', 'tooltip active');
                 })
                 .on('mouseleave', function () {
